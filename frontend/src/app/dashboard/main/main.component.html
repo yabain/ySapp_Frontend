@@ -1,0 +1,409 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header" *ngFor="let breadscrum of breadscrums">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    <!-- Widgets -->
+    <div class="row">
+      <div class="col-lg-3 col-sm-6">
+        <div class="counter-box text-center">
+          <div class="text font-17 m-b-5">{{'total-message' | translate}}</div>
+          <h3 class="m-b-10">758
+            <i class="material-icons col-green">trending_up</i>
+          </h3>
+          <div class="apex-chart-center">
+            <apx-chart [series]="smallBarChart.series" [chart]="smallBarChart.chart"
+              [plotOptions]="smallBarChart.plotOptions" [tooltip]="smallBarChart.tooltip">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="counter-box text-center">
+          <div class="text font-17 m-b-5">{{'total-auto-sended' | translate}}</div>
+          <h3 class="m-b-10">1025
+            <i class="material-icons col-red">trending_up</i>
+          </h3>
+          <div class="apex-chart-center">
+            <apx-chart [series]="smallAreaChart.series" [chart]="smallAreaChart.chart" [stroke]="smallAreaChart.stroke"
+              [yaxis]="smallAreaChart.yaxis" [fill]="smallAreaChart.fill" [colors]="smallAreaChart.colors"></apx-chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="counter-box text-center">
+          <div class="text font-17 m-b-5">{{'total-groups' | translate}}</div>
+          <h3 class="m-b-10">956
+            <i class="material-icons col-green">trending_up</i>
+          </h3>
+          <div class="apex-chart-center">
+            <apx-chart [series]="smallColumnChart.series" [chart]="smallColumnChart.chart"
+              [plotOptions]="smallColumnChart.plotOptions" [tooltip]="smallColumnChart.tooltip">
+            </apx-chart>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="counter-box text-center">
+          <div class="text font-17 m-b-5">{{'total-contacts' | translate}}</div>
+          <h3 class="m-b-10">214
+            <i class="material-icons col-red">trending_up</i>
+          </h3>
+          <div class="apex-chart-center">
+            <apx-chart [series]="smallLineChart.series" [chart]="smallLineChart.chart" [stroke]="smallLineChart.stroke"
+              [tooltip]="smallLineChart.tooltip"></apx-chart>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row clearfix">
+      <!-- Browser Usage -->
+      <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="card">
+          <div class="header">
+            <h2>Groups/Organisations</h2>
+            <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>{{'add' | translate}}</button>
+              <button mat-menu-item>{{'export' | translate}}</button>
+            </mat-menu>
+          </div>
+          <div class="body">
+            <div id="new-orders" class="media-list position-relative">
+              <div class="table-responsive">
+                <table id="new-orders-table" class="table table-hover table-xl mb-0">
+                  <thead>
+                    <tr>
+                      <th class="border-top-0">{{'name' | translate}}</th>
+                      <th class="border-top-0">{{'employes' | translate}}</th>
+                      <th class="border-top-0">{{'actions' | translate}}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="text-truncate">{{'none' | translate}}</td>
+                      <td class="text-truncate">
+                        <ul class="list-unstyled order-list">
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <span class="badge">+13</span>
+                          </li>
+                        </ul>
+                      </td>
+                      <td>
+                        <button mat-icon-button class="tbl-action-btn">
+                          <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                        </button>
+                        <button mat-icon-button class="tbl-action-btn">
+                          <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-truncate">Yaba-In</td>
+                      <td class="text-truncate">
+                        <ul class="list-unstyled order-list">
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <span class="badge">+8</span>
+                          </li>
+                        </ul>
+                      </td>
+                      <td>
+                        <button mat-icon-button class="tbl-action-btn">
+                          <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                        </button>
+                        <button mat-icon-button class="tbl-action-btn">
+                          <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-truncate">UdM</td>
+                      <td class="text-truncate">
+                        <ul class="list-unstyled order-list">
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <span class="badge">+43</span>
+                          </li>
+                        </ul>
+                      </td>
+                      <td>
+                        <button mat-icon-button class="tbl-action-btn">
+                          <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                        </button>
+                        <button mat-icon-button class="tbl-action-btn">
+                          <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="text-truncate">Groupe SIA</td>
+                      <td class="text-truncate">
+                        <ul class="list-unstyled order-list">
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <img class="rounded-circle" src="assets/images/user/user.png" alt="user">
+                          </li>
+                          <li class="avatar avatar-sm">
+                            <span class="badge">+13</span>
+                          </li>
+                        </ul>
+                      </td>
+                      <td>
+                        <button mat-icon-button class="tbl-action-btn">
+                          <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                        </button>
+                        <button mat-icon-button class="tbl-action-btn">
+                          <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #END# Browser Usage -->
+      <!-- Task Info -->
+      <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div class="card">
+          <div class="header">
+            <h2>Contacts</h2>
+            <button mat-button [matMenuTriggerFor]="menu" class="header-dropdown">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item>{{'add' | translate}}</button>
+              <button mat-menu-item>{{'export' | translate}}</button>
+            </mat-menu>
+          </div>
+          <div class="tableBody">
+            <div class="table-responsive">
+              <table class="table table-hover dashboard-task-infos">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>{{'firstName' | translate}}</th>
+                    <th>{{'email' | translate}}</th>
+                    <th>{{'status' | translate}}</th>
+                    <th>{{'profession' | translate}}</th>
+                    <th>{{'actions' | translate}}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/flam.jpg" alt="">
+                    </td>
+                    <td>Flambel SANOU</td>
+                    <td>flambel55@email.com</td>
+                    <td>
+                      <span class="badge col-green shadow-style">Active</span>
+                    </td>
+                    <td>Sofware Dev</td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <i class="material-icons tbl-fav-chat">chat_bubble_outline</i>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user.png" alt="">
+                    </td>
+                    <td>Sarah Smith</td>
+                    <td>xyz@email.com</td>
+                    <td>
+                      <span class="badge col-red shadow-style">Inactive</span>
+                    </td>
+                    <td>Busines analist</td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <i class="material-icons tbl-fav-chat">chat_bubble_outline</i>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user.png" alt="">
+                    </td>
+                    <td>Airi Satou</td>
+                    <td>xyz@email.com</td>
+                    <td>
+                      <span class="badge col-green shadow-style">Active</span>
+                    </td>
+                    <td>Android Dev</td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <i class="material-icons tbl-fav-chat">chat_bubble_outline</i>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user.png" alt="">
+                    </td>
+                    <td>Angelica Ramos</td>
+                    <td>xyz@email.com</td>
+                    <td>
+                      <span class="badge col-green shadow-style">Active</span>
+                    </td>
+                    <td>Ios Dev</td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <i class="material-icons tbl-fav-chat">chat_bubble_outline</i>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user.png" alt="">
+                    </td>
+                    <td>Ashton Cox</td>
+                    <td>xyz@email.com</td>
+                    <td>
+                      <span class="badge col-red shadow-style">Inactive</span>
+                    </td>
+                    <td>Java Dev</td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <i class="material-icons tbl-fav-chat">chat_bubble_outline</i>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="table-img">
+                      <img src="assets/images/user/user.png" alt="">
+                    </td>
+                    <td>Cara Stevens</td>
+                    <td>xyz@email.com</td>
+                    <td>
+                      <span class="badge col-green shadow-style">Active</span>
+                    </td>
+                    <td>Desktop Dev</td>
+                    <td>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <i class="material-icons tbl-fav-chat">chat_bubble_outline</i>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
+                      </button>
+                      <button mat-icon-button class="tbl-action-btn">
+                        <app-feather-icons [icon]="'trash-2'" [class]="'tbl-fav-delete'"></app-feather-icons>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- #END# Task Info -->
+    </div>
+    <div class="row clearfix">
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="box-part text-center">
+          <i class="fab fa-twitter fa-3x col-blue"></i>
+          <div class="title p-t-15">
+            <h3>Twitter</h3>
+          </div>
+          <div class="text p-b-10">
+            <span>{{'social-msg' | translate}}</span>
+          </div>
+          <a href="#" onClick="return false;">{{'add-page' | translate}}</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="box-part text-center">
+          <i class="fab fa-instagram fa-3x col-red"></i>
+          <div class="title p-t-15">
+            <h3>Instagram</h3>
+          </div>
+          <div class="text p-b-10">
+            <span>{{'social-msg' | translate}}</span>
+          </div>
+          <a href="#" onClick="return false;">{{'add-page' | translate}}</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <div class="box-part text-center">
+          <i class="fab fa-facebook-f fa-3x col-blue"></i>
+          <div class="title p-t-15">
+            <h3>Facebook</h3>
+          </div>
+          <div class="text p-b-10">
+            <span>{{'social-msg' | translate}}</span>
+          </div>
+          <a href="#" onClick="return false;">{{'add-page' | translate}}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

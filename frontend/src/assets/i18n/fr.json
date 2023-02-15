@@ -1,0 +1,172 @@
+{
+  "HEADER":{
+    "SEARCH": {
+      "TEXT": "Recherche.."
+    }
+  },
+  "MENUITEMS": {
+    "USER":{
+      "POST": "Manager"
+    },
+    "MAIN": {
+      "TEXT": "-- Main"
+    },
+    "HOME": {
+      "TEXT": "Accueil",
+      "LIST": {
+        "DASHBOARD1": "Tableau de bord",
+        "DASHBOARD2": "Dashboard 2", 
+        "DASHBOARD3": "Dashboard 3"
+      }
+    },
+    "ADVANCE-TABLE": {
+      "TEXT": "Advance Table"
+    },
+    "APPS": {
+      "TEXT": "-- Apps"
+    },
+    "CALENDAR": {
+      "TEXT": "Calendrier"
+    },
+    "TASK": {
+      "TEXT": "Tâches"
+    },
+    "CONTACTS": {
+      "TEXT": "Contacts"
+    },
+    "EMAIL": {
+      "TEXT": "Email",
+      "LIST": {
+        "INBOX": "Inbox",
+        "COMPOSE": "Compose",
+        "READ": "Email lu"
+      }
+    },
+    "MORE-APPS": {
+      "TEXT": "More Apps",
+      "LIST": {
+        "CHAT": "Chat",
+        "SUPPORT": "Support",
+        "DRAG-DROP": "Porter & Déposer",
+        "CONTACT-GRID": "Contact Grid"
+      }
+    },
+    "COMPONENTS": {
+      "TEXT": "-- Components"
+    },
+    "WIDGETS": {
+      "TEXT": "Widgets",
+      "LIST": {
+        "CHART-WIDGET": "Chart-Widget",
+        "DATA-WIDGET": "Data-Widget"
+      }
+    },
+    "FORMS": {
+      "TEXT": "Forms",
+      "LIST": {
+        "CONTROLS": "Form Controls",
+        "ADVANCE": "Advance Control",
+        "EXAMPLE": "Form Examples",
+        "VALIDATION": "Form Validation",
+        "WIZARD": "Wizard",
+        "EDITORS": "Editors"
+      }
+    },
+    "TABLES": {
+      "TEXT": "Tables",
+      "LIST": {
+        "BASIC": "Basic Tables",
+        "MATERIAL": "Material Tables",
+        "NGX-DATATABLE": "NGX-Datatable"
+      }
+    }
+  },
+  
+  "account": "Compte",
+  "settings": "Paramêtres",
+  "logout": "Déconnexion",
+  "messages": "Messages",
+  "message": "Message",
+  "home": "Accueil",
+  "profile": "Profil",
+  "user": "Utilisateur",
+  "auto-send": "Envoie auto",
+  "birthdays": "Annivaissaires",
+  "birthday": "Annivaissaire",
+  "compose-to-group": "Messages collectifs",
+  "compose-to-user": "Messages",
+  "organicsation": "Organisations",
+  "name": "Nom",
+  "employes": "Employés",
+  "actions": "Actions",
+  "contact": "Contact",
+  "status": "Statut",
+  "profession": "Profession",
+  "total-message": "Total de Messages",
+  "total-auto-sended": "Total envoie Auto",
+  "total-groups": "Total Groups",
+  "total-contacts": "Total Contacts",
+  "dashboard": "Tableau de board",
+  "notification": "Notifications",
+  "read-all-notification": "Toutes les Notifications",
+  "hours-ago": "hours ago",
+  "calendar": "Calendrier",
+  "send-whatsapp-messages": "Envoyer des messages whatsapp",
+  "table-head": "Table Header",
+  "search": "Recherche",
+  "firstName": "Nom",
+  "lastName": "Prénom",
+  "gender": "Genre",
+  "email": "Email",
+  "phone": "Téléphone",
+  "address": "address",
+  "country": "Pays",
+  "region": "Region",
+  "city": "Ville",
+  "about": "A propos",
+  "ligth": "Claire",
+  "dark": "Sombre",
+  "sidebare-color": "Coleur du menu",
+  "color-them": "Coleur du theme",
+  "theme": "Theme",
+  "support": "Support",
+  "social-msg": "Permetez à vos contacts/prospects de vous suivre sur les reseau sociaux pour rester informé de vos récentes publications.",
+  "add-page": "Ajouter ma page",
+  "add": "Ajouter",
+  "edit": "Editer",
+  "export": "Exporter",
+  "none": "Aucun",
+  "is-required": "est requis",
+  "male": "Homme",
+  "femal": "Femme",
+  "save": "Enregistrer",
+  "cancel": "Annuler",
+  "more": "Plus",
+  "me": "de moi",
+  "description": "Description",
+  "groups": "Groupes",
+  "security": "Security",
+  "current-pwd": "Mot de passe courant",
+  "new-pwd": "Nouveau mot de passe",
+  "refresh": "Actualiser",
+  "no-result": "Aucun résultat",
+  "add-record": "Ajouter cet enregistrement",
+  "edit-record": "Editer cet enregistrement",
+  "delete-record": "Supprimer cet enregistrement",
+  "delete": "Supprimer",
+  "refresh-record": "Actualiser l'enregistrement",
+  "disable": "Désactiver",
+  "are-you-shure": "Êtes-vous certan",
+  "select-date": "Sélectionnez une date",
+  "enter-valid-email": "Entrez un email valide",
+  "title": "Titre",
+  "details": "Details",
+  "date": "Date",
+  "contact-list": "Liste des Contacts",
+  "message-to": "Ecrire à"
+  
+
+
+
+
+}

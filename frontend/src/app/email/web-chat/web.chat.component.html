@@ -1,0 +1,25 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header" *ngFor="let breadscrum of breadscrums">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+          <div class="header">
+            <h2>Web Chat</h2>
+          </div>
+          <div class="body" style="height: 90vh !important">
+            <a href="https://web.whatsapp.com" style="text-decoration: none;" target="_blank">
+              <img src="https://i.ibb.co/N9P0K9H/239px-Whats-App-svg.png" width="50" height="50" />
+            </a>
+
+            <a href="https://web.whatsapp.com" style="text-decoration: none;" target="_blank">Send Whatsapp Messages</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,205 @@
+{
+  "HEADER":{
+    "SEARCH": {
+      "TEXT": "Search.."
+    }
+  },
+  "MENUITEMS": {
+    "USER":{
+      "POST": "Manager"
+    },
+    "MAIN": {
+      "TEXT": "-- Main"
+    },
+    "COLLABORATORS": {
+      "TEXT": "Collaborators"
+    },
+    "HOME": {
+      "TEXT": "Home",
+      "LIST": {
+        "DASHBOARD1": "Dashboard 1",
+        "DASHBOARD2": "Dashboard 2",
+        "DASHBOARD3": "Dashboard 3"
+      }
+    },
+    "ADVANCE-TABLE": {
+      "TEXT": "Advance Table"
+    },
+    "APPS": {
+      "TEXT": "-- Apps"
+    },
+    "CALENDAR": {
+      "TEXT": "Calendar"
+    },
+    "TASK": {
+      "TEXT": "Task"
+    },
+    "CONTACTS": {
+      "TEXT": "Contacts"
+    },
+    "EMAIL": {
+      "TEXT": "Email",
+      "LIST": {
+        "INBOX": "Inbox",
+        "COMPOSE": "Compose",
+        "READ": "Read Email"
+      }
+    },
+    "MORE-APPS": {
+      "TEXT": "More Apps",
+      "LIST": {
+        "CHAT": "Chat",
+        "SUPPORT": "Support",
+        "DRAG-DROP": "Drag & Drop",
+        "CONTACT-GRID": "Collaborators"
+      }
+    },
+    "COMPONENTS": {
+      "TEXT": "-- Components"
+    },
+    "WIDGETS": {
+      "TEXT": "Widgets",
+      "LIST": {
+        "CHART-WIDGET": "Chart-Widget",
+        "DATA-WIDGET": "Data-Widget"
+      }
+    },
+    "FORMS": {
+      "TEXT": "Forms",
+      "LIST": {
+        "CONTROLS": "Form Controls",
+        "ADVANCE": "Advance Control",
+        "EXAMPLE": "Form Examples",
+        "VALIDATION": "Form Validation",
+        "WIZARD": "Wizard",
+        "EDITORS": "Editors"
+      }
+    },
+    "TABLES": {
+      "TEXT": "Tables",
+      "LIST": {
+        "BASIC": "Basic Tables",
+        "MATERIAL": "Material Tables",
+        "NGX-DATATABLE": "NGX-Datatable"
+      }
+    }
+  },
+  "ORGANISATIONS": {
+    "ORGANISATIONS": {
+      "TEXT": "Organisations"
+    },
+    "SERVICES": {
+      "TEXT": "Services"
+    },
+    "GROUPS": {
+      "TEXT": "Groupes"
+    }
+  },
+
+
+  "MESSAGES":{
+    "TEXT": "Messages",
+    "LIST": {
+      "COMPOSE": "Compose to user",
+      "COMPOSE-GROUP": "Compose to groups",
+      "AUTO-SEND": "Auto send"
+    }
+  },
+
+  "USER":{
+    "TEXT": "user",
+    "TEXTS": "users",
+    "LIST": {
+      "PROFILE": "Profile",
+      "COMPOSE-GROUP": "Compose to groups",
+      "AUTO-SEND": "Auto send",
+      "BIRTHDAYS": "Birthdays"
+    }
+  },
+
+  "account": "Account",
+  "settings": "Settings",
+  "logout": "Logout",
+  "messages": "Messages",
+  "message": "Message",
+  "home": "Home",
+  "profile": "Profile",
+  "user": "User",
+  "auto-send": "Auto send",
+  "birthdays": "Birthdays",
+  "birthday": "Birthday",
+  "compose-to-group": "Compose to groups",
+  "compose-to-user": "Compose",
+  "organisations": "Organisations",
+  "name": "Name",
+  "employes": "Employes",
+  "actions": "Actions",
+  "contact": "Contact",
+  "status": "Status",
+  "profession": "Profession",
+  "total-message": "Total Messages",
+  "total-auto-sended": "Total Auto sended",
+  "total-groups": "Total Groups",
+  "total-contacts": "Total Contacts",
+  "dashboard": "Dashboard",
+  "notification": "Notifications",
+  "read-all-notifications": "Read all Notifications",
+  "hours-ago": "hours ago",
+  "calendar": "Calendar",
+  "send-whatsapp-messages": "Send whatsapp messages",
+  "table-head": "Table Header",
+  "search": "Search",
+  "firstName": "First name",
+  "lastName": "Last Name",
+  "gender": "Gender",
+  "email": "Email",
+  "phone": "Phone",
+  "address": "address",
+  "country": "country",
+  "region": "Region",
+  "city": "City",
+  "about": "About",
+  "ligth": "Ligth",
+  "dark": "Dark",
+  "sidebare-color": "Sidebare color",
+  "color-them": "Color theme",
+  "theme": "Theme",
+  "support": "Support",
+  "social-msg": "Allow your contacts/prospects to follow you on social network to stay informed of your recent publications.",
+  "add-page": "Add sociail page",
+  "add": "Add",
+  "edit": "Edit",
+  "export": "Export",
+  "none": "none",
+  "is-required": "is resuired",
+  "male": "Male",
+  "femal": "Femal",
+  "save": "Save",
+  "cancel": "Cancel",
+  "more": "More",
+  "me": "me",
+  "description": "Description",
+  "groups": "Groups",
+  "security": "Security",
+  "current-pwd": "Current password",
+  "new-pwd": "New password",
+  "refresh": "Refresh",
+  "no-result": "No result",
+  "add-record": "Add Record",
+  "edit-record": "Edit Record",
+  "delete-record": "Delete Record",
+  "delete": "Delete",
+  "refresh-record": "Refresh Record",
+  "disable": "Disable",
+  "are-you-shure": "Are you sure",
+  "select-date": "Please select date",
+  "enter-valid-email": "Please enter a valid email address",
+  "title": "Title",
+  "details": "Details",
+  "date": "Date",
+  "contact-list": "Contacts list",
+  "message-to": "Message to"
+
+
+
+}

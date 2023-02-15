@@ -1,0 +1,165 @@
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <img [src]='advanceTable.img' alt="avatar"  style="max-width: 15vw; max-height: 15vh;">
+        <div class="modal-about">
+          <div class="font-weight-bold p-t-5 font-17">
+            {{dialogTitle}}</div>
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="advanceTableForm" (ngSubmit)="submit">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{'firstName' | translate }}</mat-label>
+            <input matInput formControlName="firstName">
+            <mat-icon matSuffix>face</mat-icon>
+            <mat-error *ngIf="advanceTableForm.get('firstName').hasError('required')">
+              {{'firstName' | translate }} {{'is-required' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{'lastName' | translate }}</mat-label>
+            <input matInput formControlName="lastName">
+            <mat-icon matSuffix>face</mat-icon>
+            <mat-error *ngIf="advanceTableForm.get('lastName').hasError('required')">
+              {{'lastName' | translate }} {{'is-required' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-label class="msr-3">{{'gender' | translate }}:</mat-label>
+          <mat-radio-group aria-label="Select gender" formControlName="gender" required>
+            <mat-radio-button value="male">{{'male' | translate }}</mat-radio-button>
+            <mat-radio-button value="female">{{'femal' | translate }}</mat-radio-button>
+            <mat-error *ngIf="advanceTableForm.get('gender').hasError('required')">
+              {{'gender' | translate }} {{'is-required' | translate }}
+            </mat-error>
+          </mat-radio-group>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{'birthday' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthday">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="advanceTableForm.get('birthday').hasError('required')">
+              {{"select-date" | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{'email' | translate }}</mat-label>
+            <input matInput formControlName="email" required>
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error
+              *ngIf="advanceTableForm.get('email').hasError('required') || advanceTableForm.get('email').touched">
+              {{'enter-valid-email' | translate}}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{'phone' | translate }}</mat-label>
+            <input matInput formControlName="phone" type="number">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="advanceTableForm.get('phone').hasError('required')">
+              {{'phone' | translate }} {{'is-required' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width " appearance="outline">
+            <mat-label>{{'country' | translate }}</mat-label>
+            <mat-select formControlName="country" required>
+              <mat-option [value]="'Cameroon'">
+                Cameroon
+              </mat-option>
+              <mat-option [value]="'Congo'" disabled>
+                Congo
+              </mat-option>
+              <mat-option [value]="'Guinee'" disabled>
+                Guinee
+              </mat-option>
+              <mat-option [value]="'Tchad'" disabled>
+                Tchad
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="advanceTableForm.get('country').hasError('required')">
+              {{'country' | translate }} {{'is-required' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width " appearance="outline">
+            <mat-label>{{'region' | translate }}</mat-label>
+            <mat-select formControlName="region" required (selectionChange)="onSelect($event)" id="region">
+              <mat-option *ngFor="let region of region" value="{{region.id}}">
+                {{region.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="advanceTableForm.get('country').hasError('required')">
+              {{'region' | translate }} {{'is-required' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width " appearance="outline">
+            <mat-label>{{'city' | translate }}</mat-label>
+            <mat-select formControlName="city" required id="city">
+              <mat-option  *ngFor="let cities of city" value="{{cities.name}}">{{cities.name}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="advanceTableForm.get('city').hasError('required')">
+              {{'city' | translate }} {{'is-required' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class=" col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width " appearance="outline">
+            <mat-label>{{'address' | translate }}</mat-label>
+            <input matInput formControlName="address">
+            <mat-icon matSuffix>face</mat-icon>
+            <mat-error *ngIf="advanceTableForm.get('firstName').hasError('required')">
+              {{'firstName' | translate }} {{'is-required' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{'about' | translate }}</mat-label>
+            <textarea matInput formControlName="about"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" [type]="submit" [disabled]="!advanceTableForm.valid"
+              [mat-dialog-close]="1" (click)="confirmAdd()">{{'save' | translate }}</button>
+            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">{{'cancel' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
