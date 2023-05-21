@@ -19,6 +19,12 @@ export const environment = {
     appId: "1:1069753768451:web:9d23b9501302fefc9b0c36",
     measurementId: "G-3YN1JEBWWM"
   },
+  keycloak:{
+    secret:"AqetVGJS1jk7s1gcyll0ivvREYRj6R9c",
+    clientId:"ysapp-frontend",
+    realm:"Yaba-In",
+    url:"https://accounts.yaba-in.com/auth/"
+  },
 
   // ySapp Firebase credentials
  firebaseConfig : {

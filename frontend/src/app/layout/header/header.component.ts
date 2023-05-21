@@ -51,19 +51,11 @@ export class HeaderComponent
     public userService: UserService
   ) {
     super();
-    this.profileImg = this.userService.getLocalStorageUser().imageUrl;
-    if(!this.profileImg){
+    // this.profileImg = this.userService.getLocalStorageUser().imageUrl;
+    // if(!this.profileImg){
       this.profileImg = 'assets/images/user/user.png';
       // this.userService.setLocalStorageUser().imageUrl;
-      const oldUser = this.userService.getLocalStorageUser();
-      oldUser.imageUrl = this.profileImg;
-      this.userService.setUserInformations(oldUser);
-    }
     
-    const oldUser = this.userService.getLocalStorageUser();
-    oldUser.password = 'Nothing for you!';
-    this.userService.setUserInformations(oldUser);
-    console.log(this.profileImg)
   }
   listLang = [
     { text: 'Français', flag: 'assets/images/flags/fr.png', lang: 'fr' },
@@ -249,11 +241,7 @@ export class HeaderComponent
   }
 
   logout() {
-    this.subs.sink = this.authService.logOut().subscribe((res) => {
-      if (!res.success) {
-        this.router.navigate(['/authentication/signin']);
-      }
-    });
+    this.authService.logout();
   }
   
   navigateToProfile(){

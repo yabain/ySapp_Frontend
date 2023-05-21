@@ -95,16 +95,16 @@ export class SignupComponent implements OnInit {
       user.hydrate(this.registerForm.value);
       // this.navigateToSigninPage();
   
-      this.authService.createAccount(this.registerForm.value)
-      .then((result) => {
-        console.log('redirection vers login...')
-        this.submitted = false;
-        this.router.navigate(['/authentication/signin']);
-      })
-      .catch((error) => {
-        console.error('Erreur: ', error.message);
-        this.submitted = false;
-      });
+      // this.authService.createAccount(this.registerForm.value)
+      // .then((result) => {
+      //   console.log('redirection vers login...')
+      //   this.submitted = false;
+      //   this.router.navigate(['/authentication/signin']);
+      // })
+      // .catch((error) => {
+      //   console.error('Erreur: ', error.message);
+      //   this.submitted = false;
+      // });
     }
   }
 }

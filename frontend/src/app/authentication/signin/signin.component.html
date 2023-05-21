@@ -16,41 +16,14 @@
                   </div>
 
                   <div class="p-2 mt-5">
-                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                      <div *ngIf="error" class="alert alert-danger mb-3 mt-0">{{error}}</div>
-                      <div class="form-group auth-form-group mb-4">
-                        <mat-icon matSuffix class="auth-page-icon">email</mat-icon>
-                        <input type="email" formControlName="email" class="form-control auth-control" id="email"
-                          placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
-                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                          <div *ngIf="f.email.errors.required">l'email est requis</div>
-                          <div *ngIf="f.email.errors.email">L'email doit être une adresse électronique valides</div>
-                        </div>
-                      </div>
-
-                      <div class="form-group auth-form-group mb-4">
-                        <mat-icon matSuffix class="auth-page-icon">vpn_key</mat-icon>
-                        <input type="password" formControlName="password" class="form-control auth-control"
-                          id="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
-                          placeholder="Password" />
-                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                          <div *ngIf="f.password.errors.required">Password is required</div>
-                        </div>
-                      </div>
-
-                      <div class="flex-sb-m w-full p-t-15 p-b-20">
-                        <div>
-                          <a class="txt1" routerLink="/authentication/forgot-password" style="color: #0ba32a !important">Mot de pass oublié?</a>
-                        </div>
-                      </div>
-
-                      <div class="container-login100-form-btn">
-                        <button mat-flat-button color="success" class="login100-form-btn" type="submit" style="background-color: #0ba32a">
-                          Login
-                        </button>
-                      </div>
-                    </form>
+                    <div class="container-login100-form-btn">
+                      <button mat-flat-button color="success" class="login100-form-btn" (click)="login()" style="background-color: #0ba32a">
+                        Connexion avec Yaba-In
+                      </button>                      
+                    </div>
                   </div>
+
+
                   <div class="mt-5 text-center">
                     <p>Vous n'avez pas de compte ? <a routerLink="/authentication/signup"
                         class="font-weight-medium text-primary" style="color: #0ba32a !important">
