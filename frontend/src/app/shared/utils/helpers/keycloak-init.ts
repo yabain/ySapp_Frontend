@@ -15,7 +15,7 @@ export function initializeKeycloak(keycloak: KeycloakService): () => Promise<any
               initOptions: {
                 onLoad: 'check-sso',
                 checkLoginIframe: false,
-                redirectUri: window.location.origin + '/#/dashboard/main',
+                redirectUri: window.location.origin ,
                 flow: "standard"
                 // silentCheckSsoRedirectUri: window.location.origin + '/#/authentication/sigin'
               },
