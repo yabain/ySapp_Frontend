@@ -1,5 +1,5 @@
 {
-  "name": "ysapp",
+  "name": "ysapp-frontend",
   "version": "10.0.0",
   "scripts": {
     "ng": "ng",
