@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
   chide = true;
   region: any = [];
   city: any = [];
-  
+
   public subscription: Subscription;
   public CustomControler: any;
 
@@ -36,13 +36,20 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.authService.isLoggedIn()
+      .then(response => {
+        if (response === true) {
+          this.router.navigate(['/dashboard']);
+        }
+      }
+      )
     this.region = this.location.region();
     this.storage.Checkuser();
     this.registerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['',[Validators.required, Validators.email, Validators.minLength(5)]],
-      password: ['',[Validators.minLength(8)]],
+      email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
+      password: ['', [Validators.minLength(8)]],
       gender: ['', Validators.required],
       phone: ['', [Validators.minLength(9), Validators.maxLength(9), Validators.pattern('^6[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}$'), Validators.required]],
       country: ['', Validators.required],
@@ -60,7 +67,7 @@ export class SignupComponent implements OnInit {
   get f() {
     return this.registerForm.controls;
   }
-  
+
   onSubmit() {
     console.log('form soumis1: ', this.registerForm)
     if (this.registerForm.invalid) {
@@ -90,11 +97,11 @@ export class SignupComponent implements OnInit {
       } else if (this.registerForm.value.region === '10') {
         this.registerForm.value.region = 'sud-ouest'
       }
-      
+
       let user = new User();
       user.hydrate(this.registerForm.value);
       // this.navigateToSigninPage();
-  
+
       // this.authService.createAccount(this.registerForm.value)
       // .then((result) => {
       //   console.log('redirection vers login...')

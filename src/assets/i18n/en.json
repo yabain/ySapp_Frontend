@@ -1,11 +1,11 @@
 {
-  "HEADER":{
+  "HEADER": {
     "SEARCH": {
       "TEXT": "Search.."
     }
   },
   "MENUITEMS": {
-    "USER":{
+    "USER": {
       "POST": "Manager"
     },
     "MAIN": {
@@ -95,9 +95,7 @@
       "TEXT": "Groupes"
     }
   },
-
-
-  "MESSAGES":{
+  "MESSAGES": {
     "TEXT": "Messages",
     "LIST": {
       "COMPOSE": "Compose to user",
@@ -105,8 +103,7 @@
       "AUTO-SEND": "Auto send"
     }
   },
-
-  "USER":{
+  "USER": {
     "TEXT": "user",
     "TEXTS": "users",
     "LIST": {
@@ -116,7 +113,6 @@
       "BIRTHDAYS": "Birthdays"
     }
   },
-
   "account": "Account",
   "settings": "Settings",
   "logout": "Logout",
@@ -178,6 +174,7 @@
   "cancel": "Cancel",
   "more": "More",
   "me": "me",
+  "send": "Send",
   "description": "Description",
   "groups": "Groups",
   "security": "Security",
@@ -198,8 +195,12 @@
   "details": "Details",
   "date": "Date",
   "contact-list": "Contacts list",
-  "message-to": "Message to"
-
-
-
+  "message-to": "Message to",
+  "compose": "Compose",
+  "subject": "Subject",
+  "preloadMsg": "Preset",
+  "publicDates": "Public Dates",
+  "christmas": "Christmas",
+  "composeMsg": "Compose New Message",
+  "nationalDay": "National Day"
 }

@@ -4,10 +4,10 @@ declare var $: any;
 @Injectable({
   providedIn: 'root'
 })
+
 export class NotificationsService {
 
     constructor() {
-
     }
 
     showNotification(from, align, typMsg) {

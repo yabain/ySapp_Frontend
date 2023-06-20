@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { tap, catchError, map } from 'rxjs/operators';
 // import { ToastrService } from 'ngx-toastr';
 // import { resolve } from 'dns';
 
@@ -13,6 +14,14 @@ export class ApiService {
 
     formImage!: FormGroup;
     currency: any;
+
+    // Headers Setup
+    headers = new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('Accept', 'application/json');
+    httpOptions = {
+        headers: this.headers,
+    };
 
     public url = environment.url;
     public urlProd = environment.urlProd;
@@ -28,97 +37,135 @@ export class ApiService {
     }
 
 
-
-    // Init the image form
-    initImageForm() {
-        this.formImage = this.fb.group({
-            filename: ['', Validators.required],
-            filemime: ['', Validators.required],
-            data: ['', Validators.required],
-            self: ['', Validators.required],
-            type: ['', Validators.required],
-            uuid: ['', Validators.required],
-            lang: [''],
-            alt: [''],
-            title: [''],
-            width: ['', Validators.required],
-            height: ['', Validators.required]
-        });
+    // HTTP get
+    get(endpoint: string, options?: any, body?: Record<string, any>): Observable<any> {
+        if (body) {
+            let req: String = '';
+            // tslint:disable-next-line:forin
+            for (const key in body) {
+                req += `${key}=${body[key]}&`;
+            }
+            endpoint += '?' + req;
+        }
+        console.log(this.url + '/' + endpoint);
+        console.log(options);
+        return this.http.get(this.url + '/' + endpoint);
     }
 
 
-    // Add the an image
-    addImage(event: any): Promise<any> {
+
+    ////////2
+    private handleError(error: any) {
+        return throwError(error);
+    }
+    get2(type: any): Observable<[]> {
+        this.url = `${type}`;
+
+        return this.http
+            .get<[]>(this.url)
+            .pipe(tap(), catchError(this.handleError));
+    }
+
+    // Post Method Api
+    add2(user: any, type: any): Observable<any> {
+        this.url = `api/${type}`;
+        user.id = null;
+        return this.http
+            .post<any>(this.url, user, this.httpOptions)
+            .pipe(tap(), catchError(this.handleError));
+    }
+
+    // Update Method Api
+    update2(user: any, type: any): Observable<any> {
+        this.url = `api/${type}`;
+        const url = `${this.url}/${user.id}`;
+        return this.http.put<any>(url, user, this.httpOptions).pipe(
+            map(() => user),
+            catchError(this.handleError)
+        );
+    }
+
+    // Delete Method Api
+    delete2(id: string, type: any): Observable<string> {
+        this.url = `api/${type}`;
+        const url = `${this.url}/${id}`;
+        return this.http
+            .delete<string>(url, this.httpOptions)
+            .pipe(catchError(this.handleError));
+    }
+
+    /////////////2
+
+
+    // HTTP post
+    post(endpoint: string, body: any, options?: any): Observable<any> {
+        console.log("la requette: ", this.url + '/' + endpoint);
+        return this.http.post(this.url + '/' + endpoint, body, { 'headers': options });
+    }
+
+    // HTTP put
+    put(endpoint: string, body: any, options?: any): Observable<any> {
+        return this.http.put(this.url + '/' + endpoint + '/', body, { 'headers': options });
+    }
+
+    // HTTP delete
+    delete(endpoint: string, options?: any): Observable<any> {
+        const headers = options;
+        return this.http.delete(this.url + '/' + endpoint, {
+            headers
+        });
+    }
+
+    // HTTP pact
+    patch(endpoint: string, body?: any, options?: any): Observable<any> {
+        const headers = options;
+
+        return this.http.patch(this.url + '/' + endpoint, JSON.stringify(body), { 'headers': options });
+    }
+
+
+
+    /**
+     *  Refresh the access token
+     */
+    refreshAccesToken(): Promise<any> {
 
         return new Promise((resolve, reject) => {
-            const reader = new FileReader();
 
-            if (event.target.files && event.target.files.length > 0) {
+            const params = new URLSearchParams();
 
-                const file = event.target.files[0];
-                console.log(file);
-                reader.readAsDataURL(file);
+            params.append('grant_type', 'refresh_token');
+            params.append('client_id', '8a4f8634-4f16-4b6e-b617-554664897bbe');
+            params.append('client_secret', 'sdkgames2015');
+            params.append('refresh_token', this.getRefreshToken());
 
-                reader.onload = () => {
 
-                    const imageData: any = reader.result;
-                    this.formImage.get('filename').setValue(file.name);
-                    this.formImage.get('filemime').setValue(file.type);
-                    this.formImage.get('data').setValue(imageData.split(',')[1]);
-                    this.formImage.get('self').setValue('');
-                    this.formImage.get('type').setValue('');
-                    this.formImage.get('uuid').setValue('');
-                    this.formImage.get('lang').setValue('');
-                    this.formImage.get('alt').setValue('');
-                    this.formImage.get('title').setValue('');
-                    this.formImage.get('width').setValue('');
-                    this.formImage.get('height').setValue('');
-                    resolve(this.formImage.value);
+            const headers = {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                Accept: 'application/json'
+            };
 
-                };
-            } else {
-                reject(null);
-            }
+            this.post('front/token', params.toString(), headers).subscribe((success: any) => {
+
+                resolve(success);
+                this.setAccessToken(success.access_token);
+                this.setRefreshToken(success.refresh_token);
+
+            }, (error: any) => {
+
+
+                if (error && error.error === 'invalid_request') {
+                    // this.toastr.success(error.message);
+                }
+
+                reject(error);
+
+            });
         });
-    }
-
-    // Set the user access token.
-    setAccessToken(token: string) {
-        return localStorage.setItem('token', token);
-    }
-
-
-    // Get the user access token.
-    getAccessToken() {
-        return localStorage.getItem('token');
-    }
-
-
-    // Set the user refresh token.
-    setRefreshToken(token: string) {
-        return localStorage.setItem('refresh-token', JSON.stringify(token));
-    }
-
-    // Get the user refresh token.
-    getRefreshToken() {
-        return JSON.parse(localStorage.getItem('refresh-token') || '');
-    }
-
-    // Construct data params
-    // tslint:disable-next-line:ban-types
-    constructParam(keys: Array<any>, values: Array<any>): Object {
-
-        const param = new Object();
-
-        for (let i = keys.length - 1; i >= 0; i--) {
-            Object.defineProperty(param, keys[i], { value: values[i] });
-        }
-
-        return param;
 
     }
 
-    // This service must be call in app.component.ts
+
 
     // Get the app token
     getAppToken() {
@@ -188,90 +235,6 @@ export class ApiService {
                 resolve(null);
             }
         });
-    }
-
-
-    // HTTP get
-    get(endpoint: string, options?: any, body?: Record<string, any>): Observable<any> {
-        if (body) {
-            let req: String = '';
-            // tslint:disable-next-line:forin
-            for (const key in body) {
-                req += `${key}=${body[key]}&`;
-                // req += `${key}=${body[key]}`;
-            }
-            endpoint += '?' + req;
-        }
-        console.log('url du get: ', this.url + '/' + endpoint);
-        return this.http.get(this.url + '/' + endpoint, { 'headers': options });
-    }
-
-    // HTTP post
-    post(endpoint: string, body: any, options?: any): Observable<any> {
-        console.log("la requette: ", this.url + '/' + endpoint);
-        return this.http.post(this.url + '/' + endpoint, body, { 'headers': options });
-    }
-
-    // HTTP put
-    put(endpoint: string, body: any, options?: any): Observable<any> {
-        return this.http.put(this.url + '/' + endpoint + '/', body, { 'headers': options });
-    }
-
-    // HTTP delete
-    delete(endpoint: string, options?: any): Observable<any> {
-        const headers = options;
-        return this.http.delete(this.url + '/' + endpoint, {
-            headers
-        });
-    }
-
-    // HTTP pact
-    patch(endpoint: string, body?: any, options?: any): Observable<any> {
-        const headers = options;
-
-        return this.http.patch(this.url + '/' + endpoint, JSON.stringify(body), { 'headers': options });
-    }
-
-
-
-    /**
-     *  Refresh the access token
-     */
-    refreshAccesToken(): Promise<any> {
-
-        return new Promise((resolve, reject) => {
-
-            const params = new URLSearchParams();
-
-            params.append('grant_type', 'refresh_token');
-            params.append('client_id', '8a4f8634-4f16-4b6e-b617-554664897bbe');
-            params.append('client_secret', 'sdkgames2015');
-            params.append('refresh_token', this.getRefreshToken());
-
-
-            const headers = {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                Accept: 'application/json'
-            };
-
-            this.post('front/token', params.toString(), headers).subscribe((success: any) => {
-
-                resolve(success);
-                this.setAccessToken(success.access_token);
-                this.setRefreshToken(success.refresh_token);
-
-            }, (error: any) => {
-
-
-                if (error && error.error === 'invalid_request') {
-                    // this.toastr.success(error.message);
-                }
-
-                reject(error);
-
-            });
-        });
-
     }
 
 
@@ -405,5 +368,97 @@ export class ApiService {
         }
         return data;
     }
+
+
+
+
+    // Init the image form
+    initImageForm() {
+        this.formImage = this.fb.group({
+            filename: ['', Validators.required],
+            filemime: ['', Validators.required],
+            data: ['', Validators.required],
+            self: ['', Validators.required],
+            type: ['', Validators.required],
+            uuid: ['', Validators.required],
+            lang: [''],
+            alt: [''],
+            title: [''],
+            width: ['', Validators.required],
+            height: ['', Validators.required]
+        });
+    }
+
+
+    // Add the an image
+    addImage(event: any): Promise<any> {
+
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+
+            if (event.target.files && event.target.files.length > 0) {
+
+                const file = event.target.files[0];
+                console.log(file);
+                reader.readAsDataURL(file);
+
+                reader.onload = () => {
+
+                    const imageData: any = reader.result;
+                    this.formImage.get('filename').setValue(file.name);
+                    this.formImage.get('filemime').setValue(file.type);
+                    this.formImage.get('data').setValue(imageData.split(',')[1]);
+                    this.formImage.get('self').setValue('');
+                    this.formImage.get('type').setValue('');
+                    this.formImage.get('uuid').setValue('');
+                    this.formImage.get('lang').setValue('');
+                    this.formImage.get('alt').setValue('');
+                    this.formImage.get('title').setValue('');
+                    this.formImage.get('width').setValue('');
+                    this.formImage.get('height').setValue('');
+                    resolve(this.formImage.value);
+
+                };
+            } else {
+                reject(null);
+            }
+        });
+    }
+
+    // Set the user access token.
+    setAccessToken(token: string) {
+        return localStorage.setItem('token', token);
+    }
+
+    // Get the user access token.
+    getAccessToken() {
+        return localStorage.getItem('token');
+    }
+
+
+    // Set the user refresh token.
+    setRefreshToken(token: string) {
+        return localStorage.setItem('refresh-token', JSON.stringify(token));
+    }
+
+    // Get the user refresh token.
+    getRefreshToken() {
+        return JSON.parse(localStorage.getItem('refresh-token') || '');
+    }
+
+    // Construct data params
+    // tslint:disable-next-line:ban-types
+    constructParam(keys: Array<any>, values: Array<any>): Object {
+
+        const param = new Object();
+
+        for (let i = keys.length - 1; i >= 0; i--) {
+            Object.defineProperty(param, keys[i], { value: values[i] });
+        }
+
+        return param;
+
+    }
+
 
 }

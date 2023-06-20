@@ -1,11 +1,11 @@
 {
-  "HEADER":{
+  "HEADER": {
     "SEARCH": {
       "TEXT": "Recherche.."
     }
   },
   "MENUITEMS": {
-    "USER":{
+    "USER": {
       "POST": "Manager"
     },
     "MAIN": {
@@ -15,7 +15,7 @@
       "TEXT": "Accueil",
       "LIST": {
         "DASHBOARD1": "Tableau de bord",
-        "DASHBOARD2": "Dashboard 2", 
+        "DASHBOARD2": "Dashboard 2",
         "DASHBOARD3": "Dashboard 3"
       }
     },
@@ -81,7 +81,6 @@
       }
     }
   },
-  
   "account": "Compte",
   "settings": "Paramêtres",
   "logout": "Déconnexion",
@@ -143,6 +142,7 @@
   "cancel": "Annuler",
   "more": "Plus",
   "me": "de moi",
+  "send": "Envoyer",
   "description": "Description",
   "groups": "Groupes",
   "security": "Security",
@@ -163,10 +163,12 @@
   "details": "Details",
   "date": "Date",
   "contact-list": "Liste des Contacts",
-  "message-to": "Ecrire à"
-  
-
-
-
-
+  "message-to": "Ecrire à",
+  "compose": "Rédiger",
+  "subject": "Objet",
+  "preloadMsg": "Prédéfinis",
+  "publicDates": "Dates public",
+  "christmas": "Noël",
+  "composeMsg": "Rédiger un message",
+  "nationalDay": "Fête Nationalle"
 }

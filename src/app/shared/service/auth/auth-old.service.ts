@@ -253,7 +253,7 @@ export class AuthService {
             // this.webStorage.Login(response.userId);
             this.setAccessToken(response.token);
             console.log('User infos: ', response);
-            // this.router.navigate(['/dashboard/main']);
+            // this.router.navigate(['/dashboard/home']);
             this.user.setUserInformations(response.user)
             resolve(response);
             return response.user;

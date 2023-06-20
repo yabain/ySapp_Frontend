@@ -16,6 +16,8 @@ import { RightSidebarService } from 'src/app/core/service/rightsidebar.service';
 import { ConfigService } from 'src/app/config/config.service';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import { AuthService } from 'src/app/shared/service/auth/auth.service';
+import { MessageService } from 'src/app/shared/service/message/message.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,9 +25,9 @@ import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroy
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent
-extends UnsubscribeOnDestroyAdapter
-implements OnInit, AfterViewInit {
-  
+  extends UnsubscribeOnDestroyAdapter
+  implements OnInit, AfterViewInit {
+
   selectedBgColor = 'white';
   maxHeight: string;
   maxWidth: string;
@@ -34,12 +36,13 @@ implements OnInit, AfterViewInit {
   isDarkSidebar = false;
   isDarTheme = false;
   isRtl = false;
+  qrCode: string = 'jkhskjdhfkjsdfkjshdkjfs';
   public config: any = {};
 
   breadscrums = [
     {
       title: 'Profile',
-      items: ['Extra'],
+      items: ['Profile'],
       active: 'Profile'
     }
   ];
@@ -51,10 +54,14 @@ implements OnInit, AfterViewInit {
     public elementRef: ElementRef,
     private rightSidebarService: RightSidebarService,
     private configService: ConfigService,
-    public userService: UserService
+    public userService: UserService,
+    private authService: AuthService,
+    private messageService: MessageService
   ) {
     super();
     this.user = userService.getLocalStorageUser();
+    console.log('user: ', this.user);
+    this.getQrCode();
   }
 
   ngOnInit() {
@@ -65,12 +72,26 @@ implements OnInit, AfterViewInit {
       }
     );
     this.setRightSidebarWindowHeight();
+    // for (let i = 1; i > 0; i++) {
+      // this.getQrCode();
+    // }
+  }
+
+  redirect() {
+    this.authService.redirectToProfile();
+  }
+
+  getQrCode() {
+    this.messageService.getQrCode()
+      .then(response => {
+        this.qrCode = response;
+      });
+    console.log(this.qrCode);
   }
 
 
 
 
-  
   ngAfterViewInit() {
     // set header color on startup
     if (localStorage.getItem('choose_skin')) {
@@ -86,7 +107,6 @@ implements OnInit, AfterViewInit {
       );
       this.selectedBgColor = this.config.layout.theme_color;
     }
-
     if (localStorage.getItem('menuOption')) {
       if (localStorage.getItem('menuOption') === 'menu_dark') {
         this.isDarkSidebar = true;
@@ -100,7 +120,6 @@ implements OnInit, AfterViewInit {
       this.isDarkSidebar =
         this.config.layout.sidebar.backgroundColor === 'dark' ? true : false;
     }
-
     if (localStorage.getItem('theme')) {
       if (localStorage.getItem('theme') === 'dark') {
         this.isDarTheme = true;
@@ -112,7 +131,6 @@ implements OnInit, AfterViewInit {
     } else {
       this.isDarTheme = this.config.layout.variant === 'dark' ? true : false;
     }
-
     if (localStorage.getItem('isRtl')) {
       if (localStorage.getItem('isRtl') === 'true') {
         this.setRTLSettings();
@@ -127,7 +145,6 @@ implements OnInit, AfterViewInit {
       }
     }
   }
-
   selectTheme(e) {
     this.selectedBgColor = e;
     const prevTheme = this.elementRef.nativeElement
@@ -173,7 +190,6 @@ implements OnInit, AfterViewInit {
         'theme-' + this.config.layout.theme_color
       );
     }
-
     this.renderer.addClass(this.document.body, 'light');
     this.renderer.addClass(this.document.body, 'submenu-closed');
     this.renderer.addClass(this.document.body, 'menu_light');
@@ -218,7 +234,6 @@ implements OnInit, AfterViewInit {
     localStorage.setItem('theme', theme);
     localStorage.setItem('menuOption', menuOption);
   }
-
   setRightSidebarWindowHeight() {
     const height = window.innerHeight - 137;
     this.maxHeight = height + '';
@@ -237,7 +252,6 @@ implements OnInit, AfterViewInit {
       (this.isOpenSidebar = !this.isOpenSidebar)
     );
   }
-
   switchDirection(event: MatSlideToggleChange) {
     var isrtl: string = String(event.checked);
     if (
@@ -268,4 +282,5 @@ implements OnInit, AfterViewInit {
     this.isRtl = false;
     localStorage.setItem('isRtl', 'false');
   }
+
 }

@@ -28,7 +28,6 @@ export class AuthService {
   isAdmin = false;
   isUser = false;
 
-
   constructor(
     private readonly keycloak: KeycloakService
   ) {
@@ -64,7 +63,6 @@ export class AuthService {
     return this.keycloak.getUserRoles()
   }
  
-
   // Login into your account
   authLogin() {
     this.keycloak.login();    

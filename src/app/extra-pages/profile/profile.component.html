@@ -16,9 +16,11 @@
                 <div>{{user.lastName}}</div>
                 <div class="name-center">{{user.company}}</div>
               </div><br>
-              <img src="{{user.imageUrl}}" class="user-img" alt="">
+              <!-- <img src="{{user.imageUrl}}" class="user-img" alt=""> -->
+              <img src="assets/images/user/user.png" class="user-img" alt="">
               <p>
-                {{user.country}}, {{user.region}} , {{user.city}}
+                <!-- {{user.country}}, {{user.region}} , {{user.city}} -->
+                ID: {{user.id}}
                 <br />{{user.poste}}
                 <br> {{user.email}}
               </p>
@@ -28,11 +30,11 @@
               </div>
               <div class="row">
                 <div class="col-4">
-                  <h5>8</h5>
+                  <h5>03</h5>
                   <small>{{'organisations' | translate}}s</small>
                 </div>
                 <div class="col-4">
-                  <h5>64</h5>
+                  <h5>0</h5>
                   <small>{{'contact' | translate}}s</small>
                 </div>
                 <div class="col-4">
@@ -47,13 +49,7 @@
           <mat-tab-group mat-align-tabs="start">
             <mat-tab label="{{'description' | translate}}">
               <div class="p-4">
-                <p class="m-t-30">Completed my graduation in Arts from the well known and
-                  renowned institution
-                  of India – SARDAR PATEL ARTS, BARODA in 2000-01, which was
-                  affiliated
-                  to M.S. University. I ranker in University exams from the same
-                  university
-                  from 1996-01.</p>
+                <p class="m-t-30">Profile description</p>
                 <hr>
               </div>
             </mat-tab>
@@ -104,7 +100,7 @@
                         <div class="form-group">
                           <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>{{'firstName' | translate}}</mat-label>
-                            <input matInput>
+                            <input matInput value="{{user.firstName}}">
                           </mat-form-field>
                         </div>
                       </div>
@@ -112,7 +108,7 @@
                         <div class="form-group">
                           <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>{{'lastName' | translate}}</mat-label>
-                            <input matInput>
+                            <input matInput value="{{user.lastName}}">
                           </mat-form-field>
                         </div>
                       </div>
@@ -128,7 +124,7 @@
                         <div class="form-group">
                           <mat-form-field class="example-full-width" appearance="fill">
                             <mat-label>{{'email' | translate}}</mat-label>
-                            <input matInput>
+                            <input matInput value="{{user.email}}">
                           </mat-form-field>
                         </div>
                       </div>
@@ -163,7 +159,7 @@
                         </div>
                       </div> -->
                       <div class="col-md-12">
-                        <button mat-raised-button color="primary">{{'save' | translate}}</button>
+                        <button mat-raised-button color="primary" (click)="redirect()"><i class="fas fa-edit"></i> {{'edit' | translate}} </button>
                       </div>
                     </div>
                   </div>
@@ -213,14 +209,13 @@
                       </mat-button-toggle-group>
                     </div>
                     <div class="p-15 border-bottom">
+                      <h6 class="font-medium m-b-10">{{'sidebare-color' | translate}}</h6>
                       <div class="theme-setting-options">
                         <ul class="choose-theme list-unstyled mb-0">
-                          <li data-theme="white" [ngClass]="{'active': selectedBgColor === 'white'}"
-                            (click)="selectTheme('white')">
+                          <li data-theme="white" [ngClass]="{'active': selectedBgColor === 'white'}" (click)="selectTheme('white')">
                             <div class="white"></div>
                           </li>
-                          <li data-theme="black" [ngClass]="{'active': selectedBgColor === 'black'}"
-                            (click)="selectTheme('black')">
+                          <li data-theme="black" [ngClass]="{'active': selectedBgColor === 'black'}" (click)="selectTheme('black')">
                             <div class="black"></div>
                           </li>
                           <li data-theme="purple" [ngClass]="{'active': selectedBgColor === 'purple'}"
@@ -231,16 +226,13 @@
                             (click)="selectTheme('orange')">
                             <div class="orange"></div>
                           </li>
-                          <li data-theme="cyan" [ngClass]="{'active': selectedBgColor === 'cyan'}"
-                            (click)="selectTheme('cyan')">
+                          <li data-theme="cyan" [ngClass]="{'active': selectedBgColor === 'cyan'}" (click)="selectTheme('cyan')">
                             <div class="cyan"></div>
                           </li>
-                          <li data-theme="green" [ngClass]="{'active': selectedBgColor === 'green'}"
-                            (click)="selectTheme('green')">
+                          <li data-theme="green" [ngClass]="{'active': selectedBgColor === 'green'}" (click)="selectTheme('green')">
                             <div class="green"></div>
                           </li>
-                          <li data-theme="blue" [ngClass]="{'active': selectedBgColor === 'blue'}"
-                            (click)="selectTheme('blue')">
+                          <li data-theme="blue" [ngClass]="{'active': selectedBgColor === 'blue'}" (click)="selectTheme('blue')">
                             <div class="blue"></div>
                           </li>
                         </ul>
@@ -264,20 +256,21 @@
               </div>
               <div class="body">
                 <div class="example-container">
-                  <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>{{'email' | translate}}</mat-label>
-                    <input matInput>
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>{{'current-pwd' | translate}}</mat-label>
-                    <input matInput type="password">
-                  </mat-form-field>
-                  <mat-form-field class="example-full-width" appearance="fill">
-                    <mat-label>{{'new-pwd' | translate}}</mat-label>
-                    <input matInput type="password">
-                  </mat-form-field>
+                  <div class="col-md-12">
+                    <button mat-raised-button color="primary" (click)="redirect()"><i class="fas fa-edit"></i> {{'edit' | translate}} </button>
+                  </div>
                 </div>
-                <button mat-raised-button color="primary">{{'save' | translate}}</button>
+              </div>
+            </mat-tab>
+
+            <mat-tab>
+              <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon msr-2">border_bottom</mat-icon>
+                {{'Qr-Code' | translate}}
+              </ng-template>
+              <div class="body text-center">
+                <qrcode [qrdata]="qrCode" [width]="250" [errorCorrectionLevel]="'M'" [colorDark]="'#275C3C'" [margin]="'2'">
+                </qrcode>
               </div>
             </mat-tab>
 

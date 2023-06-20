@@ -36,6 +36,7 @@ import { CommonModule } from '@angular/common';
 import { initializeKeycloak } from './shared/utils/helpers';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { Router } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -92,6 +93,13 @@ export function createTranslateLoader(http: HttpClient): any {
         deps: [HttpClient]
       }
     }),
+    ToastrModule.forRoot(
+      {
+        timeOut: 1500,
+        positionClass: 'toast-bottom-right',
+        preventDuplicates: true,
+      }
+    ),
     CoreModule,
     SharedModule,
     

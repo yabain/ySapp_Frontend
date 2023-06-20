@@ -11,7 +11,7 @@ const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: '/dashboard/main', pathMatch: 'full' },
+      { path: '', redirectTo: '/dashboard/home', pathMatch: 'full' },
       {
         path: 'dashboard',
         canActivate:[AuthGuard],
@@ -41,9 +41,9 @@ const routes: Routes = [
           import('./contacts/contacts.module').then((m) => m.ContactsModule)
       },
       {
-        path: 'email',
+        path: 'message',
         loadChildren: () =>
-          import('./email/email.module').then((m) => m.EmailModule)
+          import('./message/message.module').then((m) => m.MessageModule)
       },
       {
         path: 'apps',

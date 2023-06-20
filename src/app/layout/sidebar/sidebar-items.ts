@@ -10,87 +10,12 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: 'dashboard/main',
+    path: 'dashboard/home',
     title: 'home',
     icon: 'monitor',
     class: '',
     groupTitle: false,
-    submenu: [
-      // {
-      //   path: 'dashboard/main',
-      //   title: 'MENUITEMS.HOME.LIST.DASHBOARD1',
-      //   icon: '',
-      //   class: 'ml-menu',
-      //   groupTitle: false,
-      //   submenu: []
-      // }
-    ]
-  },
-  {
-    path: '/extra-pages/profile',
-    title: 'profile',
-    icon: 'user',
-    class: '',
-    groupTitle: false,
     submenu: []
-  },
-  {
-    path: '',
-    title: 'MESSAGES.TEXT',
-    icon: 'mail',
-    class: 'menu-toggle',
-    groupTitle: false,
-    submenu: [
-      {
-        path: '/email/web-chat',
-        title: 'compose-to-user',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/email/chat',
-        title: 'Chat',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/email/compose',
-        title: 'compose-to-group',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/',
-        title: 'auto-send',
-        icon: '',
-        class: 'ml-sub-menu',
-        groupTitle: false,
-        submenu: [
-          {
-            path: 'calendar',
-            title: 'MENUITEMS.CALENDAR.TEXT',
-            icon: '',
-            class: 'ml-menu2',
-            groupTitle: false,
-            submenu: []
-          },
-          {
-            path: '/email/read-mail',
-            title: 'birthdays',
-            icon: '',
-            class: 'ml-menu2',
-            groupTitle: false,
-            submenu: []
-          },
-        ]
-      },
-    ]
   },
   {
     path: 'advance-table',
@@ -99,6 +24,80 @@ export const ROUTES: RouteInfo[] = [
     class: '',
     groupTitle: false,
     submenu: []
+  },
+  {
+    path: '',
+    title: 'message',
+    icon: 'mail',
+    class: 'menu-toggle',
+    groupTitle: false,
+    submenu: [
+      // {
+      //   path: '/message/compose',
+      //   title: 'compose-to-user',
+      //   icon: '',
+      //   class: 'ml-menu',
+      //   groupTitle: false,
+      //   submenu: []
+      // },
+      {
+        path: '/message/compose-to-group',
+        title: 'compose-to-group',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        submenu: []
+      },
+      {
+        path: '/message/calendar',
+        title: 'MENUITEMS.CALENDAR.TEXT',
+        icon: '',
+        class: 'ml-menu2',
+        groupTitle: false,
+        submenu: []
+      },
+      {
+        path: '/message/preset-msg',
+        title: 'preloadMsg',
+        icon: '',
+        class: 'ml-menu2',
+        groupTitle: false,
+        submenu: []
+      },
+      {
+        path: '/message/web-chat',
+        title: 'Web Chat',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        submenu: []
+      },
+      // {
+      //   path: '/',
+      //   title: 'auto-send',
+      //   icon: '',
+      //   class: 'ml-sub-menu',
+      //   groupTitle: false,
+      //   submenu: [
+      //     {
+      //       path: 'calendar',
+      //       title: 'MENUITEMS.CALENDAR.TEXT',
+      //       icon: '',
+      //       class: 'ml-menu2',
+      //       groupTitle: false,
+      //       submenu: []
+      //     },
+      //     {
+      //       path: '/message/read-mail',
+      //       title: 'preloaderMsg',
+      //       icon: '',
+      //       class: 'ml-menu2',
+      //       groupTitle: false,
+      //       submenu: []
+      //     },
+      //   ]
+      // },
+    ]
   },
   {
     path: '',
@@ -116,6 +115,14 @@ export const ROUTES: RouteInfo[] = [
     groupTitle: false,
     submenu: [
     ]
+  },
+  {
+    path: '/extra-pages/profile',
+    title: 'profile',
+    icon: 'user',
+    class: '',
+    groupTitle: false,
+    submenu: []
   },
   {
     path: '/apps/contact-grid',

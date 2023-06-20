@@ -17,6 +17,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ComponentsModule } from '../shared/components/components.module';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from '../shared/shared.module';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { SharedModule } from '../shared/shared.module';
     MatCheckboxModule,
     MatTabsModule,
     ComponentsModule,
+    QRCodeModule
   ]
 })
 export class ExtraPagesModule {}
