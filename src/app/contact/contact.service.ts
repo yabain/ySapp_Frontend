@@ -1,31 +1,37 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AdvanceTable } from './advance-table.model';
+import { Contact } from './contact.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '../shared/UnsubscribeOnDestroyAdapter';
+import { ContactsService } from '../shared/service/contacts/contacts.service';
+
+
 @Injectable()
-export class AdvanceTableService extends UnsubscribeOnDestroyAdapter {
+export class ContactService extends UnsubscribeOnDestroyAdapter {
   private readonly API_URL = 'assets/data/advanceTable.json';
   isTblLoading = true;
-  dataChange: BehaviorSubject<AdvanceTable[]> = new BehaviorSubject<
-    AdvanceTable[]
+  dataChange: BehaviorSubject<Contact[]> = new BehaviorSubject<
+    Contact[]
   >([]);
   // Temporarily stores data from dialogs
   dialogData: any;
-  constructor(private httpClient: HttpClient) {
+  constructor(
+    private httpClient: HttpClient,
+    private contactsService?: ContactsService) {
     super();
   }
-  get data(): AdvanceTable[] {
+  get data(): Contact[] {
     console.log('datas: ', this.dataChange.value);
     return this.dataChange.value;
   }
   getDialogData() {
     return this.dialogData;
   }
+
   /** CRUD METHODS */
-  getAllAdvanceTables(): void {
+  getAllContacts(): void {
     this.subs.sink = this.httpClient
-      .get<AdvanceTable[]>(this.API_URL)
+      .get<Contact[]>(this.API_URL)
       .subscribe(
         (data) => {
           this.isTblLoading = false;
@@ -37,8 +43,20 @@ export class AdvanceTableService extends UnsubscribeOnDestroyAdapter {
         }
       );
   }
-  addAdvanceTable(advanceTable: AdvanceTable): void {
-    this.dialogData = advanceTable;
+  
+  addContact(contact: Contact): void {
+
+    this.contactsService.addContact(contact)
+    .then((response) => {
+      console.log(response);
+      localStorage.setItem('response', JSON.stringify(response));
+      this.dialogData = contact;
+    })
+      .catch((error) => {
+        localStorage.setItem('error du backend', error);
+        console.log(error);
+      }); 
+
 
     /*  this.httpClient.post(this.API_URL, advanceTable).subscribe(data => {
       this.dialogData = advanceTable;
@@ -47,7 +65,8 @@ export class AdvanceTableService extends UnsubscribeOnDestroyAdapter {
      // error code here
     });*/
   }
-  updateAdvanceTable(advanceTable: AdvanceTable): void {
+
+  updateContact(advanceTable: Contact): void {
     this.dialogData = advanceTable;
 
     /* this.httpClient.put(this.API_URL + advanceTable.id, advanceTable).subscribe(data => {
@@ -58,7 +77,8 @@ export class AdvanceTableService extends UnsubscribeOnDestroyAdapter {
     }
   );*/
   }
-  deleteAdvanceTable(id: number): void {
+
+  deleteContact(id: number): void {
     console.log(id);
 
     /*  this.httpClient.delete(this.API_URL + id).subscribe(data => {

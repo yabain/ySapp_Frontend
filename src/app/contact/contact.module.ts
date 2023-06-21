@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AdvanceTableRoutingModule } from './advance-table-routing.module';
-import { AdvanceTableComponent } from './advance-table.component';
+import { ContactRoutingModule } from './contact-routing.module';
+import { ContactComponent } from './contact.component';
 import { FormDialogComponent as advanceTableForm } from './dialogs/form-dialog/form-dialog.component';
 import { FormMessageComponent } from './dialogs/form-message/form-message.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.component';
@@ -26,13 +26,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatMenuModule } from '@angular/material/menu';
-import { AdvanceTableService } from './advance-table.service';
 import { ComponentsModule } from '../shared/components/components.module';
 import { SharedModule } from '../shared/shared.module';
+import { ContactService } from './contact.service';
 
 @NgModule({
   declarations: [
-    AdvanceTableComponent,
+    ContactComponent,
     advanceTableForm,
     DeleteDialogComponent,
     FormMessageComponent
@@ -41,7 +41,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AdvanceTableRoutingModule,
+    ContactRoutingModule,
     MatTableModule,
     MatPaginatorModule,
     MatFormFieldModule,
@@ -64,6 +64,6 @@ import { SharedModule } from '../shared/shared.module';
     ComponentsModule,
     SharedModule
   ],
-  providers: [AdvanceTableService]
+  providers: [ContactService]
 })
-export class AdvanceTableModule {}
+export class ContactModule {}

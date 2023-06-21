@@ -22,6 +22,7 @@ export class ComposeGroupComponent implements OnInit{
   ) {}
 
   ngOnInit(): void {
+    this.scrollToTop();
       
     this.messageForm = this.formLog.group({
       'contact': ['', Validators.compose([
@@ -31,5 +32,9 @@ export class ComposeGroupComponent implements OnInit{
       'message': ['', Validators.compose([
         Validators.minLength(6)])],
     });
+  }
+
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
   }
 }

@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
-export class AdvanceTable {
+
+export class Contact {
   id: number;
   img: string;
   firstName: string;

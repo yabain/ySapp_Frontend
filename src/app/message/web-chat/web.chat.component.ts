@@ -16,5 +16,11 @@ export class WebChatComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.scrollToTop();
+  }
+
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
+  }
 }

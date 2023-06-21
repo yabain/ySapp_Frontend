@@ -73,7 +73,15 @@
                         </div>
                       </li>
                       <li>
-                        <div class="export-button m-l-10" [hidden]=!selection.hasValue() matTooltip="DELETE">
+                        <div class="export-button m-l-10" style="border-style: dotted;" [hidden]=!selection.hasValue() matTooltip="DELETE">
+                          <button mat-mini-fab style="background-color: #0ba32a !important;">
+                            <mat-icon class="col-white">chat_bubble_outline
+                            </mat-icon>
+                          </button>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="export-button m-l-10" style="border-style: dotted;" [hidden]=!selection.hasValue() matTooltip="DELETE">
                           <button mat-mini-fab color="warn" (click)="removeSelectedRows()">
                             <mat-icon class="col-white">delete
                             </mat-icon>

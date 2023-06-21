@@ -18,7 +18,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: 'advance-table',
+    path: 'contact',
     title: 'contact',
     icon: 'users',
     class: '',
@@ -125,7 +125,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/apps/contact-grid',
+    path: '/',
     title: 'support',
     icon: 'command',
     class: '',

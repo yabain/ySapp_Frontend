@@ -19,7 +19,7 @@ import { ChatComponent } from './chat/chat.component';
     ComposeComponent,
     InboxComponent,
     ReadMailComponent,
-  ChatComponent],
+    ChatComponent],
   imports: [
     CommonModule,
     EmailRoutingModule,
@@ -32,4 +32,4 @@ import { ChatComponent } from './chat/chat.component';
     ComponentsModule
   ]
 })
-export class EmailModule {}
+export class EmailModule { }

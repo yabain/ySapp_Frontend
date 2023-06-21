@@ -15,17 +15,17 @@
               <ul class="" id="mail-folders">
                 <li class="active">
                   <a href="inbox.html" title="Inbox">Yaba-In
-                    <span class="badge bg-orange">11 Members</span>
+                    <span class="badge bg-orange">11 {{ "members" | translate }}</span>
                   </a>
                 </li>
                 <li>
                   <a href="javascript:;" title="Sent">UdM
-                    <span class="badge bg-orange">46 Members</span>
+                    <span class="badge bg-orange">46 {{ "members" | translate }}</span>
                   </a>
                 </li>
                 <li>
                   <a href="javascript:;" title="Draft">Groupe SIA
-                    <span class="badge bg-orange">16 Members</span></a>
+                    <span class="badge bg-orange">16 {{ "members" | translate }}</span></a>
                 </li>
               </ul>
               <!-- <h5 class="b-b p-10 text-strong">Labels</h5>
@@ -89,7 +89,7 @@
                   <tr>
                     <th colspan="1">
                       <div class="inbox-header">
-                        Compose New Message
+                        {{'instantMessages' | translate}}
                       </div>
                     </th>
                   </tr>
@@ -101,7 +101,7 @@
                 <form class="composeForm">
                   <div class="form-line">
                     <mat-form-field class="example-full-width" appearance="outline">
-                      <mat-label>Subject</mat-label>
+                      <mat-label>{{'subject' | translate}}</mat-label>
                       <input matInput id="subject">
                     </mat-form-field>
                   </div>

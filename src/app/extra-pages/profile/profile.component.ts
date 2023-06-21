@@ -61,10 +61,10 @@ export class ProfileComponent
     super();
     this.user = userService.getLocalStorageUser();
     console.log('user: ', this.user);
-    this.getQrCode();
   }
 
   ngOnInit() {
+    this.scrollToTop();
     this.config = this.configService.configData;
     this.subs.sink = this.rightSidebarService.sidebarState.subscribe(
       (isRunning) => {
@@ -79,6 +79,10 @@ export class ProfileComponent
 
   redirect() {
     this.authService.redirectToProfile();
+  }
+
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
   }
 
   getQrCode() {

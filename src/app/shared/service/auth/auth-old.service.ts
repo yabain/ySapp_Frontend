@@ -247,7 +247,7 @@ export class AuthService {
           next: (response) => {
             this.currentUserSubject.next(response.user);
             // const profilePicture = response.data.user.profilePicture;
-            // const words = profilePicture.split('yabain.com/');
+            // const words = profilePicture.split('yaba-in.com/');
             // response.data.user.profilePicture = words[1];
 
             // this.webStorage.Login(response.userId);

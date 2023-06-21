@@ -65,6 +65,7 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    this.scrollToTop();
     this.cardChart1();
     this.cardChart2();
     this.cardChart3();
@@ -75,6 +76,10 @@ export class HomeComponent implements OnInit {
     this.chart7();
   }
   
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
+  }
+
   private cardChart1() {
     this.smallBarChart = {
       chart: {

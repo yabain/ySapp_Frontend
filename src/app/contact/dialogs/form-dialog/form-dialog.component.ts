@@ -1,13 +1,14 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { AdvanceTableService } from '../../advance-table.service';
+import { ContactService } from '../../contact.service';
 import {
   UntypedFormControl,
   Validators,
   UntypedFormGroup,
-  UntypedFormBuilder
+  UntypedFormBuilder,
+  FormBuilder
 } from '@angular/forms';
-import { AdvanceTable } from '../../advance-table.model';
+import { Contact } from '../../contact.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { formatDate } from '@angular/common';
 import { LocationService } from 'src/app/shared/service/location/location.service';
@@ -20,8 +21,8 @@ import { LocationService } from 'src/app/shared/service/location/location.servic
 export class FormDialogComponent implements OnInit {
   action: string;
   dialogTitle: string;
-  advanceTableForm: UntypedFormGroup;
-  advanceTable: AdvanceTable;
+  contactForm: UntypedFormGroup;
+  contact: Contact;
   region: any = [];
   city: any = [];
   
@@ -29,20 +30,21 @@ export class FormDialogComponent implements OnInit {
     private location: LocationService,
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public advanceTableService: AdvanceTableService,
-    private fb: UntypedFormBuilder
+    public contactService: ContactService,
+    private fb: UntypedFormBuilder,
+    private formLog: FormBuilder,
   ) {
     // Set the defaults
     this.action = data.action;
     if (this.action === 'edit') {
       this.dialogTitle =
-        data.advanceTable.firstName + ' ' + data.advanceTable.lastName;
-      this.advanceTable = data.advanceTable;
+        data.contact.firstName + ' ' + data.contact.lastName;
+      this.contact = data.contact;
     } else {
       this.dialogTitle = 'Contact';
-      this.advanceTable = new AdvanceTable({});
+      this.contact = new Contact({});
     }
-    this.advanceTableForm = this.createContactForm();
+    this.contactForm = this.createContactForm();
   }
   
   ngOnInit() {
@@ -61,36 +63,50 @@ export class FormDialogComponent implements OnInit {
       ? 'Not a valid email'
       : '';
   }
+
   createContactForm(): UntypedFormGroup {
+    if (this.contact.country == 'Cameroon') {
+      this.contact.country = '1'
+    } else if (this.contact.country == 'Congo') {
+      this.contact.country = '2'
+    } else if (this.contact.country == 'Gabon') {
+      this.contact.country = '3'
+    } else if (this.contact.country == 'EqGuinee') {
+      this.contact.country = '4'
+    }
+
     return this.fb.group({
-      id: [this.advanceTable.id],
-      img: [this.advanceTable.img],
-      firstName: [this.advanceTable.firstName, [Validators.required]],
-      lastName: [this.advanceTable.lastName, [Validators.required]],
+      id: [this.contact.id],
+      img: [this.contact.img],
+      firstName: [this.contact.firstName, [Validators.required]],
+      lastName: [this.contact.lastName, [Validators.required]],
       email: [
-        this.advanceTable.email,
+        this.contact.email,
         [Validators.required, Validators.email, Validators.minLength(5)]
       ],
-      gender: [this.advanceTable.gender],
+      gender: [this.contact.gender],
       birthday: [
-        formatDate(this.advanceTable.birthday, 'yyyy-MM-dd', 'en'),
+        formatDate(this.contact.birthday, 'yyyy-MM-dd', 'en'),
         [Validators.required]
       ],
-      address: [this.advanceTable.address],
-      phone: [this.advanceTable.phone, [Validators.required]],
-      country: [this.advanceTable.country],
-      region: [this.advanceTable.region],
-      city: [this.advanceTable.city],
-      about: [this.advanceTable.about]
+      address: [this.contact.address],
+      phone: [this.contact.phone, [Validators.required]],
+      country: [this.contact.country],
+      // region: [this.contact.region],
+      city: [this.contact.city],
+      about: [this.contact.about]
     });
   }
+
   submit() {
-    // emppty stuff
   }
+
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
+  
   onSelect(region: any) {
     console.log('les villes: ', this.location.city(),region)
     this.city = this.location.city()
@@ -99,9 +115,19 @@ export class FormDialogComponent implements OnInit {
   }
 
   public confirmAdd(): void {
-    this.advanceTableService.addAdvanceTable(
-      this.advanceTableForm.getRawValue()
+    this.contact = this.contactForm.getRawValue();
+    if (this.contact.country == '1') {
+      this.contact.country = 'Cameroon'
+    } else if (this.contact.country == '2') {
+      this.contact.country = 'Congo'
+    } else if (this.contact.country == '3') {
+      this.contact.country = 'Gabon'
+    } else if (this.contact.country == '4') {
+      this.contact.country = 'EqGuinee'
+    }
+    this.contactService.addContact(
+      this.contact
     );
-    console.log('valeur du formulaire: ', this.advanceTable = this.advanceTableForm.getRawValue())
+    console.log('valeur du formulaire: ', this.contact)
   }
 }

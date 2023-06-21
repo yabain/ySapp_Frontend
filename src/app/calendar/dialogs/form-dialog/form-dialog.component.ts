@@ -33,7 +33,7 @@ export class FormDialogComponent {
       this.calendar = data.calendar;
       this.showDeleteBtn = true;
     } else {
-      this.dialogTitle = 'New Event';
+      this.dialogTitle = 'New Record';
       this.calendar = new Calendar({});
       this.showDeleteBtn = false;
     }

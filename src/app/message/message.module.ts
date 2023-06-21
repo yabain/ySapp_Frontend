@@ -16,13 +16,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { PresetMsgComponent } from './preset-msg/preset-msg.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { createTranslateLoader } from '../app.module';
+import { HttpClient } from '@angular/common/http';
+import { WebChatComponent } from './web-chat/web.chat.component';
 
 @NgModule({
   declarations: [
     ComposeGroupComponent,
     InboxComponent,
     PresetMsgComponent,
-    ComposeComponent
+    ComposeComponent,
+    WebChatComponent
 ],
   imports: [
     CommonModule,
@@ -36,7 +41,7 @@ import { PresetMsgComponent } from './preset-msg/preset-msg.component';
     MatInputModule,
     ComponentsModule,
     MatSlideToggleModule,
-    MatSliderModule
+    MatSliderModule,
   ]
 })
 export class MessageModule {}

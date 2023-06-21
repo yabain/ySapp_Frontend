@@ -142,6 +142,7 @@
   "cancel": "Annuler",
   "more": "Plus",
   "me": "de moi",
+  "organisations": "Organisations",
   "send": "Envoyer",
   "description": "Description",
   "groups": "Groupes",
@@ -170,5 +171,11 @@
   "publicDates": "Dates public",
   "christmas": "Noël",
   "composeMsg": "Rédiger un message",
-  "nationalDay": "Fête Nationalle"
+  "nationalDay": "Fête Nationalle",
+  "allNotifications": "Toutes les notifications",
+  "openWWeb": "Ouvrir Whatsapp Web pour colmmencer la discussion",
+  "members": "Membres",
+  "instantMessages": "Message instantané",
+  "group": "Groupes",
+  "noResult": "Rien à afficher"
 }

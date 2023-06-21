@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AdvanceTableService } from './advance-table.service';
+import { ContactService } from './contact.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { AdvanceTable } from './advance-table.model';
+import { Contact } from './contact.model';
 import { DataSource } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
@@ -18,12 +18,12 @@ import { UnsubscribeOnDestroyAdapter } from '../shared/UnsubscribeOnDestroyAdapt
 import { FormMessageComponent } from './dialogs/form-message/form-message.component';
 
 @Component({
-  selector: 'app-advance-table',
-  templateUrl: './advance-table.component.html',
-  styleUrls: ['./advance-table.component.sass'],
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.sass'],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]
 })
-export class AdvanceTableComponent
+export class ContactComponent
   extends UnsubscribeOnDestroyAdapter
   implements OnInit
 {
@@ -41,11 +41,11 @@ export class AdvanceTableComponent
     'city',
     'actions'
   ];
-  exampleDatabase: AdvanceTableService | null;
+  exampleDatabase: ContactService | null;
   dataSource: ExampleDataSource | null;
-  selection = new SelectionModel<AdvanceTable>(true, []);
+  selection = new SelectionModel<Contact>(true, []);
   id: number;
-  advanceTable: AdvanceTable | null;
+  contact: Contact | null;
 
   breadscrums = [
     {
@@ -58,7 +58,7 @@ export class AdvanceTableComponent
   constructor(
     public httpClient: HttpClient,
     public dialog: MatDialog,
-    public advanceTableService: AdvanceTableService,
+    public contactService: ContactService,
     private snackBar: MatSnackBar
   ) {
     super();
@@ -69,12 +69,20 @@ export class AdvanceTableComponent
   @ViewChild(MatMenuTrigger)
   contextMenu: MatMenuTrigger;
   contextMenuPosition = { x: '0px', y: '0px' };
+
   ngOnInit() {
     this.loadData();
+    this.scrollToTop();
   }
+
   refresh() {
     this.loadData();
   }
+
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
+  }
+  
   addNew() {
     let tempDirection;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -84,7 +92,7 @@ export class AdvanceTableComponent
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        advanceTable: this.advanceTable,
+        contact: this.contact,
         action: 'add'
       },
       direction: tempDirection
@@ -94,7 +102,7 @@ export class AdvanceTableComponent
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
         this.exampleDatabase.dataChange.value.unshift(
-          this.advanceTableService.getDialogData()
+          this.contactService.getDialogData()
         );
         this.refreshTable();
         this.showNotification(
@@ -117,7 +125,7 @@ export class AdvanceTableComponent
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        advanceTable: row,
+        contact: row,
         action: 'edit'
       },
       direction: tempDirection
@@ -130,7 +138,7 @@ export class AdvanceTableComponent
         );
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] =
-          this.advanceTableService.getDialogData();
+          this.contactService.getDialogData();
         // And lastly refresh table
         this.refreshTable();
         this.showNotification(
@@ -153,7 +161,7 @@ export class AdvanceTableComponent
     }
     const dialogRef = this.dialog.open(FormMessageComponent, {
       data: {
-        advanceTable: row,
+        contact: row,
         action: 'edit'
       },
       direction: tempDirection
@@ -166,7 +174,7 @@ export class AdvanceTableComponent
     //     );
     //     // Then you update that record using data from dialogData (values you enetered)
     //     this.exampleDatabase.dataChange.value[foundIndex] =
-    //       this.advanceTableService.getDialogData();
+    //       this.contactService.getDialogData();
     //     // And lastly refresh table
     //     this.refreshTable();
     //     this.showNotification(
@@ -236,7 +244,7 @@ export class AdvanceTableComponent
       // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
       this.exampleDatabase.dataChange.value.splice(index, 1);
       this.refreshTable();
-      this.selection = new SelectionModel<AdvanceTable>(true, []);
+      this.selection = new SelectionModel<Contact>(true, []);
     });
     this.showNotification(
       'snackbar-danger',
@@ -247,7 +255,7 @@ export class AdvanceTableComponent
   }
 
   public loadData() {
-    this.exampleDatabase = new AdvanceTableService(this.httpClient);
+    this.exampleDatabase = new ContactService(this.httpClient);
     this.dataSource = new ExampleDataSource(
       this.exampleDatabase,
       this.paginator,
@@ -273,7 +281,7 @@ export class AdvanceTableComponent
   }
 
   // context menu
-  onContextMenu(event: MouseEvent, item: AdvanceTable) {
+  onContextMenu(event: MouseEvent, item: Contact) {
     event.preventDefault();
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
@@ -283,7 +291,7 @@ export class AdvanceTableComponent
   }
 }
 
-export class ExampleDataSource extends DataSource<AdvanceTable> {
+export class ExampleDataSource extends DataSource<Contact> {
   filterChange = new BehaviorSubject('');
   get filter(): string {
     return this.filterChange.value;
@@ -291,10 +299,10 @@ export class ExampleDataSource extends DataSource<AdvanceTable> {
   set filter(filter: string) {
     this.filterChange.next(filter);
   }
-  filteredData: AdvanceTable[] = [];
-  renderedData: AdvanceTable[] = [];
+  filteredData: Contact[] = [];
+  renderedData: Contact[] = [];
   constructor(
-    public exampleDatabase: AdvanceTableService,
+    public exampleDatabase: ContactService,
     public paginator: MatPaginator,
     public _sort: MatSort
   ) {
@@ -303,7 +311,7 @@ export class ExampleDataSource extends DataSource<AdvanceTable> {
     this.filterChange.subscribe(() => (this.paginator.pageIndex = 0));
   }
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<AdvanceTable[]> {
+  connect(): Observable<Contact[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this.exampleDatabase.dataChange,
@@ -311,23 +319,23 @@ export class ExampleDataSource extends DataSource<AdvanceTable> {
       this.filterChange,
       this.paginator.page
     ];
-    this.exampleDatabase.getAllAdvanceTables();
+    this.exampleDatabase.getAllContacts();
     return merge(...displayDataChanges).pipe(
       map(() => {
         // Filter data
         this.filteredData = this.exampleDatabase.data
           .slice()
-          .filter((advanceTable: AdvanceTable) => {
+          .filter((contact: Contact) => {
             const searchStr = (
-              advanceTable.firstName +
-              advanceTable.lastName +
-              advanceTable.email +
-              advanceTable.phone +
-              // advanceTable.gender +
-              // advanceTable.birthday +
-              // advanceTable.address +
-              // advanceTable.country
-              advanceTable.city
+              contact.firstName +
+              contact.lastName +
+              contact.email +
+              contact.phone +
+              // contact.gender +
+              // contact.birthday +
+              // contact.address +
+              // contact.country
+              contact.city
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
           });
@@ -345,7 +353,7 @@ export class ExampleDataSource extends DataSource<AdvanceTable> {
   }
   disconnect() {}
   /** Returns a sorted copy of the database data. */
-  sortData(data: AdvanceTable[]): AdvanceTable[] {
+  sortData(data: Contact[]): Contact[] {
     if (!this._sort.active || this._sort.direction === '') {
       return data;
     }

@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
-import { AdvanceTableService } from '../../advance-table.service';
+import { ContactService } from '../../contact.service';
 @Component({
   selector: 'app-delete',
   templateUrl: './delete.component.html',
@@ -10,12 +10,12 @@ export class DeleteDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DeleteDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public advanceTableService: AdvanceTableService
+    public contactService: ContactService
   ) {}
   onNoClick(): void {
     this.dialogRef.close();
   }
   confirmDelete(): void {
-    this.advanceTableService.deleteAdvanceTable(this.data.id);
+    this.contactService.deleteContact(this.data.id);
   }
 }

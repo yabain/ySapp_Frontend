@@ -1,13 +1,13 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { AdvanceTableService } from '../../advance-table.service';
+import { ContactService } from '../../contact.service';
 import {
   UntypedFormControl,
   Validators,
   UntypedFormGroup,
   UntypedFormBuilder
 } from '@angular/forms';
-import { AdvanceTable } from '../../advance-table.model';
+import { Contact } from '../../contact.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { formatDate } from '@angular/common';
 import { LocationService } from 'src/app/shared/service/location/location.service';
@@ -23,8 +23,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class FormMessageComponent implements OnInit {
   action: string;
   dialogTitle: string;
-  advanceTableForm: UntypedFormGroup;
-  advanceTable: AdvanceTable;
+  contactForm: UntypedFormGroup;
+  contact: Contact;
   region: any = [];
   city: any = [];
   respuest:any={};
@@ -33,7 +33,7 @@ export class FormMessageComponent implements OnInit {
     private location: LocationService,
     public dialogRef: MatDialogRef<FormMessageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public advanceTableService: AdvanceTableService,
+    public contactService: ContactService,
     private fb: UntypedFormBuilder,
     private whatsappService: WhatsappService,
     private snackBar: MatSnackBar
@@ -42,13 +42,13 @@ export class FormMessageComponent implements OnInit {
     this.action = data.action;
     if (this.action === 'edit') {
       this.dialogTitle =
-        data.advanceTable.firstName + ' ' + data.advanceTable.lastName;
-      this.advanceTable = data.advanceTable;
+        data.contact.firstName + ' ' + data.contact.lastName;
+      this.contact = data.contact;
     } else {
       this.dialogTitle = 'Contact';
-      this.advanceTable = new AdvanceTable({});
+      this.contact = new Contact({});
     }
-    this.advanceTableForm = this.createContactForm();
+    this.contactForm = this.createContactForm();
   }
   
   ngOnInit() {
@@ -71,10 +71,10 @@ export class FormMessageComponent implements OnInit {
   createContactForm(): UntypedFormGroup {
     return this.fb.group({
       email: [
-        this.advanceTable.email,
+        this.contact.email,
         [Validators.required, Validators.email, Validators.minLength(5)]
       ],
-      phone: ['237'+this.advanceTable.phone, [Validators.required]],
+      phone: ['+237'+this.contact.phone, [Validators.required]],
       message: ['', [Validators.required]],
     });
   }
@@ -95,7 +95,7 @@ export class FormMessageComponent implements OnInit {
   }
 
   public sendMessage(): void {
-    let messageForm = this.advanceTableForm.getRawValue();
+    let messageForm = this.contactForm.getRawValue();
     this.whatsappService.envoieMessage(messageForm)
     .subscribe(res=>{
       // console.log(res);

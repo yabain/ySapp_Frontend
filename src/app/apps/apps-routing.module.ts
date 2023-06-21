@@ -4,7 +4,6 @@ import { ChatComponent } from './chat/chat.component';
 import { ContactGridComponent } from './contact-grid/contact-grid.component';
 import { SupportComponent } from './support/support.component';
 import { DragDropComponent } from './drag-drop/drag-drop.component';
-import { ContactsComponent } from '../contacts/contacts.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 const routes: Routes = [
@@ -18,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'contacts',
-    component: ContactsComponent
+    component: ContactGridComponent
   },
   {
     path: 'support',

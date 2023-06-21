@@ -63,46 +63,11 @@ export class HeaderComponent
   ];
   notifications: any[] = [
     {
-      userImg: 'assets/images/user/user.png',
-      userName: 'Sarah Smith',
-      time: '14 mins ago',
-      message: 'Please check your mail'
-    },
-    {
-      userImg: 'assets/images/user/user.png',
-      userName: 'Airi Satou',
-      time: '22 mins ago',
-      message: 'Work Completed !!!'
-    },
-    {
-      userImg: 'assets/images/user/user.png',
-      userName: 'John Doe',
-      time: '3 hours ago',
-      message: 'kindly help me for code.'
-    },
-    {
-      userImg: 'assets/images/user/user.png',
-      userName: 'Ashton Cox',
-      time: '5 hours ago',
-      message: 'Lets break for lunch...'
-    },
-    {
-      userImg: 'assets/images/user/user.png',
-      userName: 'Sarah Smith',
-      time: '14 mins ago',
-      message: 'Please check your mail'
-    },
-    {
-      userImg: 'assets/images/user/user.png',
-      userName: 'Airi Satou',
-      time: '22 mins ago',
-      message: 'Work Completed !!!'
-    },
-    {
-      userImg: 'assets/images/user/user.png',
-      userName: 'John Doe',
-      time: '3 hours ago',
-      message: 'kindly help me for code.'
+      userImg: 'assets/images/user/yaba-in_icon.png',
+      userName: 'Yaba-In Team',
+      time: '03 mins ago',
+      url: 'https://yaba-in.com/',
+      message: "Welcome to your ySapp Space! Discover Yaba-In's services here."
     }
   ];
 

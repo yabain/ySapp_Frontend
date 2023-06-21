@@ -19,10 +19,10 @@ const routes: Routes = [
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
-        path: 'advance-table',
+        path: 'contact',
         loadChildren: () =>
-          import('./advance-table/advance-table.module').then(
-            (m) => m.AdvanceTableModule
+          import('./contact/contact.module').then(
+            (m) => m.ContactModule
           )
       },
       {
@@ -35,11 +35,11 @@ const routes: Routes = [
         loadChildren: () =>
           import('./task/task.module').then((m) => m.TaskModule)
       },
-      {
-        path: 'contacts',
-        loadChildren: () =>
-          import('./contacts/contacts.module').then((m) => m.ContactsModule)
-      },
+      // {
+      //   path: 'contacts',
+      //   loadChildren: () =>
+      //     import('./contacts/contacts.module').then((m) => m.ContactsModule)
+      // },
       {
         path: 'message',
         loadChildren: () =>

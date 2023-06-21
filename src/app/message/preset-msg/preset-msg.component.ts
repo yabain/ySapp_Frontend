@@ -17,5 +17,11 @@ export class PresetMsgComponent implements OnInit {
   ];
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.scrollToTop();
+  }
+
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
+  }
 }

@@ -269,6 +269,7 @@
                 {{'Qr-Code' | translate}}
               </ng-template>
               <div class="body text-center">
+                <button (click)="getQrCode()" class="btn btn-success"><mat-icon class="example-tab-icon msr-2">border_bottom</mat-icon>Generate QR-code</button>
                 <qrcode [qrdata]="qrCode" [width]="250" [errorCorrectionLevel]="'M'" [colorDark]="'#275C3C'" [margin]="'2'">
                 </qrcode>
               </div>

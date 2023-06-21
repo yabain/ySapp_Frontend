@@ -202,5 +202,11 @@
   "publicDates": "Public Dates",
   "christmas": "Christmas",
   "composeMsg": "Compose New Message",
-  "nationalDay": "National Day"
+  "nationalDay": "National Day",
+  "allNotifications": "All notifications",
+  "openWWeb": "Open Whatsapp Web to chat",
+  "members": "Members",
+  "instantMessages": "Instant message",
+  "group": "Groups",
+  "noResult": "Nothing to show"
 }

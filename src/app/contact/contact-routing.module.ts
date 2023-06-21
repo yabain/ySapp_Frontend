@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-import { AdvanceTableComponent } from './advance-table.component';
+import { ContactComponent } from './contact.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdvanceTableComponent
+    component: ContactComponent
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule, TranslateModule]
 })
-export class AdvanceTableRoutingModule {}
+export class ContactRoutingModule {}
