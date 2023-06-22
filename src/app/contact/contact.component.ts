@@ -1,10 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ContactService } from './contact.service';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Contact } from './contact.model';
 import { DataSource } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
@@ -16,6 +14,10 @@ import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { SelectionModel } from '@angular/cdk/collections';
 import { UnsubscribeOnDestroyAdapter } from '../shared/UnsubscribeOnDestroyAdapter';
 import { FormMessageComponent } from './dialogs/form-message/form-message.component';
+import { ContactsService } from '../shared/service/contact/contacts.service';
+import { Contact } from '../shared/entities/contact/contact';
+import { ContactService } from '../shared/service/contact/contact.service';
+import { NotificationsService } from '../shared/service/notifications/notifications.service';
 
 @Component({
   selector: 'app-contact',
@@ -23,10 +25,10 @@ import { FormMessageComponent } from './dialogs/form-message/form-message.compon
   styleUrls: ['./contact.component.sass'],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]
 })
+
 export class ContactComponent
   extends UnsubscribeOnDestroyAdapter
-  implements OnInit
-{
+  implements OnInit {
   displayedColumns = [
     'select',
     'img',
@@ -46,6 +48,7 @@ export class ContactComponent
   selection = new SelectionModel<Contact>(true, []);
   id: number;
   contact: Contact | null;
+  loadingContacts: boolean = false;
 
   breadscrums = [
     {
@@ -59,7 +62,9 @@ export class ContactComponent
     public httpClient: HttpClient,
     public dialog: MatDialog,
     public contactService: ContactService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private contactsService: ContactsService,
+    private notificationsService: NotificationsService,
   ) {
     super();
   }
@@ -71,19 +76,37 @@ export class ContactComponent
   contextMenuPosition = { x: '0px', y: '0px' };
 
   ngOnInit() {
-    this.loadData();
+    this.loadingContacts = true;
     this.scrollToTop();
-    this.contactService.getAllContacts();
+    if (!localStorage.getItem("contact-list")) {
+      this.refresh();
+    } else {
+      this.loadData();
+      this.loadingContacts = false;
+    }
   }
 
   refresh() {
-    this.loadData();
+    this.loadingContacts = true;
+    this.contactsService.getAllContacts()
+      .then((contacts) => {
+        this.loadingContacts = false;
+        // this.notificationsService.showNotification('Contacts list loaded successfully', 'success');
+        // this.showNotification('snackbar-success', 'Contacts list loaded successfully',
+        //   'bottom',
+        //   'center')
+        this.contactService.getAllContacts();
+        this.loadData();
+      })
+      .catch((error) => {
+        this.loadingContacts = false;
+      })
   }
 
   scrollToTop(): void {
     window.scrollTo(0, 0);
   }
-  
+
   addNew() {
     let tempDirection;
     if (localStorage.getItem('isRtl') === 'true') {
@@ -100,18 +123,55 @@ export class ContactComponent
     });
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
+        setTimeout(() => {
+          this.refresh();
+          this.refreshTable();
+        }, 3000);
         // After dialog is closed we're doing frontend updates
         // For add we're just pushing a new row inside DataService
         this.exampleDatabase.dataChange.value.unshift(
           this.contactService.getDialogData()
         );
-        this.refreshTable();
-        this.showNotification(
-          'snackbar-success',
-          'Add Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
+        // this.showNotification(
+        //   'snackbar-success',
+        //   'Add Record Successfully...!!!',
+        //   'bottom',
+        //   'center'
+        // );
+      }
+    });
+  }
+
+  deleteItem(row) {
+    this.id = row.id;
+    let tempDirection;
+    if (localStorage.getItem('isRtl') === 'true') {
+      tempDirection = 'rtl';
+    } else {
+      tempDirection = 'ltr';
+    }
+    const dialogRef = this.dialog.open(DeleteDialogComponent, {
+      data: row,
+      direction: tempDirection
+    });
+    this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
+      if (result === 1) {
+        setTimeout(() => {
+          this.refresh();
+          this.refreshTable();
+          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
+            (x) => x.id === this.id
+          );
+          this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+          this.refreshTable();
+        }, 3000);
+        // for delete we use splice in order to remove single object from DataService
+        // this.showNotification(
+        //   'snackbar-danger',
+        //   'Delete Record Successfully...!!!',
+        //   'bottom',
+        //   'center'
+        // );
       }
     });
   }
@@ -188,35 +248,6 @@ export class ContactComponent
     // });
   }
 
-  deleteItem(row) {
-    this.id = row.id;
-    let tempDirection;
-    if (localStorage.getItem('isRtl') === 'true') {
-      tempDirection = 'rtl';
-    } else {
-      tempDirection = 'ltr';
-    }
-    const dialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: row,
-      direction: tempDirection
-    });
-    this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
-      if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
-          (x) => x.id === this.id
-        );
-        // for delete we use splice in order to remove single object from DataService
-        this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-        this.refreshTable();
-        this.showNotification(
-          'snackbar-danger',
-          'Delete Record Successfully...!!!',
-          'bottom',
-          'center'
-        );
-      }
-    });
-  }
 
   private refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
@@ -233,26 +264,27 @@ export class ContactComponent
     this.isAllSelected()
       ? this.selection.clear()
       : this.dataSource.renderedData.forEach((row) =>
-          this.selection.select(row)
-        );
+        this.selection.select(row)
+      );
   }
+
   removeSelectedRows() {
     const totalSelect = this.selection.selected.length;
     this.selection.selected.forEach((item) => {
       const index: number = this.dataSource.renderedData.findIndex(
         (d) => d === item
       );
-      // console.log(this.dataSource.renderedData.findIndex((d) => d === item));
+      this.notificationsService.showNotification('This fonction is not ready yet.', 'warning', 5000)
       this.exampleDatabase.dataChange.value.splice(index, 1);
       this.refreshTable();
       this.selection = new SelectionModel<Contact>(true, []);
     });
-    this.showNotification(
-      'snackbar-danger',
-      totalSelect + ' Record Delete Successfully...!!!',
-      'bottom',
-      'center'
-    );
+    // this.showNotification(
+    //   'snackbar-danger',
+    //   totalSelect + ' Record Delete Successfully...!!!',
+    //   'bottom',
+    //   'center'
+    // );
   }
 
   public loadData() {
@@ -335,7 +367,7 @@ export class ExampleDataSource extends DataSource<Contact> {
               // contact.gender +
               // contact.birthday +
               // contact.address +
-              // contact.country
+              // contact.country +
               contact.city
             ).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
@@ -352,7 +384,8 @@ export class ExampleDataSource extends DataSource<Contact> {
       })
     );
   }
-  disconnect() {}
+
+  disconnect() { }
   /** Returns a sorted copy of the database data. */
   sortData(data: Contact[]): Contact[] {
     if (!this._sort.active || this._sort.direction === '') {

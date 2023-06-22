@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { MainComponent } from './main/main.component';
 import { ChartsModule as chartjsModule } from 'ng2-charts';
@@ -46,6 +45,7 @@ import { HomeComponent } from './home/home.component';
     NgApexchartsModule,
     NgxGaugeModule,
     GaugeModule.forRoot(),
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class DashboardModule {}

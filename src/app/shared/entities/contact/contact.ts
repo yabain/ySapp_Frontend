@@ -9,6 +9,8 @@ export class Contact {
   gender: string;
   birthday: string;
   phone: string;
+  whatsapp: string;
+  skype: string;
   address: string;
   country: string;
   city: string;
@@ -32,6 +34,8 @@ export class Contact {
       this.phone = advanceTable.phone || '';
       this.address = advanceTable.address || '';
       this.country = advanceTable.country || '';
+      this.whatsapp = advanceTable.whatsapp || '';
+      this.skype = advanceTable.skype || '';
       this.poste = advanceTable.poste || '';
       this.organisation = advanceTable.organisation || '';
       this.about = advanceTable.about || '';

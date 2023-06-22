@@ -1,18 +1,18 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { ContactService } from '../../contact.service';
 import {
   UntypedFormControl,
   Validators,
   UntypedFormGroup,
   UntypedFormBuilder
 } from '@angular/forms';
-import { Contact } from '../../contact.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { formatDate } from '@angular/common';
 import { LocationService } from 'src/app/shared/service/location/location.service';
 import { WhatsappService } from 'src/app/shared/service/whatsapp/whatsapp.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Contact } from 'src/app/shared/entities/contact/contact';
+import { ContactService } from 'src/app/shared/service/contact/contact.service';
 
 @Component({
   selector: 'app-form-message',

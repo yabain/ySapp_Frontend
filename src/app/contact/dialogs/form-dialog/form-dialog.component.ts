@@ -1,6 +1,6 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { ContactService } from '../../contact.service';
+// import { ContactService } from '../../contact.service';
 import {
   UntypedFormControl,
   Validators,
@@ -13,6 +13,9 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { formatDate } from '@angular/common';
 import { LocationService } from 'src/app/shared/service/location/location.service';
 import { Contact } from 'src/app/shared/entities/contact/contact';
+import { ContactsService } from 'src/app/shared/service/contact/contacts.service';
+import { NotificationsService } from 'src/app/shared/service/notifications/notifications.service';
+
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
@@ -31,8 +34,9 @@ export class FormDialogComponent implements OnInit {
     private location: LocationService,
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public contactService: ContactService,
+    public contactsService: ContactsService,
     private fb: UntypedFormBuilder,
+    private notificationsService: NotificationsService,
     private formLog: FormBuilder,
   ) {
     // Set the defaults
@@ -91,7 +95,9 @@ export class FormDialogComponent implements OnInit {
         [Validators.required]
       ],
       address: [this.contact.address],
-      phone: [this.contact.phone, [Validators.required]],
+      phone: [this.contact.phone,
+        [Validators.required, Validators.minLength(5),
+          Validators.maxLength(9), Validators.pattern("[0-9]{9}")]],
       country: [this.contact.country],
       // region: [this.contact.region],
       city: [this.contact.city],
@@ -127,9 +133,11 @@ export class FormDialogComponent implements OnInit {
     } else if (this.contact.country == '4') {
       this.contact.country = 'EqGuinee'
     }
-    this.contactService.addContact(
-      this.contact
-    );
-    console.log('valeur du formulaire: ', this.contact)
+    this.notificationsService.showNotification('Pending.....', 'info', 3000)
+    this.contactsService.addContact(this.contact)
+    // .then(() => {
+    // });
+
+    console.log('valeur du formulaire: ', this.contact);
   }
 }

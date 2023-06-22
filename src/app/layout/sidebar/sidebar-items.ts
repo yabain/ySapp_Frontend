@@ -108,8 +108,8 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/apps/contact-grid',
-    title: 'organisations',
+    path: '/groups/groups-grid',
+    title: 'groups',
     icon: 'command',
     class: '',
     groupTitle: false,

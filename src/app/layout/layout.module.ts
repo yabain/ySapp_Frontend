@@ -8,7 +8,7 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
   imports: [CommonModule, NgbModule, MatTabsModule, SharedModule],
   declarations: [
-    AuthLayoutComponent,
+    // AuthLayoutComponent,
     // MainLayoutComponent
   ]
 })

@@ -1,18 +1,23 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { HomeComponent } from './home.component';
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+
+import { ContactGridComponent } from './contact-grid.component';
+
+describe('ContactGridComponent', () => {
+  let component: ContactGridComponent;
+  let fixture: ComponentFixture<ContactGridComponent>;
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent]
+      declarations: [ContactGridComponent]
     }).compileComponents();
   }));
+
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(ContactGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });

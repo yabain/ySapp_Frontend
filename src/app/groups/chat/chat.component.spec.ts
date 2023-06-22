@@ -1,18 +1,23 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { HomeComponent } from './home.component';
-describe('HomeComponent', () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+
+import { ChatComponent } from './chat.component';
+
+describe('ChatComponent', () => {
+  let component: ChatComponent;
+  let fixture: ComponentFixture<ChatComponent>;
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [HomeComponent]
+      declarations: [ChatComponent]
     }).compileComponents();
   }));
+
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeComponent);
+    fixture = TestBed.createComponent(ChatComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
   it('should create', () => {
     expect(component).toBeTruthy();
   });

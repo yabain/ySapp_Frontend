@@ -4,15 +4,13 @@ import { Subject } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { ApiService } from '../api/api.service';
 import { Contact } from '../../entities/contact/contact';
-import { KeycloakService } from 'keycloak-angular';
+import { NotificationsService } from '../notifications/notifications.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactsService {
-
-  // public currentContact: Contact = new Contact();
 
   currentContactSubject: Subject<Contact> = new Subject<Contact>();
   public static isContact = true;
@@ -24,7 +22,7 @@ export class ContactsService {
 
   constructor(
     private api?: ApiService,
-    private keycloakService?: KeycloakService
+    private notificationsService?: NotificationsService
   ) { }
 
   getOneContactToList(contactId: string, contactList: []) {
@@ -34,8 +32,11 @@ export class ContactsService {
     return new Promise((resolve, reject) => {
       this.api.get('contacts')
         .subscribe(result => {
-          console.log("Get all contact: ", result);
-          let tab: any = result;
+          console.log("Get all contact: ", result.data);
+          let tab: any = result.data;
+          for (let i = 0; i < tab.length; i++) {
+            tab[i] = this.parseDataFromApi(tab[i]);
+          }
           localStorage.setItem("contact-list", JSON.stringify(tab));
           resolve(result);
         }, error => {
@@ -52,27 +53,28 @@ export class ContactsService {
     return new Promise((resolve, reject) => {
       this.api.post(`contacts`, contact)
         .subscribe((response: any) => {
+          this.notificationsService.dialogShowCustomPosition('Contact added', 'success', 3000);
           resolve(response);
         }, (error: any) => {
+          this.notificationsService.showNotification('Can not add contact, please try again.', 'danger', 7000);
           reject(error);
         });
     })
   }
 
   deleteContact(contactId): Promise<any> {
-    
-    const param = {
-      'id': contactId,
-    };
-
     return new Promise((resolve, reject) => {
-      this.api.delete('contact', param)
+      this.api.delete('contacts/' + contactId)
         .subscribe(response => {
-          console.log('Contact deleted: ', response)
-          setTimeout(() => {
-          }, 3000);
+          this.notificationsService.dialogShowCustomPosition('Contact delete', 'success', 3000);
+          // setTimeout(() => {
+          // }, 3000);
           resolve(response);
         }, error => {
+          this.notificationsService.showNotification('Can not delete contact.', 'danger', 3000);
+          setTimeout(() => {
+            this.notificationsService.showNotification('This fonction is not ready yet.please try again later.', 'warning', 5000)
+          }, 3000);
           reject(error);
         });
     });
@@ -121,10 +123,12 @@ export class ContactsService {
     contact.email = contactApiData.email;
     contact.gender = contactApiData.gender;
     contact.phone = contactApiData.phoneNumber;
-    contact.img = contactApiData.profilePicture;
-    contact.creationDate = contactApiData.creationDate;
+    contact.img = contactApiData.profilePicture || 'assets/images/user/user.png';
+    contact.creationDate = contactApiData.createdAt;
     contact.country = contactApiData.country;
-    contact.city = contactApiData.location;
+    contact.skype = contactApiData.skype;
+    contact.whatsapp = contactApiData.whatsappContact;
+    contact.city = contactApiData.city;
     contact.address = contactApiData.address;
     contact.about = contactApiData.about;
     contact.birthday = contactApiData.birthday;
@@ -134,21 +138,22 @@ export class ContactsService {
 
   parseDataForApi(contactApiData) {
     console.log('contactApiData: ', contactApiData)
-    let contact: any ={
-    firstName: contactApiData.firstName,
-    lastName: contactApiData.lastName,
-    email: contactApiData.email,
-    phoneNumber: contactApiData.phone,
-    whatsappContact: contactApiData.phone,
-    // profilePicture: contactApiData.img,
-    // creationDate: contactApiData.creationDate,
-    country: contactApiData.country,
-    city: contactApiData.city,
-    birthday: contactApiData.birthday,
-    address: contactApiData.address,
-    about: contactApiData.about,
-    gender: contactApiData.gender
-  }
+    let contact: any = {
+      firstName: contactApiData.firstName,
+      lastName: contactApiData.lastName,
+      email: contactApiData.email,
+      phoneNumber: contactApiData.phone,
+      whatsappContact: contactApiData.phone,
+      // profilePicture: contactApiData.img,
+      // createdAt: contactApiData.creationDate,
+      country: contactApiData.country,
+      city: contactApiData.city,
+      skype: contactApiData.skype,
+      birthday: contactApiData.birthday,
+      address: contactApiData.address,
+      about: contactApiData.about,
+      gender: contactApiData.gender
+    }
     console.log('contact: ', contact)
     return contact;
   }

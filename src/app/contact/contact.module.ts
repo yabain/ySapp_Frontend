@@ -6,7 +6,6 @@ import { ContactComponent } from './contact.component';
 import { FormDialogComponent as advanceTableForm } from './dialogs/form-dialog/form-dialog.component';
 import { FormMessageComponent } from './dialogs/form-message/form-message.component';
 import { DeleteDialogComponent } from './dialogs/delete/delete.component';
-
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,7 +27,7 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatMenuModule } from '@angular/material/menu';
 import { ComponentsModule } from '../shared/components/components.module';
 import { SharedModule } from '../shared/shared.module';
-import { ContactService } from './contact.service';
+import { ContactService } from '../shared/service/contact/contact.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +61,7 @@ import { ContactService } from './contact.service';
     MatTableExporterModule,
     MatProgressSpinnerModule,
     ComponentsModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [ContactService]
 })

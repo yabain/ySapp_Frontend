@@ -37,6 +37,8 @@ import { initializeKeycloak } from './shared/utils/helpers';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { Router } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -82,6 +84,8 @@ export function createTranslateLoader(http: HttpClient): any {
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
+    MatSnackBarModule,
+    MatDialogModule,
     PerfectScrollbarModule,
     ClickOutsideModule,
     LoadingBarRouterModule,
