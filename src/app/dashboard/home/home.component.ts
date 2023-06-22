@@ -290,7 +290,7 @@ export class HomeComponent implements OnInit {
       },
       yaxis: {
         title: {
-          text: '$ (thousands)'
+          text: 'Simulated Statistics'
         }
       },
       fill: {
@@ -343,7 +343,7 @@ export class HomeComponent implements OnInit {
         }
       ],
       title: {
-        text: 'Average High & Low Temperature',
+        text: 'Simulated Statistics',
         align: 'left'
       },
       grid: {
@@ -369,7 +369,7 @@ export class HomeComponent implements OnInit {
       },
       yaxis: {
         title: {
-          text: 'Temperature'
+          text: 'Simulated Statistics'
         },
         labels: {
           style: {
@@ -451,7 +451,7 @@ export class HomeComponent implements OnInit {
         }
       },
       title: {
-        text: 'Social Media',
+        text: 'Simulated Statistics',
         align: 'left',
         style: {
           fontSize: '16px',

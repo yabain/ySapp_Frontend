@@ -12,7 +12,7 @@ import { KeycloakService } from 'keycloak-angular';
 })
 export class ContactsService {
 
-  public currentContact: Contact = new Contact();
+  // public currentContact: Contact = new Contact();
 
   currentContactSubject: Subject<Contact> = new Subject<Contact>();
   public static isContact = true;
@@ -23,8 +23,8 @@ export class ContactsService {
   contactData: any;
 
   constructor(
-    private api: ApiService,
-    private keycloakService: KeycloakService
+    private api?: ApiService,
+    private keycloakService?: KeycloakService
   ) { }
 
   getOneContactToList(contactId: string, contactList: []) {
@@ -32,13 +32,12 @@ export class ContactsService {
 
   getAllContacts(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.api.get('contact')
+      this.api.get('contacts')
         .subscribe(result => {
           console.log("Get all contact: ", result);
           let tab: any = result;
           localStorage.setItem("contact-list", JSON.stringify(tab));
           resolve(result);
-          return 0;
         }, error => {
           reject(error);
         });
@@ -46,6 +45,7 @@ export class ContactsService {
   }
 
   addContact(contact): Promise<any> {
+    contact = this.parseDataForApi(contact);
     const headers = {
       'Content-Type': 'application/json',
     };
@@ -91,42 +91,65 @@ export class ContactsService {
   }
 
   //recuperer les informations d'un utilisateur
-  getContactById(id: String): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      let contact: Contact = this.listContact.find((u) => u.id == id);
-      if (contact != undefined) resolve(contact);
-      else {
-        this.api.get(`contact/${id}`)
-          .subscribe(success => {
-            if (success) {
-              // console.log("Success ",success)
-              if (success.resultCode == 0) {
-                resolve(this.parseDataFromApi(success.result));
-              }
-              else reject(success)
+  // getContactById(id: String): Promise<any> {
+  //   return new Promise<any>((resolve, reject) => {
+  //     let contact: Contact = this.listContact.find((u) => u.id == id);
+  //     if (contact != undefined) resolve(contact);
+  //     else {
+  //       this.api.get(`contact/${id}`)
+  //         .subscribe(success => {
+  //           if (success) {
+  //             if (success.resultCode == 0) {
+  //               resolve(this.parseDataFromApi(success.result));
+  //             }
+  //             else reject(success)
 
-            }
-            else reject(success)
-          }, error => {
-            reject(error);
-          })
-      }
-    })
-  }
+  //           }
+  //           else reject(success)
+  //         }, error => {
+  //           reject(error);
+  //         })
+  //     }
+  //   })
+  // }
 
   parseDataFromApi(contactApiData: Record<string | number, any>): Contact {
-    let contact: Contact = new Contact();
+    let contact: Contact = new Contact(contactApiData);
     contact.id = contactApiData._id;
     contact.firstName = contactApiData.firstName;
     contact.lastName = contactApiData.lastName;
     contact.email = contactApiData.email;
-    contact.phoneNumber = contactApiData.phoneNumber;
-    contact.profilePicture = contactApiData.profilePicture;
-    contact.dateCreation = contactApiData.createdAt;
+    contact.gender = contactApiData.gender;
+    contact.phone = contactApiData.phoneNumber;
+    contact.img = contactApiData.profilePicture;
+    contact.creationDate = contactApiData.creationDate;
     contact.country = contactApiData.country;
     contact.city = contactApiData.location;
-    contact.adress = contactApiData.address;
-    contact.description = contactApiData.bio;
+    contact.address = contactApiData.address;
+    contact.about = contactApiData.about;
+    contact.birthday = contactApiData.birthday;
+    return contact;
+  }
+
+
+  parseDataForApi(contactApiData) {
+    console.log('contactApiData: ', contactApiData)
+    let contact: any ={
+    firstName: contactApiData.firstName,
+    lastName: contactApiData.lastName,
+    email: contactApiData.email,
+    phoneNumber: contactApiData.phone,
+    whatsappContact: contactApiData.phone,
+    // profilePicture: contactApiData.img,
+    // creationDate: contactApiData.creationDate,
+    country: contactApiData.country,
+    city: contactApiData.city,
+    birthday: contactApiData.birthday,
+    address: contactApiData.address,
+    about: contactApiData.about,
+    gender: contactApiData.gender
+  }
+    console.log('contact: ', contact)
     return contact;
   }
 

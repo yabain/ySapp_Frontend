@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Contact } from './contact.model';
+// import { Contact } from './contact.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UnsubscribeOnDestroyAdapter } from '../shared/UnsubscribeOnDestroyAdapter';
 import { ContactsService } from '../shared/service/contacts/contacts.service';
+import { Contact } from '../shared/entities/contact/contact';
 
 
 @Injectable()
@@ -30,6 +31,8 @@ export class ContactService extends UnsubscribeOnDestroyAdapter {
 
   /** CRUD METHODS */
   getAllContacts(): void {
+    // this.contactsService.getAllContacts()
+    // .then((contacts) => {console.log('liste des contact du backend: ', contacts);})
     this.subs.sink = this.httpClient
       .get<Contact[]>(this.API_URL)
       .subscribe(

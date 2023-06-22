@@ -73,6 +73,7 @@ export class ContactComponent
   ngOnInit() {
     this.loadData();
     this.scrollToTop();
+    this.contactService.getAllContacts();
   }
 
   refresh() {

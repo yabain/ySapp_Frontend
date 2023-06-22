@@ -8,10 +8,11 @@ import {
   UntypedFormBuilder,
   FormBuilder
 } from '@angular/forms';
-import { Contact } from '../../contact.model';
+// import { Contact } from '../../contact.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { formatDate } from '@angular/common';
 import { LocationService } from 'src/app/shared/service/location/location.service';
+import { Contact } from 'src/app/shared/entities/contact/contact';
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
@@ -94,7 +95,8 @@ export class FormDialogComponent implements OnInit {
       country: [this.contact.country],
       // region: [this.contact.region],
       city: [this.contact.city],
-      about: [this.contact.about]
+      about: [this.contact.about],
+      creationDate: [this.contact.creationDate]
     });
   }
 

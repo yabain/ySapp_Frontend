@@ -125,7 +125,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/',
+    path: '/extra-pages/faqs',
     title: 'support',
     icon: 'command',
     class: '',
