@@ -19,6 +19,7 @@ export class DeleteDialogComponent {
     this.dialogRef.close();
   }
   confirmDelete(): void {
+    this.notificationsService.showNotification('Pending.....', 'info', 3000)
     this.contactsService.deleteContact(this.data.id);
   }
 }

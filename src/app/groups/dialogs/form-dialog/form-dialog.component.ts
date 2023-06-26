@@ -10,7 +10,7 @@ import {
 } from '@angular/forms';
 // import { Contact } from '../../contact.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { DatePipe, formatDate } from '@angular/common';
+import { formatDate } from '@angular/common';
 import { LocationService } from 'src/app/shared/service/location/location.service';
 import { Contact } from 'src/app/shared/entities/contact/contact';
 import { ContactsService } from 'src/app/shared/service/contact/contacts.service';
@@ -32,7 +32,6 @@ export class FormDialogComponent implements OnInit {
   
   constructor(
     private location: LocationService,
-    private datePipe: DatePipe,
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public contactsService: ContactsService,
@@ -84,9 +83,8 @@ export class FormDialogComponent implements OnInit {
     return this.fb.group({
       id: [this.contact.id],
       img: [this.contact.img],
-      firstName: [this.contact.firstName,
-        [Validators.required, Validators.minLength(4)]],
-      lastName: [this.contact.lastName, [Validators.required, Validators.minLength(4)]],
+      firstName: [this.contact.firstName, [Validators.required]],
+      lastName: [this.contact.lastName, [Validators.required]],
       email: [
         this.contact.email,
         [Validators.required, Validators.email, Validators.minLength(5)]
@@ -96,14 +94,14 @@ export class FormDialogComponent implements OnInit {
         formatDate(this.contact.birthday, 'yyyy-MM-dd', 'en'),
         [Validators.required]
       ],
-      address: [this.contact.address, Validators.minLength(4)],
+      address: [this.contact.address],
       phone: [this.contact.phone,
         [Validators.required, Validators.minLength(5),
           Validators.maxLength(9), Validators.pattern("[0-9]{9}")]],
       country: [this.contact.country],
       // region: [this.contact.region],
       city: [this.contact.city],
-      about: [this.contact.about, Validators.minLength(4)],
+      about: [this.contact.about],
       creationDate: [this.contact.creationDate]
     });
   }
@@ -134,17 +132,6 @@ export class FormDialogComponent implements OnInit {
       this.contact.country = 'Gabon'
     } else if (this.contact.country == '4') {
       this.contact.country = 'EqGuinee'
-    }
-    
-    let d = new Date();
-
-    let date = this.datePipe.transform(d, 'MM-dd-yyyy');
-    let date2 = this.datePipe.transform(this.contact.birthday, 'MM-dd-yyyy');
-    console.log('date: ', date);
-    console.log('birthday: ', date2);
-
-    if(date == date2) {
-      this.contact.birthday === undefined;
     }
     this.notificationsService.showNotification('Pending.....', 'info', 3000)
     this.contactsService.addContact(this.contact)

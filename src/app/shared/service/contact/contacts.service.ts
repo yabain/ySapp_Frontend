@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
 import { ApiService } from '../api/api.service';
 import { Contact } from '../../entities/contact/contact';
 import { NotificationsService } from '../notifications/notifications.service';
@@ -11,14 +9,10 @@ import { NotificationsService } from '../notifications/notifications.service';
   providedIn: 'root'
 })
 export class ContactsService {
-
   currentContactSubject: Subject<Contact> = new Subject<Contact>();
   public static isContact = true;
-
   listContact: Contact[] = [];
-
   params: any;
-  contactData: any;
 
   constructor(
     private api?: ApiService,
@@ -29,6 +23,7 @@ export class ContactsService {
   }
 
   getAllContacts(): Promise<any> {
+    this.notificationsService.showNotification('Pending.....', 'info', 3000)
     return new Promise((resolve, reject) => {
       this.api.get('contacts')
         .subscribe(result => {
@@ -46,25 +41,36 @@ export class ContactsService {
   }
 
   addContact(contact): Promise<any> {
+    let contactId = contact.id;
     contact = this.parseDataForApi(contact);
-    const headers = {
-      'Content-Type': 'application/json',
-    };
+    this.notificationsService.showNotification('Pending.....', 'info', 3000)
     return new Promise((resolve, reject) => {
       this.api.post(`contacts`, contact)
         .subscribe((response: any) => {
           this.notificationsService.dialogShowCustomPosition('Contact added', 'success', 3000);
           resolve(response);
         }, (error: any) => {
+          let update = RegExp('\\b'+ 'duplicate key error' +'\\b').test(JSON.stringify(error));
+          if (update){
+            this.api.put('contacts/' + contactId, contact)
+            .subscribe((data: any) => {
+              this.notificationsService.dialogShowCustomPosition('Contact updated', 'success', 3000);
+              resolve(data);
+            }, error => {
+              this.notificationsService.showNotification('Can not update contact, please try again.', 'danger', 7000);
+              reject(error)});
+          } else {
           this.notificationsService.showNotification('Can not add contact, please try again.', 'danger', 7000);
-          reject(error);
+          console.log('le message', JSON.stringify(error));
+          reject(error);}
         });
     })
   }
 
   deleteContact(contactId): Promise<any> {
+    this.notificationsService.showNotification('Pending.....', 'info', 3000)
     return new Promise((resolve, reject) => {
-      this.api.delete('contacts/' + contactId)
+      this.api.delete(`contacts/${contactId}`)
         .subscribe(response => {
           this.notificationsService.dialogShowCustomPosition('Contact delete', 'success', 3000);
           // setTimeout(() => {
@@ -73,7 +79,7 @@ export class ContactsService {
         }, error => {
           this.notificationsService.showNotification('Can not delete contact.', 'danger', 3000);
           setTimeout(() => {
-            this.notificationsService.showNotification('This fonction is not ready yet.please try again later.', 'warning', 5000)
+            this.notificationsService.showNotification('This fonction is not ready yet. Please try again later.', 'warning', 5000)
           }, 3000);
           reject(error);
         });
@@ -82,6 +88,7 @@ export class ContactsService {
   }
 
   updateContact(contact): Promise<any> {
+    this.notificationsService.showNotification('Pending.....', 'info', 3000)
     return new Promise((resolve, reject) => {
       this.api.put(`contact/${contact.id}`, contact)
         .subscribe((response: any) => {
@@ -137,7 +144,7 @@ export class ContactsService {
 
 
   parseDataForApi(contactApiData) {
-    console.log('contactApiData: ', contactApiData)
+    // console.log('contactApiData: ', contactApiData)
     let contact: any = {
       firstName: contactApiData.firstName,
       lastName: contactApiData.lastName,

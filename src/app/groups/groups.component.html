@@ -119,7 +119,7 @@
               </div>
               <div *ngIf="loadingContacts" class="tbl-spinner">
                 <div class="preloader">
-                  <div class="spinner-layer pl-green">
+                  <div class="spinner-layer pl-yellow">
                     <div class="circle-clipper left">
                       <div class="circle"></div>
                     </div>
@@ -230,7 +230,7 @@
               </mat-table>
               <!-- Loading spinner -->
               <div *ngIf="exampleDatabase.isTblLoading" class="tbl-spinner">
-                 <mat-progress-spinner color="success" [diameter]="40" mode="indeterminate">
+                 <mat-progress-spinner color="primary" [diameter]="40" mode="indeterminate">
                 </mat-progress-spinner>
                 </div>
               

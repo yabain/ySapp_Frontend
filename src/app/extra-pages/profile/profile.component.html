@@ -269,8 +269,20 @@
                 {{'Qr-Code' | translate}}
               </ng-template>
               <div class="body text-center">
-                <button (click)="getQrCode()" class="btn btn-success"><mat-icon class="example-tab-icon msr-2">border_bottom</mat-icon>Generate QR-code</button>
-                <qrcode [qrdata]="qrCode" [width]="250" [errorCorrectionLevel]="'M'" [colorDark]="'#275C3C'" [margin]="'2'">
+                <button (click)="getQrCode()" class="btn btn-success"><mat-icon class="example-tab-icon msr-2">border_bottom</mat-icon> Refresh QR-code <mat-icon class="example-tab-icon msr-2">border_bottom</mat-icon></button>
+              <div *ngIf="loadingContacts" class="tbl-spinner">
+                <div class="preloader">
+                  <div class="spinner-layer pl-green">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <qrcode *ngIf="!loadingContacts" [qrdata]="[qrCode]" [width]="250" [errorCorrectionLevel]="'M'" [colorDark]="'#275C3C'" [margin]="'2'">
                 </qrcode>
               </div>
             </mat-tab>

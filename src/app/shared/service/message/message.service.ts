@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
 import { ErrorsService } from '../errors/errors.service';
+import { NotificationsService } from '../notifications/notifications.service';
 
 
 @Injectable({
@@ -10,65 +11,53 @@ export class MessageService {
 
   constructor(
     private apiService: ApiService,
-    private errorsService: ErrorsService
+    private errorsService: ErrorsService,
+    private notificationsService: NotificationsService
   ) {
   }
 
-  sendMessageToSigleUser(id, message) {
+  sendMessageToUser(id, message, type?, isSentToNow?, dateToSend?): Promise<any> {
+    console.log("sendMessageToUse", id)
     return new Promise((resolve, reject) => {
       let params = {
-        'id': id,
-        'message': message
+        'contactsID': id,
+        'type': type === undefined? 'text' : type,
+        'isSentToNow': isSentToNow === undefined? true : isSentToNow,
+        'dateToSend': isSentToNow === true? undefined : dateToSend,
+        'body': {
+          'text': message
+        }
       };
       this.apiService.post(`message/post`, JSON.stringify(params))
         .subscribe(success => {
+          this.notificationsService.dialogShowCustomPosition('Message sent', 'success', 3000);
           resolve(success);
         }, error => {
+          this.notificationsService.showNotification('Can not send message, please try again later.', 'danger', 7000);
           reject(error);
         });
     })
   }
 
-  sendMessageToMultipleUser(groupContact: [], message) {
+  sendMessageToGroup(groupContact, message, type?, isSentToNow?, dateToSend?): Promise<any> {
+    console.log("sendMessageToGroup", groupContact)
+    this.notificationsService.showNotification('Pending.....', 'info', 3000)
     return new Promise((resolve, reject) => {
       let params = {
-        'contactList': groupContact,
-        'message': message
+        'groupsID': groupContact,
+        'type': type === undefined? 'text' : type,
+        'isSentToNow': isSentToNow === undefined? true : isSentToNow,
+        'dateToSend': isSentToNow === true? undefined : dateToSend,
+        'body': {
+          'text': message
+        }
       };
       this.apiService.post(`message/post`, JSON.stringify(params))
         .subscribe(success => {
+          this.notificationsService.dialogShowCustomPosition('Message sent', 'success', 3000);
           resolve(success);
         }, error => {
-          reject(error);
-        });
-    })
-  }
-
-  sendMessageToOneGroup(groupId, message) {
-    return new Promise((resolve, reject) => {
-      let params = {
-        'contactList': groupId,
-        'message': message
-      };
-      this.apiService.post(`message/post`, JSON.stringify(params))
-        .subscribe(success => {
-          resolve(success);
-        }, error => {
-          reject(error);
-        });
-    })
-  }
-
-  sendMessageToMultipleGroup(groupIdList: [], message) {
-    return new Promise((resolve, reject) => {
-      let params = {
-        'groupIdList': groupIdList,
-        'message': message
-      };
-      this.apiService.post(`message/post`, JSON.stringify(params))
-        .subscribe(success => {
-          resolve(success);
-        }, error => {
+          this.notificationsService.showNotification('Can not send message, please try again later.', 'danger', 7000);
           reject(error);
         });
     })

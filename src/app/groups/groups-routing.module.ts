@@ -1,32 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ChatComponent } from './chat/chat.component';
-import { ContactGridComponent } from './contact-grid/contact-grid.component';
-import { SupportComponent } from './support/support.component';
-import { DragDropComponent } from './drag-drop/drag-drop.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { GroupsGridComponent } from './groups-grid/groups-grid.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'groups-grid', pathMatch:'full'},
   {
-    path: 'chat',
-    component: ChatComponent
-  },
-  {
     path: 'groups-grid',
-    component: ContactGridComponent
+    component: GroupsGridComponent
   },
   {
-    path: 'contacts',
-    component: ContactGridComponent
-  },
-  {
-    path: 'support',
-    component: SupportComponent
-  },
-  {
-    path: 'dragdrop',
-    component: DragDropComponent
+    path: 'groups',
+    component: GroupsGridComponent
   },
   { path: '**', redirectTo: 'groups-grid', pathMatch:'full'}
 ];

@@ -13,8 +13,6 @@ import { WhatsappService } from 'src/app/shared/service/whatsapp/whatsapp.servic
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Contact } from 'src/app/shared/entities/contact/contact';
 import { ContactService } from 'src/app/shared/service/contact/contact.service';
-import { MessageService } from 'src/app/shared/service/message/message.service';
-import { NotificationsService } from 'src/app/shared/service/notifications/notifications.service';
 
 @Component({
   selector: 'app-form-message',
@@ -32,8 +30,6 @@ export class FormMessageComponent implements OnInit {
   respuest:any={};
   
   constructor(
-    private massageService: MessageService,
-    private notificationsService: NotificationsService,
     private location: LocationService,
     public dialogRef: MatDialogRef<FormMessageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -78,9 +74,8 @@ export class FormMessageComponent implements OnInit {
         this.contact.email,
         [Validators.required, Validators.email, Validators.minLength(5)]
       ],
-      phone: [this.contact.phone, [Validators.required]],
-      message: [this.contact.id, [Validators.required]],
-      id: [this.contact.id, [Validators.required]],
+      phone: ['+237'+this.contact.phone, [Validators.required]],
+      message: ['', [Validators.required]],
     });
   }
 
@@ -101,41 +96,42 @@ export class FormMessageComponent implements OnInit {
 
   public sendMessage(): void {
     let messageForm = this.contactForm.getRawValue();
-    this.notificationsService.showNotification('Pending.....', 'info', 3000)
-    console.log('envoie de message', messageForm);
-    this.massageService.sendMessageToUser([messageForm.id], messageForm.message)
+    this.whatsappService.envoieMessage(messageForm)
+    .subscribe(res=>{
+      // console.log(res);
 
-    // this.whatsappService.envoieMessage(messageForm)
-    // .subscribe(res=>{
-    //   this.respuest = res
-    //   if (this.respuest.responseExSave.error === 'WAIT_LOGIN') {
-    //     this.showNotification(
-    //       'snackbar-danger',
-    //       'Vous devez scanner le code QR.',
-    //       'bottom',
-    //       'center'
-    //     );
-    //   }else if(
-    //     this.respuest.responseExSave.error === 'Protocol error (Runtime.callFunctionOn): Session closed. Most likely the page has been closed.'){
+      this.respuest = res
+      // console.log('RESPONSE: ', this.respuest.responseExSave);
+      
+      if (this.respuest.responseExSave.error === 'WAIT_LOGIN') {
+        this.showNotification(
+          'snackbar-danger',
+          'Vous devez scanner le code QR.',
+          'bottom',
+          'center'
+        );
+      }else if(
+        this.respuest.responseExSave.error === 'Protocol error (Runtime.callFunctionOn): Session closed. Most likely the page has been closed.'){
        
-    //     this.showNotification(
-    //       'snackbar-danger',
-    //       'La session est déconnectée',
-    //       'bottom',
-    //       'center'
-    //     );
+        this.showNotification(
+          'snackbar-danger',
+          'La session est déconnectée',
+          'bottom',
+          'center'
+        );
 
-    //   }
-    //   else{
-    //     this.showNotification(
-    //       'snackbar-success',
-    //       'Message sended',
-    //       'bottom',
-    //       'center'
-    //     );
-    //   }
-    // })
-    //  this.messageForm.reset();
+      }
+      else{
+        this.showNotification(
+          'snackbar-success',
+          'Message sended',
+          'bottom',
+          'center'
+        );
+      //  this.messageForm.reset();
+      }
+
+    })
   }
   
   showNotification(colorName, text, placementFrom, placementAlign) {

@@ -36,7 +36,7 @@ export class ProfileComponent
   isDarkSidebar = false;
   isDarTheme = false;
   isRtl = false;
-  qrCode: string = 'jkhskjdhfkjsdfkjshdkjfs';
+  qrCode: string;
   public config: any = {};
 
   breadscrums = [
@@ -47,6 +47,7 @@ export class ProfileComponent
     }
   ];
   user: any;
+  loadingContacts: boolean = true;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -73,7 +74,7 @@ export class ProfileComponent
     );
     this.setRightSidebarWindowHeight();
     // for (let i = 1; i > 0; i++) {
-      // this.getQrCode();
+      this.getQrCode();
     // }
   }
 
@@ -86,11 +87,15 @@ export class ProfileComponent
   }
 
   getQrCode() {
+    this.loadingContacts = true;
     this.messageService.getQrCode()
       .then(response => {
+        this.loadingContacts = false;
         this.qrCode = response;
+      })
+      .catch(error => {
+        this.loadingContacts = false;
       });
-    console.log(this.qrCode);
   }
 
 

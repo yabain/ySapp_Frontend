@@ -14,7 +14,7 @@ import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout
 import { fakeBackendProvider } from './core/interceptor/fake-backend';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import {
   PerfectScrollbarModule,
   PERFECT_SCROLLBAR_CONFIG,
@@ -74,7 +74,7 @@ export function createTranslateLoader(http: HttpClient): any {
       useFactory:initializeKeycloak,
       multi:true,
       deps:[KeycloakService,Router]
-    },
+    },DatePipe
 
   ],
   imports: [

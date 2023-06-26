@@ -62,9 +62,16 @@ export class HomeComponent implements OnInit {
     }
   ];
 
+  allContacts: number = 0;
+  allGroups: number = 0;
+  allMessgaes: number = 0;
+  allAutos: number = 0;
+
   constructor() {}
 
   ngOnInit() {
+    this.allContacts = localStorage.getItem('contact-list') == undefined? 0 : JSON.parse(localStorage.getItem('contact-list')).length;
+    this.allGroups = localStorage.getItem('groups-list') == undefined? 0 : JSON.parse(localStorage.getItem('groups-list')).length;
     this.scrollToTop();
     this.cardChart1();
     this.cardChart2();

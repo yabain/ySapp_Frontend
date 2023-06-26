@@ -76,10 +76,6 @@ export class ContactComponent
   contextMenuPosition = { x: '0px', y: '0px' };
 
   ngOnInit() {
-    let d = new Date();
-    console.log('date: ', d);
-    
-    
     this.loadingContacts = true;
     this.scrollToTop();
     if (!localStorage.getItem("contact-list")) {
@@ -162,6 +158,7 @@ export class ContactComponent
       if (result === 1) {
         setTimeout(() => {
           this.refresh();
+          this.refreshTable();
           const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
             (x) => x.id === this.id
           );
@@ -196,24 +193,21 @@ export class ContactComponent
     });
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
-        setTimeout(() => {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
           (x) => x.id === this.id
         );
-        this.refresh();
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] =
           this.contactService.getDialogData();
         // And lastly refresh table
         this.refreshTable();
-        // this.showNotification(
-        //   'snackbar-success',
-        //   'Edit Record Successfully...!!!',
-        //   'bottom',
-        //   'center'
-        // );
-        }, 3000);
+        this.showNotification(
+          'snackbar-success',
+          'Edit Record Successfully...!!!',
+          'bottom',
+          'center'
+        );
       }
     });
   }

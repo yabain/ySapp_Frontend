@@ -4,10 +4,6 @@ import { DragulaModule } from 'ng2-dragula';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GroupsRoutingModule } from './groups-routing.module';
-import { ChatComponent } from './chat/chat.component';
-import { DragDropComponent } from './drag-drop/drag-drop.component';
-import { ContactGridComponent } from './contact-grid/contact-grid.component';
-import { SupportComponent } from './support/support.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -32,13 +28,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatRadioModule } from '@angular/material/radio';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ComponentsModule } from '../shared/components/components.module';
+import { GroupsGridComponent } from './groups-grid/groups-grid.component';
 
 @NgModule({
   declarations: [
-    ChatComponent,
-    DragDropComponent,
-    ContactGridComponent,
-    SupportComponent
+    GroupsGridComponent,
+    
   ],
   imports: [
     CommonModule,
