@@ -48,6 +48,7 @@ export class ProfileComponent
     }
   ];
   user: any;
+  loadingContacts: boolean = true;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -92,11 +93,7 @@ export class ProfileComponent
   }
 
   getQrCode() {
-    // this.messageService.getQrCode()
-    //   .then(response => {
-    //     this.qrCode = response;
-    //   });
-    console.log(this.qrCode);
+   
   }
 
 

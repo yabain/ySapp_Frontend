@@ -1,18 +1,21 @@
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject, OnInit } from '@angular/core';
-import { ContactService } from '../../contact.service';
+// import { ContactService } from '../../contact.service';
 import {
   UntypedFormControl,
   Validators,
   UntypedFormGroup,
-  UntypedFormBuilder,
-  FormBuilder
+  UntypedFormBuilder
 } from '@angular/forms';
 // import { Contact } from '../../contact.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { formatDate } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { LocationService } from 'src/app/shared/service/location/location.service';
 import { Contact } from 'src/app/shared/entities/contact/contact';
+import { ContactsService } from 'src/app/shared/service/contact/contacts.service';
+import { NotificationsService } from 'src/app/shared/service/notifications/notifications.service';
+import { GroupsService } from 'src/app/shared/service/groups/groups.service';
+
 @Component({
   selector: 'app-form-dialog',
   templateUrl: './form-dialog.component.html',
@@ -29,11 +32,13 @@ export class FormDialogComponent implements OnInit {
   
   constructor(
     private location: LocationService,
+    private datePipe: DatePipe,
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public contactService: ContactService,
+    public contactsService: ContactsService,
     private fb: UntypedFormBuilder,
-    private formLog: FormBuilder,
+    private notificationsService: NotificationsService,
+    private groupsService: GroupsService,
   ) {
     // Set the defaults
     this.action = data.action;
@@ -49,7 +54,13 @@ export class FormDialogComponent implements OnInit {
   }
   
   ngOnInit() {
+    if (!localStorage.getItem("groups-list")){
+      this.groupsService.getAllGroups();
+    }
+
     this.region = this.location.region();
+    let groupVar: any = this.groupsService.findGroupById('649b0a1eefc48043440677d3')
+    console.log('nom du groupe: ', groupVar.name);
   }
 
   formControl = new UntypedFormControl('', [
@@ -79,23 +90,25 @@ export class FormDialogComponent implements OnInit {
     return this.fb.group({
       id: [this.contact.id],
       img: [this.contact.img],
-      firstName: [this.contact.firstName, [Validators.required]],
-      lastName: [this.contact.lastName, [Validators.required]],
+      firstName: [this.contact.firstName,
+        [Validators.required, Validators.minLength(4)]],
+      lastName: [this.contact.lastName, [Validators.required, Validators.minLength(4)]],
       email: [
         this.contact.email,
         [Validators.required, Validators.email, Validators.minLength(5)]
       ],
       gender: [this.contact.gender],
       birthday: [
-        formatDate(this.contact.birthday, 'yyyy-MM-dd', 'en'),
-        [Validators.required]
+        this.datePipe.transform(this.contact.birthday, 'yyyy-MM-dd', 'fr-FR')
       ],
-      address: [this.contact.address],
-      phone: [this.contact.phone, [Validators.required]],
+      address: [this.contact.address, Validators.minLength(4)],
+      phone: [this.contact.phone,
+        [Validators.required, Validators.minLength(5),
+          Validators.maxLength(9), Validators.pattern("[0-9]{9}")]],
       country: [this.contact.country],
       // region: [this.contact.region],
       city: [this.contact.city],
-      about: [this.contact.about],
+      about: [this.contact.about, Validators.minLength(4)],
       creationDate: [this.contact.creationDate]
     });
   }
@@ -127,9 +140,16 @@ export class FormDialogComponent implements OnInit {
     } else if (this.contact.country == '4') {
       this.contact.country = 'EqGuinee'
     }
-    this.contactService.addContact(
-      this.contact
-    );
-    console.log('valeur du formulaire: ', this.contact)
+    
+    this.notificationsService.showNotification('Pending.....', 'info', 3000)
+    this.contactsService.addContact(this.contact)
+    // .then(() => {
+    // });
+
+    console.log('valeur du formulaire: ', this.contact);
+  }
+
+  removeContactToGroup(groupId: string){
+    this.groupsService.removeContactToGroup(this.contact.id, groupId)
   }
 }

@@ -8,9 +8,10 @@
     <div class="row">
       <div class="col-lg-3 col-sm-6">
         <div class="counter-box text-center">
-          <div class="text font-17 m-b-5">{{'total-message' | translate}}</div>
+          <div class="text font-17 m-b-5"><i class="material-icons"
+              style="font-size: 15px;">message</i> {{'total-message' | translate}}</div>
           <h3 class="m-b-10">00
-            <i class="material-icons col-green">trending_up</i>
+
           </h3>
           <div class="apex-chart-center">
             <apx-chart [series]="smallBarChart.series" [chart]="smallBarChart.chart"
@@ -21,9 +22,10 @@
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="counter-box text-center">
-          <div class="text font-17 m-b-5">{{'total-auto-sended' | translate}}</div>
+          <div class="text font-17 m-b-5"><i class="material-icons"
+              style="font-size: 15px;">event</i> {{'total-auto-sended' | translate}}</div>
           <h3 class="m-b-10">00
-            <i class="material-icons col-red">trending_up</i>
+
           </h3>
           <div class="apex-chart-center">
             <apx-chart [series]="smallAreaChart.series" [chart]="smallAreaChart.chart" [stroke]="smallAreaChart.stroke"
@@ -33,9 +35,9 @@
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="counter-box text-center">
-          <div class="text font-17 m-b-5">{{'total-groups' | translate}}</div>
+          <div class="text font-17 m-b-5"><i class="material-icons"
+              style="font-size: 15px;">assignment_ind</i> {{'total-groups' | translate}}</div>
           <h3 class="m-b-10">00
-            <i class="material-icons col-green">trending_up</i>
           </h3>
           <div class="apex-chart-center">
             <apx-chart [series]="smallColumnChart.series" [chart]="smallColumnChart.chart"
@@ -46,9 +48,9 @@
       </div>
       <div class="col-lg-3 col-sm-6">
         <div class="counter-box text-center">
-          <div class="text font-17 m-b-5">{{'total-contacts' | translate}}</div>
-          <h3 class="m-b-10">00
-            <i class="material-icons col-red">trending_up</i>
+          <div class="text font-17 m-b-5">
+           <i class="material-icons" style="font-size: 15px;">face</i>  {{'total-contacts' | translate}} </div>
+          <h3 class="m-b-10">{{allContacts}}
           </h3>
           <div class="apex-chart-center">
             <apx-chart [series]="smallLineChart.series" [chart]="smallLineChart.chart" [stroke]="smallLineChart.stroke"

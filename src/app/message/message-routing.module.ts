@@ -18,6 +18,10 @@ const routes: Routes = [
     component: ComposeGroupComponent
   },
   {
+    path: 'compose-to-group/:id',
+    component: ComposeGroupComponent
+  },
+  {
     path: 'compose',
     component: ComposeComponent
   },

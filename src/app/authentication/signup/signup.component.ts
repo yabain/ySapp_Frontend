@@ -40,6 +40,9 @@ export class SignupComponent implements OnInit {
       .then(response => {
         if (response === true) {
           this.router.navigate(['/dashboard']);
+          setTimeout(() => { location.reload() }, 700);
+        } else {
+          localStorage.clear();
         }
       }
       )

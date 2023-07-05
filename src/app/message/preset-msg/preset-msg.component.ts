@@ -10,9 +10,9 @@ export class PresetMsgComponent implements OnInit {
   public Editor = ClassicEditor;
   breadscrums = [
     {
-      title: 'Preset',
+      title: 'Presets',
       items: ['Message'],
-      active: 'Preset'
+      active: 'Presets'
     }
   ];
   constructor() {}

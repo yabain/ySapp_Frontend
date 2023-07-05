@@ -14,7 +14,7 @@ import { MainLayoutComponent } from './layout/app-layout/main-layout/main-layout
 import { fakeBackendProvider } from './core/interceptor/fake-backend';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import {
   PerfectScrollbarModule,
   PERFECT_SCROLLBAR_CONFIG,
@@ -37,6 +37,8 @@ import { initializeKeycloak } from './shared/utils/helpers';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { Router } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -72,7 +74,7 @@ export function createTranslateLoader(http: HttpClient): any {
       useFactory:initializeKeycloak,
       multi:true,
       deps:[KeycloakService,Router]
-    },
+    },DatePipe
 
   ],
   imports: [
@@ -82,6 +84,8 @@ export function createTranslateLoader(http: HttpClient): any {
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
+    MatSnackBarModule,
+    MatDialogModule,
     PerfectScrollbarModule,
     ClickOutsideModule,
     LoadingBarRouterModule,

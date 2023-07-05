@@ -51,6 +51,11 @@ const routes: Routes = [
           import('./apps/apps.module').then((m) => m.AppsModule)
       },
       {
+        path: 'groups',
+        loadChildren: () =>
+          import('./groups/groups.module').then((m) => m.GroupsModule)
+      },
+      {
         path: 'widget',
         loadChildren: () =>
           import('./widget/widget.module').then((m) => m.WidgetModule)
@@ -97,6 +102,20 @@ const routes: Routes = [
           )
       },
       {
+        path: 'support',
+        loadChildren: () =>
+          import('./support/support.module').then(
+            (m) => m.SupportModule
+          )
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./profil/profil.module').then(
+            (m) => m.ProfilModule
+          )
+      },
+      {
         path: 'maps',
         loadChildren: () =>
           import('./maps/maps.module').then((m) => m.MapsModule)
@@ -118,6 +137,7 @@ const routes: Routes = [
         (m) => m.AuthenticationModule
       )
   },
+  { path: '**', redirectTo: 'authentication', pathMatch: 'full' },
   { path: '**', component: Page404Component }
 ];
 

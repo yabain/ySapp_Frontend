@@ -5,7 +5,7 @@
         <img [src]='contact.img' alt="avatar" style="max-width: 15vw; max-height: 15vh;">
         <div class="modal-about">
           <div class="font-weight-bold p-t-5 font-17">
-            {{'message-to' | translate}} {{dialogTitle}}</div>
+            {{'message-to' | translate}} <b style="margin-left: 10px;">{{dialogTitle}}</b></div>
         </div>
       </div>
     </div>
@@ -42,7 +42,7 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>{{'message' | translate }}</mat-label>
-            <textarea matInput formControlName="message"></textarea>
+            <textarea matInput formControlName="message" required></textarea>
           </mat-form-field>
         </div>
       </div>

@@ -23,12 +23,16 @@ export class ApiService {
         headers: this.headers,
     };
 
+    header = {
+        'Content-Type': 'application/json',
+      };
+
     public url = environment.url;
     public urlProd = environment.urlProd;
 
     constructor(
-        private http: HttpClient,
-        private fb: FormBuilder,
+        private http?: HttpClient,
+        private fb?: FormBuilder,
         // private toastr: ToastrService,
         // private toastr: ToastrService
     ) {
@@ -44,10 +48,6 @@ export class ApiService {
     }
 
     get(endpoint: string, body?: Record<string, any>): Observable<any> {
-        const headers = {
-          'Content-Type': 'application/json',
-        };
-
         if (body) {
             let req: String = '';
             // tslint:disable-next-line:forin
@@ -58,30 +58,29 @@ export class ApiService {
         }
         console.log(this.url + '/' + endpoint);
         return this.http
-            .get<[]>(this.url + '/' + endpoint,  { 'headers': headers })
+            .get<[]>(this.url + '/' + endpoint,  { 'headers': this.header })
             // .pipe(tap(), catchError(this.handleError));
     }
 
     // HTTP post
     post(endpoint: string, body: any): Observable<any> {
-        const headers = {
-          'Content-Type': 'application/json',
-        };
 
-        console.log("la requette: ", this.url + '/' + endpoint);
-        return this.http.post(this.url + '/' + endpoint, body, { 'headers': headers })
+        console.log("la requette Post: ", this.url + '/' + endpoint);
+        return this.http.post(this.url + '/' + endpoint, body, { 'headers': this.header })
         // .pipe(tap(), catchError(this.handleError));
     }
 
     // HTTP put
     put(endpoint: string, body: any): Observable<any> {
-        return this.http.put(this.url + '/' + endpoint + '/', body)
+        console.log("la requette Put: ", this.url + '/' + endpoint);
+        return this.http.put(this.url + '/' + endpoint, body, { 'headers': this.header })
         .pipe(tap(), catchError(this.handleError));
     }
 
     // HTTP delete
     delete(endpoint: string, body?: any): Observable<any> {
-        return this.http.delete(this.url + '/' + endpoint, body);
+        console.log("la requette Delete: ", this.url + '/' + endpoint);
+        return this.http.delete(this.url + '/' + endpoint,  { 'headers': this.header });
     }
 
     // HTTP pact

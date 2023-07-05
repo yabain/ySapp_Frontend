@@ -108,8 +108,8 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/apps/contact-grid',
-    title: 'organisations',
+    path: '/groups/groups-list',
+    title: 'groups',
     icon: 'command',
     class: '',
     groupTitle: false,
@@ -117,7 +117,7 @@ export const ROUTES: RouteInfo[] = [
     ]
   },
   {
-    path: '/extra-pages/profile',
+    path: '/profile',
     title: 'profile',
     icon: 'user',
     class: '',
@@ -125,7 +125,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/extra-pages/faqs',
+    path: '/support',
     title: 'support',
     icon: 'command',
     class: '',
@@ -639,7 +639,7 @@ export const ROUTES: RouteInfo[] = [
   //   groupTitle: false,
   //   submenu: [
   //     {
-  //       path: '/extra-pages/profile',
+  //       path: '/profile',
   //       title: 'Profile',
   //       icon: '',
   //       class: 'ml-menu',
