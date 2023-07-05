@@ -6,6 +6,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MaterialModule } from './material.module';
 import { FeatherIconsModule } from './components/feather-icons/feather-icons.module';
+import { SocketIoModule } from 'ngx-socket-io';
+import { environment } from 'src/environments/environment';
+// import { environement } from "./"
 @NgModule({
   declarations: [],
   imports: [
@@ -13,7 +16,10 @@ import { FeatherIconsModule } from './components/feather-icons/feather-icons.mod
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgbModule
+    NgbModule,
+    SocketIoModule.forRoot({
+      url: environment.apiUrl
+    })
   ],
   exports: [
     CommonModule,
