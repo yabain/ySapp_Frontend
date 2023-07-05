@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 import { FeatherIconsModule } from './components/feather-icons/feather-icons.module';
 import { SocketIoModule } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
+import { MessageWSService } from './service/message/message-ws.service';
 // import { environement } from "./"
 @NgModule({
   declarations: [],
@@ -17,9 +18,7 @@ import { environment } from 'src/environments/environment';
     ReactiveFormsModule,
     RouterModule,
     NgbModule,
-    SocketIoModule.forRoot({
-      url: environment.apiUrl
-    })
+    
   ],
   exports: [
     CommonModule,
@@ -28,7 +27,10 @@ import { environment } from 'src/environments/environment';
     RouterModule,
     NgbModule,
     MaterialModule,
-    FeatherIconsModule
-  ]
+    FeatherIconsModule,
+    // SocketIoModule
+    
+  ],
+  providers:[MessageWSService]
 })
 export class SharedModule {}

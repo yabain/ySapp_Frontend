@@ -13,13 +13,26 @@ export class NotificationsService {
   ) {
   }
 
+  showNotificationWitouhTimer(text?, colorName?, placementFrom?, placementAlign?) {
+    colorName = 'snackbar-' + colorName || 'black'; // back -or- snackbar-success -or- snackbar-danger -or- snackbar-warning -or- snackbar-info
+    placementFrom = placementFrom || 'bottom'; // top or bottom 
+    placementAlign  = placementAlign || 'right'; // right -or- left -or- center
+
+    return this.snackBar.open(text, '', {
+      verticalPosition: placementFrom,
+      horizontalPosition: placementAlign,
+      panelClass: colorName
+    });
+  }
+
+
   showNotification(text?, colorName?, timer?: number, placementFrom?, placementAlign?) {
     timer = timer || 5000;
     colorName = 'snackbar-' + colorName || 'black'; // back -or- snackbar-success -or- snackbar-danger -or- snackbar-warning -or- snackbar-info
     placementFrom = placementFrom || 'bottom'; // top or bottom 
     placementAlign  = placementAlign || 'right'; // right -or- left -or- center
 
-    this.snackBar.open(text, '', {
+    return this.snackBar.open(text, '', {
       duration: timer,
       verticalPosition: placementFrom,
       horizontalPosition: placementAlign,

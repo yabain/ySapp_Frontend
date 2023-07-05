@@ -15,6 +15,7 @@ import { Contact } from 'src/app/shared/entities/contact/contact';
 import { ContactService } from 'src/app/shared/service/contact/contact.service';
 import { MessageService } from 'src/app/shared/service/message/message.service';
 import { NotificationsService } from 'src/app/shared/service/notifications/notifications.service';
+import { MessageWSService } from 'src/app/shared/service/message/message-ws.service';
 
 @Component({
   selector: 'app-form-message',
@@ -32,7 +33,8 @@ export class FormMessageComponent implements OnInit {
   respuest:any={};
   
   constructor(
-    private massageService: MessageService,
+    // private massageService: MessageService,
+    private massageService: MessageWSService,
     private notificationsService: NotificationsService,
     private location: LocationService,
     public dialogRef: MatDialogRef<FormMessageComponent>,
@@ -101,7 +103,7 @@ export class FormMessageComponent implements OnInit {
 
   public sendMessage(): void {
     let messageForm = this.contactForm.getRawValue();
-    this.notificationsService.showNotification('Pending.....', 'info', 3000)
+    
     console.log('envoie de message', messageForm);
     this.massageService.sendMessageToUser([messageForm.id], messageForm.message)
 

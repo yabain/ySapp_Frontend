@@ -21,6 +21,7 @@ export class AuthService {
 
   userData!: User;
   isAuthenticated = false;
+  isAuthenticatedSubject:BehaviorSubject<any> = new BehaviorSubject(false);
   authStatus!: boolean;
   params: any;
   registResult = false;
@@ -40,6 +41,7 @@ export class AuthService {
         this.isUser = roles.includes('USER');
         this.isAdmin = roles.includes('ADMIN');
         this.currentUser.next(await this.keycloak.loadUserProfile())
+        this.isAuthenticatedSubject.next(true)
       }
     })
     .catch ((error) => {

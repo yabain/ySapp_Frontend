@@ -39,6 +39,7 @@ import { Router } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { SocketIoConfig, SocketIoModule } from 'ngx-socket-io';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -48,6 +49,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 export function createTranslateLoader(http: HttpClient): any {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
+
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {transports: ['websocket']} };
+
+
 
 @NgModule({
   declarations: [
@@ -105,6 +111,7 @@ export function createTranslateLoader(http: HttpClient): any {
       }
     ),
     CoreModule,
+    SocketIoModule.forRoot(config),
     SharedModule,
     
   ],

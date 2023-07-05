@@ -18,6 +18,7 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
 import { AuthService } from 'src/app/shared/service/auth/auth.service';
 import { MessageService } from 'src/app/shared/service/message/message.service';
+import { MessageWSService } from 'src/app/shared/service/message/message-ws.service';
 
 @Component({
   selector: 'app-profile',
@@ -60,7 +61,8 @@ export class ProfileComponent
     private configService: ConfigService,
     public userService: UserService,
     private authService: AuthService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private messageWsService:MessageWSService
   ) {
     super();
     this.user = userService.getLocalStorageUser();
@@ -82,6 +84,10 @@ export class ProfileComponent
     // for (let i = 1; i > 0; i++) {
       this.getQrCode();
     // }
+
+    this.messageWsService.qrCodeSubject.subscribe((value)=>{
+      this.qrCode = value;
+    })
   }
 
   redirect() {
@@ -93,19 +99,8 @@ export class ProfileComponent
   }
 
   getQrCode() {
-    this.loadingContacts = true;
-    this.messageService.getQrCode()
-      .then(response => {
-        this.loadingContacts = false;
-        this.qrCode = response;
-      })
-      .catch(error => {
-        this.loadingContacts = false;
-      });
+    
   }
-
-
-
 
   ngAfterViewInit() {
     // set header color on startup

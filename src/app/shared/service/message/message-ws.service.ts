@@ -1,53 +1,74 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
-import { ErrorsService } from '../errors/errors.service';
 import { AuthService } from "./../auth/auth.service"
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject,  } from 'rxjs';
 import { Socket } from 'ngx-socket-io';
+import { NotificationsService } from '../notifications/notifications.service';
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class MessageWSService {
 
-  qrCodeSubject:BehaviorSubject<any>=new BehaviorSubject<any>(null)
+  qrCodeSubject:BehaviorSubject<any>=new BehaviorSubject(null)
+  
   constructor(
     private apiService: ApiService,
     private authService:AuthService,
+    private notificationService:NotificationsService,
     private socket:Socket
   ) {
-    this.socket.emit("connexion",this.authService.currentUser.getValue().email)
+      this.authService.isAuthenticatedSubject.subscribe((value)=>{
+      if(value) this.socket.emit("connexion",{email:this.authService.currentUser.getValue().email})
+    })
+    
     this.socket.on("qrcode",(data)=>this.receiveQrCode(data))
+    this.socket.on("connected",(data)=>{
+      this.notificationService.showNotification("WhatsApp Sync Successfully","success");
+      //doit mettre un attribut pour spécifier que whatsapp a été synchronisé. peut-être: localstorage?
+    })
+
+    this.socket.on("disconnected",(data)=>{
+      this.notificationService.showNotification("WhatsApp Disconnected","danger");
+      //doit mettre un attribut pour spécifier que whatsapp a été synchronisé. peut-être: localstorage?
+    })
+ 
+
   }
 
-  sendMessageToSigleUser(id, message) {
+  sendMessageToUser(id, message, type?, isSentToNow?, dateToSend?) {
     return new Promise((resolve, reject) => {
       let params = {
-        'id': id,
-        'message': message
+        'contactsID': id,
+        'type': type === undefined? 'text' : type,
+        'isSentToNow': isSentToNow === undefined? true : isSentToNow,
+        'dateToSend': isSentToNow === true? undefined : dateToSend,
+         email:this.authService.currentUser.getValue().email,
+        'body': {
+          'text': message
+        }
       };
-      this.apiService.post(`message/post`, JSON.stringify(params))
-        .subscribe(success => {
-          resolve(success);
-        }, error => {
-          reject(error);
-        });
+      let refNotif=this.notificationService.showNotificationWitouhTimer('Pending.....', 'info')
+      console.log("Message ",params)
+      this.socket.emit("send-message",params);
+      this.socket.once("send-message",(data)=>{
+        refNotif.dismiss()
+        if(data) 
+        {          
+          this.notificationService.showNotification("WhatsApp message send successfully","success");
+          resolve(true)
+        }
+        else 
+        {
+          this.notificationService.showNotification("Error when sending message! please try again","danger");
+          resolve(false)
+        }
+      })
     })
   }
 
-  sendMessageToMultipleUser(groupContact: [], message) {
+  sendMessageToGroup(groupContact: [], message) {
     return new Promise((resolve, reject) => {
-      let params = {
-        'contactList': groupContact,
-        'message': message
-      };
-      this.apiService.post(`message/post`, JSON.stringify(params))
-        .subscribe(success => {
-          resolve(success);
-        }, error => {
-          reject(error);
-        });
+      
     })
   }
 
@@ -61,6 +82,7 @@ export class MessageWSService {
 
   receiveQrCode(qrCode)
   {
+    console.log("QrCode ",qrCode)
     this.qrCodeSubject.next(qrCode)
   }
 
