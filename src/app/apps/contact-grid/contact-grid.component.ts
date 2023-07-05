@@ -18,7 +18,13 @@ export class ContactGridComponent implements OnInit {
     public router: Router
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.scrollToTop();
+  }
+
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
+  }
 
   navigateToAddOrganisation(){
     this.router.navigate(['/apps/add-organisation']);

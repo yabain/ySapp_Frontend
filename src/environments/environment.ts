@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000',
-  url: 'http://localhost:3000',
-  urlProd: 'http://localhost:3000',
-  urlToSendMessage: 'http://localhost:3001',
+  apiUrl: 'https://ysapp-api.yaba-in.com',
+  url: 'https://ysapp-api.yaba-in.com',
+  urlProd: 'https://ysapp-api.yaba-in.com',
+  urlToSendMessage: 'https://ysapp-api.yaba-in.com',
 
   firebase:{
     apiKey: "AIzaSyAyTgIacuPFFIjdMqLAEScG0JtqVMFAv4c",

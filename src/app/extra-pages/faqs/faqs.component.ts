@@ -8,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class FaqsComponent implements OnInit {
   breadscrums = [
     {
-      title: 'Faqs',
-      items: ['Extra'],
-      active: 'Faqs'
+      title: 'Support',
+      items: ['Support'],
+      active: 'Support'
     }
   ];
   constructor() {}

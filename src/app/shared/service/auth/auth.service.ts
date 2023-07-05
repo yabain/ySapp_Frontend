@@ -28,11 +28,11 @@ export class AuthService {
   isAdmin = false;
   isUser = false;
 
-
   constructor(
     private readonly keycloak: KeycloakService
   ) {
-    this.keycloak.isLoggedIn().then(async (authenticated) => {
+    this.keycloak.isLoggedIn()
+    .then(async (authenticated) => {
       console.log("Auth",authenticated)
       this.isAuthenticated = authenticated;
       if (authenticated) {
@@ -41,6 +41,9 @@ export class AuthService {
         this.isAdmin = roles.includes('ADMIN');
         this.currentUser.next(await this.keycloak.loadUserProfile())
       }
+    })
+    .catch ((error) => {
+      console.error(error);
     });
 
   }
@@ -64,7 +67,6 @@ export class AuthService {
     return this.keycloak.getUserRoles()
   }
  
-
   // Login into your account
   authLogin() {
     this.keycloak.login();    

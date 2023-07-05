@@ -1,11 +1,11 @@
 {
-  "HEADER":{
+  "HEADER": {
     "SEARCH": {
       "TEXT": "Recherche.."
     }
   },
   "MENUITEMS": {
-    "USER":{
+    "USER": {
       "POST": "Manager"
     },
     "MAIN": {
@@ -15,7 +15,7 @@
       "TEXT": "Accueil",
       "LIST": {
         "DASHBOARD1": "Tableau de bord",
-        "DASHBOARD2": "Dashboard 2", 
+        "DASHBOARD2": "Dashboard 2",
         "DASHBOARD3": "Dashboard 3"
       }
     },
@@ -81,7 +81,6 @@
       }
     }
   },
-  
   "account": "Compte",
   "settings": "Paramêtres",
   "logout": "Déconnexion",
@@ -143,6 +142,8 @@
   "cancel": "Annuler",
   "more": "Plus",
   "me": "de moi",
+  "organisations": "Organisations",
+  "send": "Envoyer",
   "description": "Description",
   "groups": "Groupes",
   "security": "Security",
@@ -163,10 +164,35 @@
   "details": "Details",
   "date": "Date",
   "contact-list": "Liste des Contacts",
-  "message-to": "Ecrire à"
-  
-
-
-
-
+  "message-to": "Ecrire à",
+  "compose": "Rédiger",
+  "subject": "Objet",
+  "preloadMsg": "Prédéfinis",
+  "publicDates": "Dates public",
+  "christmas": "Noël",
+  "composeMsg": "Rédiger un message",
+  "nationalDay": "Fête Nationalle",
+  "allNotifications": "Toutes les notifications",
+  "openWWeb": "Ouvrir Whatsapp Web pour colmmencer la discussion",
+  "members": "Membres",
+  "instantMessages": "Message instantané",
+  "group": "Groupes",
+  "noResult": "Rien à afficher",
+  "faqs": "QFP",
+  "perMonth": "Par mois",
+  "findYourSolution": "Quelques solutions",
+  "q1": "Comment ajouter des messages pour plus tard?",
+  "s1": "L'ajout des messages pour plus tard n'est pas disponible dans le bouquet gratuit. Vous devez souscrire à un forfait mensuel pour bénéficier de ce service. Une fois abonné à une offre, rendez-vous dans Messages > Calendrier puis sélectionnez un jour dans votre calendrier. Dans la fenêtre remplissez les champs obligatoire, sélectionner le groupe de contact dont vous souhaitez que les membres reçoivent votre message, sélectionnez l'heure d'envoie et appuyez sur 'Set' puis sur 'Enregistre'. Votre message est enregistré pour plus tard",
+  "q2": "Comment ajouter des messages pour plus tard?",
+  "s2": "L'ajout des messages pour plus tard n'est pas disponible dans le bouquet gratuit. Vous devez souscrire à un forfait mensuel pour bénéficier de ce service. Une fois abonné à une offre, rendez-vous dans Messages > Calendrier puis sélectionnez un jour dans votre calendrier. Dans la fenêtre remplissez les champs obligatoire, sélectionner le groupe de contact dont vous souhaitez que les membres reçoivent votre message, sélectionnez l'heure d'envoie et appuyez sur 'Set' puis sur 'Enregistre'. Votre message est enregistré pour plus tard",
+  "q3": "Comment ajouter des messages pour plus tard?",
+  "s3": "L'ajout des messages pour plus tard n'est pas disponible dans le bouquet gratuit. Vous devez souscrire à un forfait mensuel pour bénéficier de ce service. Une fois abonné à une offre, rendez-vous dans Messages > Calendrier puis sélectionnez un jour dans votre calendrier. Dans la fenêtre remplissez les champs obligatoire, sélectionner le groupe de contact dont vous souhaitez que les membres reçoivent votre message, sélectionnez l'heure d'envoie et appuyez sur 'Set' puis sur 'Enregistre'. Votre message est enregistré pour plus tard",
+  "q4": "Comment ajouter des messages pour plus tard?",
+  "s4": "L'ajout des messages pour plus tard n'est pas disponible dans le bouquet gratuit. Vous devez souscrire à un forfait mensuel pour bénéficier de ce service. Une fois abonné à une offre, rendez-vous dans Messages > Calendrier puis sélectionnez un jour dans votre calendrier. Dans la fenêtre remplissez les champs obligatoire, sélectionner le groupe de contact dont vous souhaitez que les membres reçoivent votre message, sélectionnez l'heure d'envoie et appuyez sur 'Set' puis sur 'Enregistre'. Votre message est enregistré pour plus tard",
+  "q5": "Comment ajouter des messages pour plus tard?",
+  "s5": "L'ajout des messages pour plus tard n'est pas disponible dans le bouquet gratuit. Vous devez souscrire à un forfait mensuel pour bénéficier de ce service. Une fois abonné à une offre, rendez-vous dans Messages > Calendrier puis sélectionnez un jour dans votre calendrier. Dans la fenêtre remplissez les champs obligatoire, sélectionner le groupe de contact dont vous souhaitez que les membres reçoivent votre message, sélectionnez l'heure d'envoie et appuyez sur 'Set' puis sur 'Enregistre'. Votre message est enregistré pour plus tard",
+  "q6": "Comment ajouter des messages pour plus tard?",
+  "s6": "L'ajout des messages pour plus tard n'est pas disponible dans le bouquet gratuit. Vous devez souscrire à un forfait mensuel pour bénéficier de ce service. Une fois abonné à une offre, rendez-vous dans Messages > Calendrier puis sélectionnez un jour dans votre calendrier. Dans la fenêtre remplissez les champs obligatoire, sélectionner le groupe de contact dont vous souhaitez que les membres reçoivent votre message, sélectionnez l'heure d'envoie et appuyez sur 'Set' puis sur 'Enregistre'. Votre message est enregistré pour plus tard",
+  "q7": "Comment ajouter des messages pour plus tard?",
+  "s7": "L'ajout des messages pour plus tard n'est pas disponible dans le bouquet gratuit. Vous devez souscrire à un forfait mensuel pour bénéficier de ce service. Une fois abonné à une offre, rendez-vous dans Messages > Calendrier puis sélectionnez un jour dans votre calendrier. Dans la fenêtre remplissez les champs obligatoire, sélectionner le groupe de contact dont vous souhaitez que les membres reçoivent votre message, sélectionnez l'heure d'envoie et appuyez sur 'Set' puis sur 'Enregistre'. Votre message est enregistré pour plus tard"
 }

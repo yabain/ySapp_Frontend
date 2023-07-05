@@ -247,13 +247,13 @@ export class AuthService {
           next: (response) => {
             this.currentUserSubject.next(response.user);
             // const profilePicture = response.data.user.profilePicture;
-            // const words = profilePicture.split('yabain.com/');
+            // const words = profilePicture.split('yaba-in.com/');
             // response.data.user.profilePicture = words[1];
 
             // this.webStorage.Login(response.userId);
             this.setAccessToken(response.token);
             console.log('User infos: ', response);
-            // this.router.navigate(['/dashboard/main']);
+            // this.router.navigate(['/dashboard/home']);
             this.user.setUserInformations(response.user)
             resolve(response);
             return response.user;

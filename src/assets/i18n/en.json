@@ -1,11 +1,11 @@
 {
-  "HEADER":{
+  "HEADER": {
     "SEARCH": {
       "TEXT": "Search.."
     }
   },
   "MENUITEMS": {
-    "USER":{
+    "USER": {
       "POST": "Manager"
     },
     "MAIN": {
@@ -95,9 +95,7 @@
       "TEXT": "Groupes"
     }
   },
-
-
-  "MESSAGES":{
+  "MESSAGES": {
     "TEXT": "Messages",
     "LIST": {
       "COMPOSE": "Compose to user",
@@ -105,8 +103,7 @@
       "AUTO-SEND": "Auto send"
     }
   },
-
-  "USER":{
+  "USER": {
     "TEXT": "user",
     "TEXTS": "users",
     "LIST": {
@@ -116,7 +113,6 @@
       "BIRTHDAYS": "Birthdays"
     }
   },
-
   "account": "Account",
   "settings": "Settings",
   "logout": "Logout",
@@ -178,6 +174,7 @@
   "cancel": "Cancel",
   "more": "More",
   "me": "me",
+  "send": "Send",
   "description": "Description",
   "groups": "Groups",
   "security": "Security",
@@ -198,8 +195,36 @@
   "details": "Details",
   "date": "Date",
   "contact-list": "Contacts list",
-  "message-to": "Message to"
-
-
-
+  "message-to": "Message to",
+  "compose": "Compose",
+  "subject": "Subject",
+  "preloadMsg": "Preset",
+  "publicDates": "Public Dates",
+  "christmas": "Christmas",
+  "composeMsg": "Compose New Message",
+  "nationalDay": "National Day",
+  "allNotifications": "All notifications",
+  "openWWeb": "Open Whatsapp Web to chat",
+  "members": "Members",
+  "instantMessages": "Instant message",
+  "group": "Groups",
+  "noResult": "Nothing to show",
+  "faqs": "FAQs",
+  "perMonth": "Per month",
+  "findYourSolution": "Find your solution from here",
+  "howToPlanMessages": "How to add a message for soon?",
+  "q1": "How do I add messages for later?",
+  "s1": "Adding messages for later is not available in the free package. You must subscribe to a monthly package to benefit from this service. Once you've subscribed to a package, go to Messages > Calendar and select a day from your calendar. In the window, fill in the required fields, select the contact group whose members you want to receive your message, select the time of sending and press 'Set' then 'Save'. Your message is saved for later.",
+  "q2": "How do I add messages for later?",
+  "s2": "Adding messages for later is not available in the free package. You must subscribe to a monthly package to benefit from this service. Once you've subscribed to a package, go to Messages > Calendar and select a day from your calendar. In the window, fill in the required fields, select the contact group whose members you want to receive your message, select the time of sending and press 'Set' then 'Save'. Your message is saved for later.",
+  "q3": "How do I add messages for later?",
+  "s3": "Adding messages for later is not available in the free package. You must subscribe to a monthly package to benefit from this service. Once you've subscribed to a package, go to Messages > Calendar and select a day from your calendar. In the window, fill in the required fields, select the contact group whose members you want to receive your message, select the time of sending and press 'Set' then 'Save'. Your message is saved for later.",
+  "q4": "How do I add messages for later?",
+  "s4": "Adding messages for later is not available in the free package. You must subscribe to a monthly package to benefit from this service. Once you've subscribed to a package, go to Messages > Calendar and select a day from your calendar. In the window, fill in the required fields, select the contact group whose members you want to receive your message, select the time of sending and press 'Set' then 'Save'. Your message is saved for later.",
+  "q5": "How do I add messages for later?",
+  "s5": "Adding messages for later is not available in the free package. You must subscribe to a monthly package to benefit from this service. Once you've subscribed to a package, go to Messages > Calendar and select a day from your calendar. In the window, fill in the required fields, select the contact group whose members you want to receive your message, select the time of sending and press 'Set' then 'Save'. Your message is saved for later.",
+  "q6": "How do I add messages for later?",
+  "s6": "Adding messages for later is not available in the free package. You must subscribe to a monthly package to benefit from this service. Once you've subscribed to a package, go to Messages > Calendar and select a day from your calendar. In the window, fill in the required fields, select the contact group whose members you want to receive your message, select the time of sending and press 'Set' then 'Save'. Your message is saved for later.",
+  "q7": "How do I add messages for later?",
+  "s7": "Adding messages for later is not available in the free package. You must subscribe to a monthly package to benefit from this service. Once you've subscribed to a package, go to Messages > Calendar and select a day from your calendar. In the window, fill in the required fields, select the contact group whose members you want to receive your message, select the time of sending and press 'Set' then 'Save'. Your message is saved for later."
 }

@@ -17,16 +17,7 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>{{'title' | translate}}</mat-label>
-            <input matInput formControlName="title" required>
-            <mat-icon matSuffix>turned_in_not</mat-icon>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
-          <mat-form-field class="example-full-width mb-3" appearance="outline">
-            <mat-label>{{'organisations' | translate}}</mat-label>
+            <mat-label>{{'group' | translate}}</mat-label>
             <mat-select formControlName="category" required>
               <mat-option [value]="'Yaba-In'">
                 Yaba-In
@@ -37,12 +28,12 @@
               <mat-option [value]="'Groupe SIA'">
                 Groupe SIA
               </mat-option>
-              <mat-option [value]="'digiKuntz'">
+              <!-- <mat-option [value]="'digiKuntz'">
                 digiKuntz
               </mat-option>
               <mat-option [value]="'Auto-école'">
                 Auto-école
-              </mat-option>
+              </mat-option> -->
             </mat-select>
           </mat-form-field>
         </div>
@@ -68,6 +59,15 @@
         </div> -->
       </div>
       <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 ">
+          <mat-form-field class="example-full-width mb-3" appearance="outline">
+            <mat-label>{{'subject' | translate}}</mat-label>
+            <input matInput formControlName="title" required>
+            <mat-icon matSuffix>turned_in_not</mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
           <mat-form-field class="example-full-width mb-3" appearance="outline">
             <mat-label> {{'message' | translate}}</mat-label>
@@ -81,7 +81,7 @@
           <div class="example-button-row">
             <button mat-raised-button color="primary" [type]="submit" [disabled]="!calendarForm.valid"
               (click)="confirmAdd()">{{'save' | translate}}</button>
-            <button mat-raised-button color="warn" (click)="dialogRef.close()" tabindex="-1">{{'cancel' | translate}}</button>
+            <!-- <button mat-raised-button color="warn" (click)="dialogRef.close()" tabindex="-1">{{'cancel' | translate}}</button> -->
           </div>
         </div>
         <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12">

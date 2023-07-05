@@ -8,640 +8,502 @@ export class LocationService {
   constructor() { }
   region() {
     
-    //Cameroon Regions
     return [
       {
-        id:1,
-        name: 'Adamaoua',
+        id: 1,
+        name: 'Cameroon'
       },
       {
-        id:2,
-        name: 'Centre',
+        id: 2,
+        name: 'Congo'
       },
       {
-        id:3,
-        name: 'Est',
+        id: 3,
+        name: 'Gabon'
       },
       {
-        id:4,
-      	name: 'Extreme-nord',
+        id: 4,
+        name: 'Guinée équatoriale'
       },
-      {
-        id:5,
-        name: 'Littoral',
-      },
-      {	id:6,
-        name: 'Nord',
-      },
-      {
-        id:7,
-        name: 'Nord-ouest',
-      },
-      {
-        id:8,
-        name: 'Ouest',
-      },
-      {
-        id:9,
-        name: 'Sud',
-      },
-      {
-        id:10,
-        name: 'sud-ouest',
-      }
     ];
   }
 
   // Cameroon Cities by Region ID
   city() {
     return [
+      //Cameroun
       {
-        
-        id:1,
-        name: 'Banyo',
+        id: 1,
+        name: 'Bafang'
       },
       {
-        id:1,
-        name: 'Déo',
+        id: 1,
+        name: 'Bafia'
       },
       {
-        id:1,
-        name: 'Dir',
-      
+        id: 1,
+        name: 'Bafoussam'
       },
       {
-        id:1,
-        name: 'Djerem',
+        id: 1,
+        name: 'Bamenda'
       },
       {
-        id:1,
-        name: 'Kimi',
+        id: 1,
+        name: 'Bangangté'
       },
       {
-        id:1,
-        name: 'Faro',
+        id: 1,
+        name: 'Buéa'
       },
       {
-        id:1,
-        name: 'Kobi',
+        id: 1,
+        name: 'Douala'
       },
       {
-        id:1,
-        name: 'Mayo',
+        id: 1,
+        name: 'Dschang'
       },
       {
-        id:1,
-        name: 'Mbere',
+        id: 1,
+        name: 'Ebolowa'
       },
       {
-        id:1,
-        name: 'Meiganga',
+        id: 1,
+        name: 'Foumban'
       },
       {
-        id:1,
-        name: 'Ngaoundal',
+        id: 1,
+        name: 'Garoua'
       },
       {
-        id:1,
-        name: 'Ngaoundéré',
+        id: 1,
+        name: 'Kaélé'
       },
       {
-        id:1,
-        name: 'Nganha',
+        id: 1,
+        name: 'Koussérie'
       },
       {
-        id:1,
-        name: 'Tello',
+        id: 1,
+        name: 'Kribi'
       },
       {
-        id:1,
-        name: 'Tibati',
+        id: 1,
+        name: 'Mbalmayo'
       },
       {
-        id:1,
-        name: 'Tignere',
+        id: 1,
+        name: 'Mbanga'
       },
       {
-        id:2,
-        name: 'Akonolinga',
+        id: 1,
+        name: 'Nagoundéré'
       },
       {
-        id:2,
-        name: 'Bafia',
+        id: 1,
+        name: 'Sangmélima'
       },
       {
-        id:2,
-        name: 'Eseka',
+        id: 1,
+        name: 'Yagoua'
       },
       {
-        id:2,
-        name: 'Haut-sanaga',
+        id: 1,
+        name: 'Yaoundé'
       },
+
+
+      //Congo
       {
-        id:2,
-        name: 'Lekie',
+        id: 2,
+        name: 'Bandundu'
       },
       {
-        id:2,
-        name: 'Mbam-et-inoubou',
+        id: 2,
+        name: 'Baraka'
       },
       {
-        id:2,
-        name: 'Mbam-et-kim',
+        id: 2,
+        name: 'Beni'
       },
       {
-        id:2,
-        name: 'Mefou-et-afamba',
+        id: 2,
+        name: 'Boende'
       },
       {
-        id:2,
-        name: 'Mfoundi',
+        id: 2,
+        name: 'Boma'
       },
       {
-        id:2,
-        name: 'Nanga eboko',
+        id: 2,
+        name: 'Bukavu'
       },
       {
-        id:2,
-        name: 'Nyong-et-kelle',
+        id: 2,
+        name: 'Bunia'
       },
       {
-        id:2,
-        name: 'Nyong-et-mfoumou',
+        id: 2,
+        name: 'Buta'
       },
       {
-        id:2,
-        name: 'Nyong-et-so-o',
+        id: 2,
+        name: 'Butembo'
       },
       {
-        id:2,
-        name: 'Yaoundé',
+        id: 2,
+        name: 'Gbadolite'
       },
       {
-        id:3,
-        name: 'Abong-mbang',
+        id: 2,
+        name: 'Gemena'
       },
       {
-        id:3,
-        name: 'Angossas',
+        id: 2,
+        name: 'Goma'
       },
       {
-        id:3,
-        name: 'Atok',
+        id: 2,
+        name: 'Inongo'
       },
       {
-        id:3,
-        name: 'Dimako',
+        id: 2,
+        name: 'Isiro'
       },
       {
-        id:3,
-        name: 'Batouri',
+        id: 2,
+        name: 'Kabinda'
       },
       {
-        id:3,
-        name: 'Bertoua',
+        id: 2,
+        name: 'Kalemie'
       },
       {
-        id:3,
-        name: 'Belabo',
+        id: 2,
+        name: 'Kamina'
       },
       {
-        id:3,
-        name: 'Betare-oya',
+        id: 2,
+        name: 'Kananga'
       },
       {
-        id:4,
-        name: 'Aboukouss',
+        id: 2,
+        name: 'Kenge'
       },
       {
-        id:4,
-        name: 'Abrinko',
+        id: 2,
+        name: 'Kikwit'
       },
       {
-        id:4,
-        name: 'Abou-djali',
+        id: 2,
+        name: 'Kindu'
       },
       {
-        id:4,
-        name: 'Adarwala',
+        id: 2,
+        name: 'Kisangani'
       },
       {
-        id:4,
-        name: 'Agoyo',
+        id: 2,
+        name: 'Kinshasa'
       },
       {
-        id:4,
-        name: 'Alakire',
+        id: 2,
+        name: 'Kolwezi'
       },
       {
-        id:4,
-        name: 'Alifare',
+        id: 2,
+        name: 'Likasi'
       },
       {
-        id:4,
-        name: 'Alrada',
+        id: 2,
+        name: 'Lisala'
       },
       {
-        id:4,
-        name: 'Amchide',
+        id: 2,
+        name: 'Lubumbashi'
       },
       {
-        id:4,
-        name: 'Amdane',
+        id: 2,
+        name: 'Lusambo'
       },
       {
-        id:4,
-        name: 'Amdjagara dabba',
+        id: 2,
+        name: 'Matadi'
       },
       {
-        id:4,
-        name: 'Dargala',
+        id: 2,
+        name: 'Mbandaka'
       },
       {
-        id:4,
-        name: 'Diamara',
+        id: 2,
+        name: 'Mbujimayi'
       },
       {
-        id:4,
-        name: 'Doulo',
+        id: 2,
+        name: 'Muene-Ditu'
       },
       {
-        id:4,
-        name: 'Kaele',
+        id: 2,
+        name: 'Tshikapa'
       },
       {
-        id:4,
-        name: 'Kalfou',
+        id: 2,
+        name: 'Uvira'
       },
       {
-        id:4,
-        name: 'Kousseri',
+        id: 2,
+        name: 'Zongo'
       },
+
+
+      //Gabon
       {
-        id:4,
-        name: 'Logone-birni',
+        id: 3,
+        name: 'Libreville'
       },
       {
-        id:4,
-        name: 'Maroua',
+        id: 3,
+        name: 'Moanda'
       },
       {
-        id:5,
-        
-        name: 'Bare',
+        id: 3,
+        name: 'Bitam'
       },
       {
-        id:5,
-        name: 'Bonlea',
+        id: 3,
+        name: 'Booué'
       },
       {
-        id:5,
-        name: 'Douala',
+        id: 3,
+        name: 'Cocobeach'
       },
       {
-        id:5,
-        name: 'Dibombare',
+        id: 3,
+        name: 'Fougamou'
       },
       {
-        id:5,
-        name: 'Dizangue',
+        id: 3,
+        name: 'Franceville'
       },
       {
-        id:5,
-        name: 'Ebono',
+        id: 3,
+        name: 'Gamba'
       },
       {
-        id:5,
-        name: 'Edea',
+        id: 3,
+        name: 'Kango'
       },
       {
-        id:5,
-        name: 'Kekem',
+        id: 3,
+        name: 'Koulamoutou'
       },
       {
-        id:5,
-        name: 'Loum',
+        id: 3,
+        name: 'Lambaréné'
       },
       {
-        id:5,
-        name: 'Logbadjeck',
+        id: 3,
+        name: 'Lastourville'
       },
       {
-        id:5,
-        name: 'Monako',
+        id: 3,
+        name: 'Lékoni'
       },
       {
-        id:5,
-        name: 'Massok',
+        id: 3,
+        name: 'Libreville'
       },
       {
-        id:5,
-        name: 'Moungko',
+        id: 3,
+        name: 'Makokou'
       },
       {
-        id:5,
-        name: 'Manjo',
+        id: 3,
+        name: 'Mayumba'
       },
       {
-        id:5,
-        name: 'Mbanga',
+        id: 3,
+        name: 'Mbigou'
       },
       {
-        id:5,
-        name: 'Ndonkbian',
+        id: 3,
+        name: 'Medouneu'
       },
       {
-        id:5,
-        name: 'Nkam',
+        id: 3,
+        name: 'Mékambo'
       },
       {
-        id:5,
-        name: 'Ndom',
+        id: 3,
+        name: 'Mitzic'
       },
       {
-        id:5,
-        name: 'Ngambe',
+        id: 3,
+        name: 'Mimongo'
       },
       {
-        id:5,
-        name: 'Ngambe',
+        id: 3,
+        name: 'Minvoul'
       },
       {
-        id:5,
-        name: 'penja',
+        id: 3,
+        name: 'Mounana'
       },
       {
-        id:5,
-        name: 'Pouma',
+        id: 3,
+        name: 'Moanda'
       },
       {
-        id:5,
-        name: 'Souza',
+        id: 3,
+        name: 'Mouila'
       },
       {
-        id:5,
-        name: 'Wouri',
+        id: 3,
+        name: 'Ndendé'
       },
       {
-        id:5,
-        name: 'Yabassi',
+        id: 3,
+        name: 'Ndjolé'
       },
       {
-        id:5,
-        name: 'Yingi',
+        id: 3,
+        name: 'Nkan'
       },
       {
-        
-        id:6,
-        name: 'Bacheore',
+        id: 3,
+        name: 'Ntoum'
       },
       {
-        
-        id:6,
-        name: 'Barnake',
+        id: 3,
+        name: 'Okondja'
       },
       {
-        
-        id:6,
-        name: 'Bali',
+        id: 3,
+        name: 'Omboué'
       },
       {
-        
-        id:6,
-        name: 'Banyo',
+        id: 3,
+        name: 'Oyem'
       },
       {
-        
-        id:6,
-        name: 'Bibemi',
+        id: 3,
+        name: 'Port-Gentil'
       },
       {
-        
-        id:6,
-        name: 'Garoua',
+        id: 3,
+        name: 'Tchibanga'
       },
       {
-        id:7,
-        name: 'Babessi',
+        id: 3,
+        name: 'Tsogni'
       },
+
+      //Gunée équatoriale'
       {
-        id:7,
-        name: 'Bafou',
+        id: 4,
+        name: 'Bata'
       },
       {
-        id:7,
-        name: 'Bali kumbat',
+        id: 4,
+        name: 'Malabo'
       },
       {
-        id:7,
-        name: 'Bamenda',
+        id: 4,
+        name: 'Ebebiyín'
       },
       {
-        id:7,
-        name: 'Benakuma',
+        id: 4,
+        name: 'Aconibe'
       },
       {
-        id:7,
-        name: 'Batibo',
+        id: 4,
+        name: 'Añisoc'
       },
       {
-        id:7,
-        name: 'Balikumbat',
+        id: 4,
+        name: 'Luba'
       },
       {
-        id:7,
-        name: 'Bui',
+        id: 4,
+        name: 'Evinayong'
       },
       {
-        id:7,
-        name: 'Boyo',
+        id: 4,
+        name: 'Mongomo'
       },
       {
-        id:7,
-        name: 'Donga',
+        id: 4,
+        name: 'Mengomeyén'
       },
       {
-        id:7,
-        name: 'Elak-oku',
+        id: 4,
+        name: 'Mikomeseng'
       },
       {
-        
-        id:8,
-        name: 'Bafang',
+        id: 4,
+        name: 'Rebola'
       },
       {
-        
-        id:8,
-        name: 'Bafoussam',
+        id: 4,
+        name: 'Bidjabidjan'
       },
       {
-        
-        id:8,
-        name: 'Bandjoun',
+        id: 4,
+        name: 'Niefang'
       },
       {
-        
-        id:8,
-        name: 'Bangangte',
+        id: 4,
+        name: 'Cogo'
       },
       {
-        
-        id:8,
-        name: 'Bangou',
+        id: 4,
+        name: 'Nsok'
       },
       {
-        
-        id:9,
-        name: 'Akom',
+        id: 4,
+        name: 'SAP'
       },
       {
-        
-        id:9,
-        name: 'Akia',
+        id: 4,
+        name: 'Mbini'
       },
       {
-        
-        id:9,
-        name: 'Ambam',
+        id: 4,
+        name: 'Nsork'
       },
       {
-        
-        id:9,
-        name: 'Bangelis',
+        id: 4,
+        name: 'Ayene'
       },
       {
-        
-        id:9,
-        name: 'Bipindi',
+        id: 4,
+        name: 'Nkimi'
       },
       {
-        
-        id:9,
-        name: 'Biwong',
+        id: 4,
+        name: 'Machinda'
       },
       {
-        
-        id:9,
-        name: 'Bane',
+        id: 4,
+        name: 'Acurenam'
       },
       {
-        id:9,
-        name: 'Bulu',
+        id: 4,
+        name: 'Corisco'
       },
       {
-        
-        id:9,
-        name: 'Buea',
+        id: 4,
+        name: 'Baney'
       },
       {
-        
-        id:9,
-        name: 'campo',
+        id: 4,
+        name: 'Bicurga'
       },
       {
-        
-        id:9,
-        name: 'dJA-ET-LOBO',
-      },
-      {
-        
-        id:9,
-        name: 'Djoum',
-      },
-      {
-        
-        id:9,
-        name: 'Ebolowa',
-      },
-      {
-        
-        id:9,
-        name: 'Haut-nyong',
-      },
-      {
-        
-        id:9,
-        name: 'Kye-ossi',
-      },
-      {
-        
-        id:9,
-        name: 'Kumba',
-      },
-      {
-        
-        id:9,
-        name: 'Kribi',
-      },
-      {
-        
-        id:9,
-        name: 'Ma-a',
-      },
-      {
-        
-        id:9,
-        name: 'Mamfe',
-      },
-      {
-        
-        id:9,
-        name: 'Menji',
-      },
-      {
-        
-        id:9,
-        name: 'Meyomessala',
-      },
-      {
-        
-        id:9,
-        name: 'Mvangan',
-      },
-      {
-        
-        id:9,
-        name: 'Meyomessi',
-      },
-      {
-        
-        id:10,
-        name: 'Fako',
-      },
-      {
-        
-        id:10,
-        name: 'Koupe-manengouba',
-      },
-      {
-        
-        id:10,
-        name: 'Lebialem',
-      },
-      {	
-        id:10,
-        name: 'Mamny',
-      },
-      {	
-        id:10,
-        name: 'Meme',
-      },
-      {
-        
-        id:10,
-        name: 'Ndian',
-      },
-      {
-        
-        id:10,
-        name: 'Nguti',
-      },
-      {
-        
-        id:10,
-        name: 'Tombel',
+        id: 4,
+        name: 'Nsang'
       }
-      
-       ];
+    ];
   }
 }

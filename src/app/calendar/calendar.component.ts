@@ -36,8 +36,8 @@ export class CalendarComponent
     'Yaba-In',
     'UdM',
     'Groupe SIA',
-    'digiKuntz',
-    'Auto-école'
+    // 'digiKuntz',
+    // 'Auto-école'
   ];
 
   calendarEvents: EventInput[];
@@ -47,8 +47,8 @@ export class CalendarComponent
     { name: 'Yaba-In', value: 'Yaba-In', checked: true },
     { name: 'UdM', value: 'UdM', checked: true },
     { name: 'Groupe SIA', value: 'Groupe SIA', checked: true },
-    { name: 'digiKuntz', value: 'digiKuntz', checked: true },
-    { name: 'Auto-école', value: 'Auto-école', checked: true }
+    // { name: 'digiKuntz', value: 'digiKuntz', checked: true },
+    // { name: 'Auto-école', value: 'Auto-école', checked: true }
   ];
 
   breadscrums = [
@@ -65,7 +65,7 @@ export class CalendarComponent
     private snackBar: MatSnackBar
   ) {
     super();
-    this.dialogTitle = 'Add New Event';
+    this.dialogTitle = 'Add Record';
     this.calendar = new Calendar({});
     this.addCusForm = this.createCalendarForm(this.calendar);
   }
@@ -74,6 +74,12 @@ export class CalendarComponent
     this.calendarEvents = INITIAL_EVENTS;
     this.tempEvents = this.calendarEvents;
     this.calendarOptions.initialEvents = this.calendarEvents;
+
+    this.scrollToTop();
+  }
+
+  scrollToTop(): void {
+    window.scrollTo(0, 0);
   }
 
   calendarOptions: CalendarOptions = {
@@ -117,7 +123,7 @@ export class CalendarComponent
         this.calendarData = this.calendarService.getDialogData();
 
         this.calendarEvents = this.calendarEvents.concat({
-          // add new event data. must create new array
+          // add new record data. must create new array
           id: this.calendarData.id,
           title: this.calendarData.title,
           start: this.calendarData.startDate,
@@ -269,8 +275,8 @@ export class CalendarComponent
     if (category === 'Yaba-In') className = 'fc-event-success';
     else if (category === 'UdM') className = 'fc-event-warning';
     else if (category === 'Groupe SIA') className = 'fc-event-primary';
-    else if (category === 'digiKuntz') className = 'fc-event-danger';
-    else if (category === 'Auto-école') className = 'fc-event-info';
+    // else if (category === 'digiKuntz') className = 'fc-event-danger';
+    // else if (category === 'Auto-école') className = 'fc-event-info';
 
     return className;
   }

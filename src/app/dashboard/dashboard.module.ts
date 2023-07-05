@@ -13,9 +13,15 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { ComponentsModule } from '../shared/components/components.module';
 import { SharedModule } from './../shared/shared.module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgxGaugeModule } from 'ngx-gauge';
+import { ChartsRoutingModule } from '../charts/charts-routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [MainComponent],
+  declarations: [
+    MainComponent,
+    HomeComponent,],
   imports: [
     CommonModule,
     DashboardRoutingModule,
@@ -30,7 +36,16 @@ import { SharedModule } from './../shared/shared.module';
     }),
     GaugeModule.forRoot(),
     ComponentsModule,
-    SharedModule
+    SharedModule,
+    ChartsRoutingModule,
+    NgxEchartsModule.forRoot({
+      echarts: () => import('echarts')
+    }),
+    chartjsModule,
+    NgxChartsModule,
+    NgApexchartsModule,
+    NgxGaugeModule,
+    GaugeModule.forRoot(),
   ]
 })
 export class DashboardModule {}

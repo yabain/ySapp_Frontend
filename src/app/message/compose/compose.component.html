@@ -1,0 +1,52 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="block-header" *ngFor="let breadscrum of breadscrums">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
+      </app-breadcrumb>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="card">
+          <div class="boxs mail_listing">
+            <div class="row">
+              <form [formGroup]="messageForm" (ngSubmit)="submit()">
+                <div class="col-lg-12">
+                  <form class="composeForm">
+                    <div class="form-line">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>{{'contact' | translate}}</mat-label>
+                        <input matInput id="subject" formControlName="contact" placeholder="+2376XXXXXXXX">
+                      </mat-form-field>
+                    </div>
+                    <div class="form-line">
+                      <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>{{'subject' | translate}}</mat-label>
+                        <input matInput id="subject" formControlName="subject">
+                      </mat-form-field>
+                    </div>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                      <mat-label>Message</mat-label>
+                      <textarea matInput formControlName="message" placeholder="Hello, Yaba-In!"
+                        value="Hello, Yaba-In!"></textarea>
+                    </mat-form-field>
+                    <!-- <div class="compose-editor m-t-20">
+                    <div id="summernote"></div>
+                    <input type="file" class="default" multiple>
+                  </div> -->
+                  </form>
+                </div>
+                <div class="col-lg-12">
+                  <div class="m-l-25 m-b-20">
+                    <button mat-flat-button color="primary" class="msr-2" type="submit">{{'send' | translate}}</button>
+                    <!-- <button mat-flat-button color="warn">Discard</button> -->
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

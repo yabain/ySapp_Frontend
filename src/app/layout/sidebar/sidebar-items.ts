@@ -10,55 +10,38 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: 'dashboard/main',
+    path: 'dashboard/home',
     title: 'home',
     icon: 'monitor',
     class: '',
     groupTitle: false,
-    submenu: [
-      // {
-      //   path: 'dashboard/main',
-      //   title: 'MENUITEMS.HOME.LIST.DASHBOARD1',
-      //   icon: '',
-      //   class: 'ml-menu',
-      //   groupTitle: false,
-      //   submenu: []
-      // }
-    ]
+    submenu: []
   },
   {
-    path: '/extra-pages/profile',
-    title: 'profile',
-    icon: 'user',
+    path: 'contact',
+    title: 'contact',
+    icon: 'users',
     class: '',
     groupTitle: false,
     submenu: []
   },
   {
     path: '',
-    title: 'MESSAGES.TEXT',
+    title: 'message',
     icon: 'mail',
     class: 'menu-toggle',
     groupTitle: false,
     submenu: [
+      // {
+      //   path: '/message/compose',
+      //   title: 'compose-to-user',
+      //   icon: '',
+      //   class: 'ml-menu',
+      //   groupTitle: false,
+      //   submenu: []
+      // },
       {
-        path: '/email/web-chat',
-        title: 'compose-to-user',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/email/chat',
-        title: 'Chat',
-        icon: '',
-        class: 'ml-menu',
-        groupTitle: false,
-        submenu: []
-      },
-      {
-        path: '/email/compose',
+        path: '/message/compose-to-group',
         title: 'compose-to-group',
         icon: '',
         class: 'ml-menu',
@@ -66,39 +49,55 @@ export const ROUTES: RouteInfo[] = [
         submenu: []
       },
       {
-        path: '/',
-        title: 'auto-send',
+        path: '/message/calendar',
+        title: 'MENUITEMS.CALENDAR.TEXT',
         icon: '',
-        class: 'ml-sub-menu',
+        class: 'ml-menu2',
         groupTitle: false,
-        submenu: [
-          {
-            path: 'calendar',
-            title: 'MENUITEMS.CALENDAR.TEXT',
-            icon: '',
-            class: 'ml-menu2',
-            groupTitle: false,
-            submenu: []
-          },
-          {
-            path: '/email/read-mail',
-            title: 'birthdays',
-            icon: '',
-            class: 'ml-menu2',
-            groupTitle: false,
-            submenu: []
-          },
-        ]
+        submenu: []
       },
+      {
+        path: '/message/preset-msg',
+        title: 'preloadMsg',
+        icon: '',
+        class: 'ml-menu2',
+        groupTitle: false,
+        submenu: []
+      },
+      {
+        path: '/message/web-chat',
+        title: 'Web Chat',
+        icon: '',
+        class: 'ml-menu',
+        groupTitle: false,
+        submenu: []
+      },
+      // {
+      //   path: '/',
+      //   title: 'auto-send',
+      //   icon: '',
+      //   class: 'ml-sub-menu',
+      //   groupTitle: false,
+      //   submenu: [
+      //     {
+      //       path: 'calendar',
+      //       title: 'MENUITEMS.CALENDAR.TEXT',
+      //       icon: '',
+      //       class: 'ml-menu2',
+      //       groupTitle: false,
+      //       submenu: []
+      //     },
+      //     {
+      //       path: '/message/read-mail',
+      //       title: 'preloaderMsg',
+      //       icon: '',
+      //       class: 'ml-menu2',
+      //       groupTitle: false,
+      //       submenu: []
+      //     },
+      //   ]
+      // },
     ]
-  },
-  {
-    path: 'advance-table',
-    title: 'contact',
-    icon: 'users',
-    class: '',
-    groupTitle: false,
-    submenu: []
   },
   {
     path: '',
@@ -118,7 +117,15 @@ export const ROUTES: RouteInfo[] = [
     ]
   },
   {
-    path: '/apps/contact-grid',
+    path: '/extra-pages/profile',
+    title: 'profile',
+    icon: 'user',
+    class: '',
+    groupTitle: false,
+    submenu: []
+  },
+  {
+    path: '/extra-pages/faqs',
     title: 'support',
     icon: 'command',
     class: '',

@@ -11,7 +11,7 @@ const routes: Routes = [
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', redirectTo: '/dashboard/main', pathMatch: 'full' },
+      { path: '', redirectTo: '/dashboard/home', pathMatch: 'full' },
       {
         path: 'dashboard',
         canActivate:[AuthGuard],
@@ -19,10 +19,10 @@ const routes: Routes = [
           import('./dashboard/dashboard.module').then((m) => m.DashboardModule)
       },
       {
-        path: 'advance-table',
+        path: 'contact',
         loadChildren: () =>
-          import('./advance-table/advance-table.module').then(
-            (m) => m.AdvanceTableModule
+          import('./contact/contact.module').then(
+            (m) => m.ContactModule
           )
       },
       {
@@ -35,15 +35,15 @@ const routes: Routes = [
         loadChildren: () =>
           import('./task/task.module').then((m) => m.TaskModule)
       },
+      // {
+      //   path: 'contacts',
+      //   loadChildren: () =>
+      //     import('./contacts/contacts.module').then((m) => m.ContactsModule)
+      // },
       {
-        path: 'contacts',
+        path: 'message',
         loadChildren: () =>
-          import('./contacts/contacts.module').then((m) => m.ContactsModule)
-      },
-      {
-        path: 'email',
-        loadChildren: () =>
-          import('./email/email.module').then((m) => m.EmailModule)
+          import('./message/message.module').then((m) => m.MessageModule)
       },
       {
         path: 'apps',
