@@ -51,7 +51,7 @@ export function createTranslateLoader(http: HttpClient): any {
 }
 
 
-const config: SocketIoConfig = { url: 'http://localhost:3000', options: {transports: ['websocket']} };
+const config: SocketIoConfig = { url: environment.apiUrl, options: {transports: ['websocket']} };
 
 
 
