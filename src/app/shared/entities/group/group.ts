@@ -11,7 +11,7 @@ export class Group {
       this.id = advanceTable.id || this.getRandomID();
       this.name = advanceTable.name || '';
       this.description = advanceTable.description || '';
-      this.profilePicture = advanceTable.profilePicture || 'assets/images/user/user.png';
+      this.profilePicture = advanceTable.profilePicture || 'assets/images/user/group.png';
     }
   }
   public getRandomID(): string {

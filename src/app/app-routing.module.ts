@@ -102,6 +102,20 @@ const routes: Routes = [
           )
       },
       {
+        path: 'support',
+        loadChildren: () =>
+          import('./support/support.module').then(
+            (m) => m.SupportModule
+          )
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./profil/profil.module').then(
+            (m) => m.ProfilModule
+          )
+      },
+      {
         path: 'maps',
         loadChildren: () =>
           import('./maps/maps.module').then((m) => m.MapsModule)

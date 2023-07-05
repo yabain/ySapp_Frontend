@@ -7,27 +7,29 @@ import { DataSource } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { FormDialogComponent } from './dialogs/form-dialog/form-dialog.component';
-import { DeleteDialogComponent } from './dialogs/delete/delete.component';
+// import { FormDialogComponent } from '../dialogs/form-dialog/form-dialog.component';
+// import { DeleteDialogComponent } from '../dialogs/delete/delete.component';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatMenu, MatMenuTrigger } from '@angular/material/menu';
 import { SelectionModel } from '@angular/cdk/collections';
-import { UnsubscribeOnDestroyAdapter } from '../shared/UnsubscribeOnDestroyAdapter';
-import { FormMessageComponent } from './dialogs/form-message/form-message.component';
-import { ContactsService } from '../shared/service/contact/contacts.service';
-import { Contact } from '../shared/entities/contact/contact';
-import { ContactService } from '../shared/service/contact/contact.service';
-import { NotificationsService } from '../shared/service/notifications/notifications.service';
-import { GroupsService } from '../shared/service/groups/groups.service';
+// import { FormMessageComponent } from '../dialogs/form-message/form-message.component';
+import { NotificationsService } from 'src/app/shared/service/notifications/notifications.service';
+import { ContactService } from 'src/app/shared/service/contact/contact.service';
+import { Contact } from 'src/app/shared/entities/contact/contact';
+import { ContactsService } from 'src/app/shared/service/contact/contacts.service';
+import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroyAdapter';
+import { FormDialogComponent } from '../groups-dialogs/form-dialog/form-dialog.component';
+import { DeleteDialogComponent } from '../groups-dialogs/delete/delete.component';
+import { FormMessageComponent } from '../groups-dialogs/form-message/form-message.component';
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.sass'],
+  selector: 'app-members',
+  templateUrl: './members.component.html',
+  styleUrls: ['./members.component.sass'],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]
 })
 
-export class ContactComponent
+export class MembersComponent
   extends UnsubscribeOnDestroyAdapter
   implements OnInit {
   displayedColumns = [
@@ -65,12 +67,10 @@ export class ContactComponent
     public contactService: ContactService,
     private snackBar: MatSnackBar,
     private contactsService: ContactsService,
-    private groupsService: GroupsService,
     private notificationsService: NotificationsService,
   ) {
     super();
   }
-
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild('filter', { static: true }) filter: ElementRef;
@@ -91,9 +91,6 @@ export class ContactComponent
       this.loadData();
       this.loadingContacts = false;
     }
-    if (!localStorage.getItem("groups-list")){
-      this.groupsService.getAllGroups();
-    }
   }
 
   refresh() {
@@ -105,7 +102,7 @@ export class ContactComponent
         // this.showNotification('snackbar-success', 'Contacts list loaded successfully',
         //   'bottom',
         //   'center')
-        // this.contactService.getAllContacts();
+        this.contactService.getAllContacts();
         this.loadData();
       })
       .catch((error) => {
@@ -126,7 +123,7 @@ export class ContactComponent
     }
     const dialogRef = this.dialog.open(FormDialogComponent, {
       data: {
-        group: this.contact,
+        contact: this.contact,
         action: 'add'
       },
       direction: tempDirection
@@ -207,11 +204,11 @@ export class ContactComponent
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
           (x) => x.id === this.id
         );
+        this.refresh();
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] =
           this.contactService.getDialogData();
         // And lastly refresh table
-        this.refresh();
         this.refreshTable();
         // this.showNotification(
         //   'snackbar-success',

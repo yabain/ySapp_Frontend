@@ -210,18 +210,18 @@ export class HeaderComponent
   }
   
   navigateToProfile(){
-    this.router.navigate(['/extra-pages/profile']);
+    this.router.navigate(['/profile']);
   }
   
   navigateToMessages(){
-    this.router.navigate(['/extra-pages/profile']);
+    this.router.navigate(['/profile']);
   }
   
   navigateToSettings(){
-    this.router.navigate(['/extra-pages/profile']);
+    this.router.navigate(['/profile']);
   }
   
   navigateToNotifications(){
-    this.router.navigate(['/extra-pages/profile']);
+    this.router.navigate(['/profile']);
   }
 }

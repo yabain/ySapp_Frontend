@@ -5,8 +5,7 @@ import {
   UntypedFormControl,
   Validators,
   UntypedFormGroup,
-  UntypedFormBuilder,
-  FormBuilder
+  UntypedFormBuilder
 } from '@angular/forms';
 // import { Contact } from '../../contact.model';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
@@ -15,6 +14,7 @@ import { LocationService } from 'src/app/shared/service/location/location.servic
 import { Contact } from 'src/app/shared/entities/contact/contact';
 import { ContactsService } from 'src/app/shared/service/contact/contacts.service';
 import { NotificationsService } from 'src/app/shared/service/notifications/notifications.service';
+import { GroupsService } from 'src/app/shared/service/groups/groups.service';
 
 @Component({
   selector: 'app-form-dialog',
@@ -38,7 +38,7 @@ export class FormDialogComponent implements OnInit {
     public contactsService: ContactsService,
     private fb: UntypedFormBuilder,
     private notificationsService: NotificationsService,
-    private formLog: FormBuilder,
+    private groupsService: GroupsService,
   ) {
     // Set the defaults
     this.action = data.action;
@@ -54,7 +54,13 @@ export class FormDialogComponent implements OnInit {
   }
   
   ngOnInit() {
+    if (!localStorage.getItem("groups-list")){
+      this.groupsService.getAllGroups();
+    }
+
     this.region = this.location.region();
+    let groupVar: any = this.groupsService.findGroupById('649b0a1eefc48043440677d3')
+    console.log('nom du groupe: ', groupVar.name);
   }
 
   formControl = new UntypedFormControl('', [
@@ -93,8 +99,7 @@ export class FormDialogComponent implements OnInit {
       ],
       gender: [this.contact.gender],
       birthday: [
-        formatDate(this.contact.birthday, 'yyyy-MM-dd', 'en'),
-        [Validators.required]
+        this.datePipe.transform(this.contact.birthday, 'yyyy-MM-dd', 'fr-FR')
       ],
       address: [this.contact.address, Validators.minLength(4)],
       phone: [this.contact.phone,
@@ -136,21 +141,15 @@ export class FormDialogComponent implements OnInit {
       this.contact.country = 'EqGuinee'
     }
     
-    let d = new Date();
-
-    let date = this.datePipe.transform(d, 'MM-dd-yyyy');
-    let date2 = this.datePipe.transform(this.contact.birthday, 'MM-dd-yyyy');
-    console.log('date: ', date);
-    console.log('birthday: ', date2);
-
-    if(date == date2) {
-      this.contact.birthday === undefined;
-    }
     this.notificationsService.showNotification('Pending.....', 'info', 3000)
     this.contactsService.addContact(this.contact)
     // .then(() => {
     // });
 
     console.log('valeur du formulaire: ', this.contact);
+  }
+
+  removeContactToGroup(groupId: string){
+    this.groupsService.removeContactToGroup(this.contact.id, groupId)
   }
 }

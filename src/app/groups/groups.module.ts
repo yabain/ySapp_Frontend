@@ -29,12 +29,29 @@ import { MatRadioModule } from '@angular/material/radio';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ComponentsModule } from '../shared/components/components.module';
 import { GroupsGridComponent } from './groups-grid/groups-grid.component';
+import { GroupsListComponent } from './groups-list/groups-list.component';
+import { MatTableExporterModule } from 'mat-table-exporter';
+import { GroupsComponent } from './groups.component';
+import { MembersComponent } from './members/members.component';
+import { FormMessageComponent } from './groups-dialogs/form-message/form-message.component';
+import { DeleteDialogComponent } from './groups-dialogs/delete/delete.component';
+import { FormDialogComponent } from './groups-dialogs/form-dialog/form-dialog.component';
+import { GroupsFormComponent } from './groups-dialogs/groups-form/groups-form.component';
+import { GroupsDeleteComponent } from './groups-dialogs/groups-delete/groups-delete.component';
 
 @NgModule({
   declarations: [
     GroupsGridComponent,
-    
+    GroupsListComponent,
+    DeleteDialogComponent,
+    FormMessageComponent,
+    FormDialogComponent,
+    GroupsComponent,
+    MembersComponent,
+    GroupsFormComponent,
+    GroupsDeleteComponent
   ],
+  
   imports: [
     CommonModule,
     GroupsRoutingModule,
@@ -57,6 +74,7 @@ import { GroupsGridComponent } from './groups-grid/groups-grid.component';
     MatSidenavModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatTableExporterModule,
     MatSortModule,
     MatRadioModule,
     MatToolbarModule,
@@ -69,4 +87,5 @@ import { GroupsGridComponent } from './groups-grid/groups-grid.component';
     ComponentsModule
   ]
 })
+
 export class GroupsModule {}

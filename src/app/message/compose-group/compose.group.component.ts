@@ -37,11 +37,6 @@ export class ComposeGroupComponent implements OnInit {
       name: 'UdM',
       members: 100
     },
-    {
-      id: 'jkdjnzebmzhieizeu',
-      name: 'Groupe SIA',
-      members: 20
-    },
 
   ]
 

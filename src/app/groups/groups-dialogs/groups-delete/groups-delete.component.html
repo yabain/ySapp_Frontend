@@ -1,0 +1,46 @@
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          <div class="font-weight-bold p-t-5 font-17">
+            <i class="fa fa-trash-alt" style="font-size: 25px; color: #c80303;"></i>
+            {{'delete' | translate}} <b>{{dialogTitle}}</b> ?
+          </div>
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-12" [formGroup]="deleteForm" (ngSubmit)="submit">
+      <div class="row">
+        <div class=" col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <span>Transfert all contacts to</span>
+          <mat-form-field class="example-full-width " appearance="outline">
+            <mat-label>{{'Select' | translate }}</mat-label>
+            <mat-select formControlName="idGroupToTransfert" required id="groupList">
+              <mat-option *ngFor="let group of groupList" value="{{group.id}}">
+                {{group.name}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="deleteForm.get('idGroupToTransfert').hasError('required')">
+             {{'is-required' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button mat-raised-button color="primary" [type]="submit" [disabled]="!deleteForm.valid"
+              [mat-dialog-close]="1" (click)="deleteGroup()">{{'delete' | translate }}</button>
+            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">{{'cancel' | translate }}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

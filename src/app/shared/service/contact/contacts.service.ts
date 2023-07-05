@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import { ApiService } from '../api/api.service';
 import { Contact } from '../../entities/contact/contact';
 import { NotificationsService } from '../notifications/notifications.service';
+import { DatePipe, formatDate } from '@angular/common';
 
 
 @Injectable({
@@ -16,7 +17,8 @@ export class ContactsService {
 
   constructor(
     private api?: ApiService,
-    private notificationsService?: NotificationsService
+    private notificationsService?: NotificationsService,
+    private datePipe?: DatePipe,
   ) { }
 
   getOneContactToList(contactId: string, contactList: []) {
@@ -42,6 +44,19 @@ export class ContactsService {
 
   addContact(contact): Promise<any> {
     let contactId = contact.id;
+
+    let d = new Date();
+    let date = this.datePipe.transform(d, 'yyyy');
+    let date2 = this.datePipe.transform(contact.birthday, 'yyyy');
+    console.log('date: ', date);
+    console.log('birthday: ', date2);
+    if(date == date2) {
+      contact.birthday = undefined;
+      console.log('new date undifined: ', contact.birthday);
+    }
+    console.log('new date: ', contact.birthday);
+
+
     contact = this.parseDataForApi(contact);
     this.notificationsService.showNotification('Pending.....', 'info', 3000)
     return new Promise((resolve, reject) => {
@@ -137,6 +152,7 @@ export class ContactsService {
     contact.whatsapp = contactApiData.whatsappContact;
     contact.city = contactApiData.city;
     contact.address = contactApiData.address;
+    contact.groups = contactApiData.groups;
     contact.about = contactApiData.about;
     contact.birthday = contactApiData.birthday;
     return contact;

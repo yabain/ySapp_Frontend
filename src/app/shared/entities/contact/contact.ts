@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 
 export class Contact {
-  id: number;
+  id: any;
   img: string;
   firstName: string;
   lastName: string;
@@ -20,6 +20,7 @@ export class Contact {
   adress: string;
   region: string;
   creationDate: string;
+  groups: any;
 
   constructor(advanceTable) {
     {
@@ -39,6 +40,7 @@ export class Contact {
       this.poste = advanceTable.poste || '';
       this.organisation = advanceTable.organisation || '';
       this.about = advanceTable.about || '';
+      this.groups = advanceTable.groups || '';
       this.city = advanceTable.city || '';
     }
   }

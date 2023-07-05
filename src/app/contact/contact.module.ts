@@ -28,6 +28,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ComponentsModule } from '../shared/components/components.module';
 import { SharedModule } from '../shared/shared.module';
 import { ContactService } from '../shared/service/contact/contact.service';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { ContactService } from '../shared/service/contact/contact.service';
     MatProgressSpinnerModule,
     ComponentsModule,
     SharedModule,
+    MatTabsModule,
   ],
   providers: [ContactService]
 })
