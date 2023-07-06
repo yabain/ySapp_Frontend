@@ -63,10 +63,10 @@ export class ApiService {
     }
 
     // HTTP post
-    post(endpoint: string, body: any): Observable<any> {
+    post(endpoint: string, body: any,header={ 'headers': this.header },sendHeader=true): Observable<any> {
 
         console.log("la requette Post: ", this.url + '/' + endpoint);
-        return this.http.post(this.url + '/' + endpoint, body, { 'headers': this.header })
+        return sendHeader?this.http.post(this.url + '/' + endpoint, body, header):this.http.post(this.url + '/' + endpoint, body)
         // .pipe(tap(), catchError(this.handleError));
     }
 

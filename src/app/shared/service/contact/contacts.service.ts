@@ -42,6 +42,25 @@ export class ContactsService {
     });
   }
 
+  uploadContactFile(formData)
+  {
+    let refNotif=this.notificationsService.showNotificationWitouhTimer('Uploading.....', 'info')
+    this.api.post('contacts/import',formData,null,false)
+      .subscribe(
+        (data) => {
+          refNotif.dismiss()      
+          this.notificationsService.showNotification("Contact list uploaded successfully","success");       
+        },
+        (error) => {
+          let msg="Error when uploading contact list";
+          if(error=='Unexpected token - in JSON at position 0') msg= "Error occured on your CSV file"
+          refNotif.dismiss() 
+          this.notificationsService.showNotification(msg,"danger");
+          console.log(error);
+        }
+      );
+  }
+
   addContact(contact): Promise<any> {
     let contactId = contact.id;
 

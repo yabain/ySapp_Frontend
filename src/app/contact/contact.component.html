@@ -73,6 +73,13 @@
                         </div>
                       </li>
                       <li>
+                        <div class="export-button m-l-10 col-2" matTooltip="Importer liste de contact">
+                            <button mat-mini-fab color="primary" (click)="fileUploader.click()">
+                            <mat-icon class="col-white">file_upload</mat-icon>
+                            </button>
+                        </div>
+                    </li>
+                      <li>
                         <div class="export-button m-l-10" style="border-style: dotted;" [hidden]=!selection.hasValue() matTooltip="DELETE">
                           <button mat-mini-fab style="background-color: #0ba32a !important;">
                             <mat-icon class="col-white">chat_bubble_outline
@@ -297,4 +304,8 @@
       </div>
     </div>
   </div>
+  <div style="display: none;">
+    <input type="file" name="file" id="imageUrl" ngModel accept=".csv" class="form-control ml-4"
+        #fileUploader formControlName="imgProfil" (change)="importContactList($event)">
+</div>
 </section>

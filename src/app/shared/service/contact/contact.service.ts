@@ -66,6 +66,8 @@ export class ContactService extends UnsubscribeOnDestroyAdapter {
       );
   }
 
+  
+
   addContact(contact: Contact): void {
 
     // this.contactsService.addContact(contact)

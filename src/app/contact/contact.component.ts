@@ -334,6 +334,14 @@ export class ContactComponent
     this.contextMenu.menu.focusFirstItem('mouse');
     this.contextMenu.openMenu();
   }
+
+  importContactList(event)
+  {
+    if(event.target.files.length==0) return;
+    const formData = new FormData();
+    formData.append("files",event.target.files[0])
+    this.contactsService.uploadContactFile(formData)
+  }
 }
 
 export class ExampleDataSource extends DataSource<Contact> {
@@ -396,6 +404,8 @@ export class ExampleDataSource extends DataSource<Contact> {
       })
     );
   }
+
+  
 
   disconnect() { }
   /** Returns a sorted copy of the database data. */
