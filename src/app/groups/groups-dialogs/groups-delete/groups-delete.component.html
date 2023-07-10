@@ -35,9 +35,9 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <div class="example-button-row">
-            <button mat-raised-button color="primary" [type]="submit" [disabled]="!deleteForm.valid"
+            <button mat-raised-button color="warn" [type]="submit" [disabled]="!deleteForm.valid"
               [mat-dialog-close]="1" (click)="deleteGroup()">{{'delete' | translate }}</button>
-            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">{{'cancel' | translate }}</button>
+            <button mat-raised-button class="btn btn-secondary" (click)="onNoClick()" tabindex="-1">{{'cancel' | translate }}</button>
           </div>
         </div>
       </div>

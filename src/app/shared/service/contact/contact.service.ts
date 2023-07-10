@@ -49,11 +49,15 @@ export class ContactService extends UnsubscribeOnDestroyAdapter {
   getContactsForGroup(groupId: string){}
 
   /** CRUD METHODS */
-  getAllContacts(): void {
+  getAllContacts(theList?: string): void {
+    if(!theList){
+      theList = 'contact-list';
+    }
     this.isTblLoading = true;
-    let allContacts: Contact[] = JSON.parse(localStorage.getItem('contact-list'));
+    let allContacts: Contact[] = JSON.parse(localStorage.getItem(theList));
     this.subs.sink = this.httpClient
-      .get<Contact[]>(this.API_URL)
+    // .get<Contact[]>(this.API_URL)
+    .get<Contact[]>(localStorage.getItem(theList))
       .subscribe(
         (data) => {
           this.isTblLoading = false;

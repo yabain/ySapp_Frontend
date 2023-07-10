@@ -21,6 +21,8 @@ import { UnsubscribeOnDestroyAdapter } from 'src/app/shared/UnsubscribeOnDestroy
 import { FormDialogComponent } from '../groups-dialogs/form-dialog/form-dialog.component';
 import { DeleteDialogComponent } from '../groups-dialogs/delete/delete.component';
 import { FormMessageComponent } from '../groups-dialogs/form-message/form-message.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { GroupsService } from 'src/app/shared/service/groups/groups.service';
 
 @Component({
   selector: 'app-members',
@@ -52,10 +54,11 @@ export class MembersComponent
   id: number;
   contact: Contact | null;
   loadingContacts: boolean = false;
+  urlData: any = null;
 
   breadscrums = [
     {
-      title: 'Contacts',
+      title: 'Contacts/',
       items: ['Home'],
       active: 'Contacts'
     }
@@ -68,8 +71,12 @@ export class MembersComponent
     private snackBar: MatSnackBar,
     private contactsService: ContactsService,
     private notificationsService: NotificationsService,
+    private activatedRoute: ActivatedRoute,
+    private groupsService: GroupsService,
+    private router: Router
   ) {
     super();
+    
   }
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -79,21 +86,46 @@ export class MembersComponent
   contextMenuPosition = { x: '0px', y: '0px' };
 
   ngOnInit() {
-    let d = new Date();
-    console.log('date: ', d);
-    
-    
-    this.loadingContacts = true;
     this.scrollToTop();
-    if (!localStorage.getItem("contact-list")) {
-      this.refresh();
+    this.loadingContacts = true;
+
+    this.urlData = this.router.url.split('groups-grid/');
+    console.log('id du groupe: ', this.urlData[1]);
+  
+    if (!localStorage.getItem(this.urlData[1])) {
+      console.log('rien concernant cet id');
+      this.refresh(this.urlData[1]);
     } else {
       this.loadData();
       this.loadingContacts = false;
     }
   }
+  
+  navigateToGroups(){
+    this.router.navigateByUrl('/groups');
+  }
 
-  refresh() {
+  refresh(contactId:string) {
+    this.loadingContacts = true;
+    if (contactId) {
+      this.groupsService.getContactListOfGroup(contactId)
+        .then((contacts) => {
+          this.loadingContacts = false;
+          // this.notificationsService.showNotification('Contacts list loaded successfully', 'success');
+          // this.showNotification('snackbar-success', 'Contacts list loaded successfully',
+          //   'bottom',
+          //   'center')
+          this.contactService.getAllContacts();
+          this.loadData();
+        })
+        .catch((error) => {
+          this.loadingContacts = false;
+        })
+    } else {
+      this.loadingContacts = false;
+      return false;
+    }
+
     this.loadingContacts = true;
     this.contactsService.getAllContacts()
       .then((contacts) => {
@@ -131,7 +163,7 @@ export class MembersComponent
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         setTimeout(() => {
-          this.refresh();
+          this.refresh(this.urlData[1]);
           this.refreshTable();
         }, 3000);
         // After dialog is closed we're doing frontend updates
@@ -164,7 +196,7 @@ export class MembersComponent
     this.subs.sink = dialogRef.afterClosed().subscribe((result) => {
       if (result === 1) {
         setTimeout(() => {
-          this.refresh();
+          this.refresh(this.urlData[1]);
           const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
             (x) => x.id === this.id
           );
@@ -204,7 +236,7 @@ export class MembersComponent
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
           (x) => x.id === this.id
         );
-        this.refresh();
+        this.refresh(this.urlData[1]);;
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] =
           this.contactService.getDialogData();
@@ -311,15 +343,6 @@ export class MembersComponent
         this.dataSource.filter = this.filter.nativeElement.value;
       }
     );
-  }
-
-  showNotification(colorName, text, placementFrom, placementAlign) {
-    this.snackBar.open(text, '', {
-      duration: 2000,
-      verticalPosition: placementFrom,
-      horizontalPosition: placementAlign,
-      panelClass: colorName
-    });
   }
 
   // context menu

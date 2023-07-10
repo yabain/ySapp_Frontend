@@ -84,19 +84,20 @@ export class ContactsService {
           this.notificationsService.dialogShowCustomPosition('Contact added', 'success', 3000);
           resolve(response);
         }, (error: any) => {
-          let update = RegExp('\\b'+ 'duplicate key error' +'\\b').test(JSON.stringify(error));
-          if (update){
-            this.api.put('contacts/' + contactId, contact)
-            .subscribe((data: any) => {
-              this.notificationsService.dialogShowCustomPosition('Contact updated', 'success', 3000);
-              resolve(data);
-            }, error => {
-              this.notificationsService.showNotification('Can not update contact, please try again.', 'danger', 7000);
-              reject(error)});
-          } else {
+          // let update = RegExp('\\b'+ 'duplicate key error' +'\\b').test(JSON.stringify(error));
+          // if (update){
+          //   this.api.put('contacts/' + contactId, contact)
+          //   .subscribe((data: any) => {
+          //     this.notificationsService.dialogShowCustomPosition('Contact updated', 'success', 3000);
+          //     resolve(data);
+          //   }, error => {
+          //     this.notificationsService.showNotification('Can not update contact, please try again.', 'danger', 7000);
+          //     reject(error)});
+          // } else {
           this.notificationsService.showNotification('Can not add contact, please try again.', 'danger', 7000);
           console.log('le message', JSON.stringify(error));
-          reject(error);}
+          reject(error);
+        // }
         });
     })
   }
@@ -122,14 +123,17 @@ export class ContactsService {
   }
 
   updateContact(contact): Promise<any> {
-    this.notificationsService.showNotification('Pending.....', 'info', 3000)
+    this.notificationsService.showNotification('Pending.....', 'info', 3000);
+    let contactId = contact.id
+    contact = this.parseDataForApi(contact);
     return new Promise((resolve, reject) => {
-      this.api.put(`contact/${contact.id}`, contact)
-        .subscribe((response: any) => {
-          resolve(response);
-        }, (error: any) => {
-          reject(error);
-        });
+        this.api.put('contacts/' + contactId, contact)
+        .subscribe((data: any) => {
+          this.notificationsService.dialogShowCustomPosition('Contact updated', 'success', 3000);
+          resolve(data);
+        }, error => {
+          this.notificationsService.showNotification('Can not update contact, please try again.', 'danger', 7000);
+          reject(error)});
     })
   }
 

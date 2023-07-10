@@ -67,7 +67,7 @@ export class GroupsListComponent
     private form: UntypedFormBuilder,
     private massageService: MessageService,
     public dialog: MatDialog,
-    private groupsService: GroupsService
+    private groupsService: GroupsService,
   ) {
     super();
     router.events.subscribe((event: Event) => {

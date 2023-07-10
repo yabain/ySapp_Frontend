@@ -34,7 +34,7 @@ export class SigninComponent
     .then(response => {
       if (response ===true){
         this.router.navigate(['/dashboard']);
-        setTimeout(() => { location.reload() }, 700);
+        setTimeout(() => { location.reload() }, 1000);
       } else {
         localStorage.clear();
       }

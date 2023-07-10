@@ -21,9 +21,6 @@
             <mat-label>{{'name' | translate }}</mat-label>
             <input matInput formControlName="name">
             <mat-icon matSuffix>group</mat-icon>
-            <!-- <mat-error *ngIf="groupForm.get('name').hasError('required')">
-              {{'name' | translate }} {{'is-required' | translate }}
-            </mat-error> -->
           </mat-form-field>
         </div>
       </div>
@@ -38,9 +35,9 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
           <div class="example-button-row">
-            <button mat-raised-button color="primary" [type]="submit" [disabled]="!groupForm.valid"
+            <button mat-raised-button class="btn btn-success" [type]="submit" [disabled]="!groupForm.valid"
               [mat-dialog-close]="1" (click)="confirmAdd()">{{'save' | translate }}</button>
-            <button mat-raised-button color="warn" (click)="onNoClick()" tabindex="-1">{{'cancel' | translate }}</button>
+            <button mat-raised-button class="btn btn-secondary" (click)="onNoClick()" tabindex="-1">{{'cancel' | translate }}</button>
           </div>
         </div>
       </div>

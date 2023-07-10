@@ -5,15 +5,71 @@
       <app-breadcrumb [title]="breadscrum.title" [items]="breadscrum.items" [active_item]="breadscrum.active">
       </app-breadcrumb>
     </div>
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    <div class="row clearfix">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="card">
-          <app-groups-list></app-groups-list>
-        </div>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
-        <div class="card">
-          <router-outlet></router-outlet>
+          <div class="header">
+            <table class="col-12">
+              <tr>
+                <td>
+                  <h5 class="b-b p-10 text-strong">{{ "groups" | translate}} ({{groupsList.length}})</h5>
+                </td>
+                <td>
+                  <div class="export-button m-l-10" matTooltip="Add group">
+                    <button mat-mini-fab style="background-color: #0ba32a" (click)="addNew()">
+                      <mat-icon class="col-white">add</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="body text-center">
+            <div class="col-md-4">
+            <div class="row" *ngIf="waitingGroups">
+              <div class="tbl-spinner ">
+                <div class="preloader">
+                  <div class="spinner-layer pl-green">
+                    <div class="circle-clipper left">
+                      <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                      <div class="circle"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="row" *ngIf="!waitingGroups">
+              <div class="col-md-4" *ngFor="let group of groupsList; let i = index" (click)="navigateToGroup(group.id)"
+                [class.active]="curentGroupId === group.id">
+                <div class="card border-apply">
+                  <div class="m-b-20">
+                    <div class="contact-grid">
+                      <div class="profile-header bg-dark">
+                        <div class="user-name">{{group.name}}</div>
+                        <div class="name-center"> {{group.members || 0}} {{'members' | translate}}</div>
+                      </div>
+                      <img src="assets/images/user/group.png" class="user-img" alt="">
+                      <p>
+                        {{group.description}}
+                      </p>
+                      <div class="profile-userbuttons">
+                        <button mat-flat-button class="btn btn-secondary" (click)="$event.stopPropagation()"
+                          (click)="editCall(group)" style="margin: 0 20px 0 20px; font-size: 20px; color:  #ffffff;">
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button mat-flat-button class="btn btn-danger" (click)="$event.stopPropagation()" (click)="deleteGroup(group)"
+                          style="margin: 0 20px 0 20px; font-size: 20px; color: rgb(255, 255, 255);">
+                          <i class="fa fa-trash-alt" ></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

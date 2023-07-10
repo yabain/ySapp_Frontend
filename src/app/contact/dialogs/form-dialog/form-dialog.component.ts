@@ -141,10 +141,13 @@ export class FormDialogComponent implements OnInit {
       this.contact.country = 'EqGuinee'
     }
     
-    this.notificationsService.showNotification('Pending.....', 'info', 3000)
-    this.contactsService.addContact(this.contact)
-    // .then(() => {
-    // });
+    // this.notificationsService.showNotification('Pending.....', 'info', 3000)
+
+    if (this.action === 'edit') {
+      this.contactsService.updateContact(this.contact);
+      } else {
+        this.contactsService.addContact(this.contact);
+      }
 
     console.log('valeur du formulaire: ', this.contact);
   }
@@ -152,4 +155,5 @@ export class FormDialogComponent implements OnInit {
   removeContactToGroup(groupId: string){
     this.groupsService.removeContactToGroup(this.contact.id, groupId)
   }
+  
 }

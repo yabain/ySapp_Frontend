@@ -19,7 +19,25 @@ export class GroupsService {
     // this.getAllGroups();
   }
 
-  getOneGroupToList(contactId: string, contactList) {
+  getContactListOfGroup(groupId: string): Promise<any> {
+    this.waitingGroups = true;
+    this.notificationsService.showNotification('Pending.....', 'info', 3000)
+    return new Promise((resolve, reject) => {
+      this.api.get(`groups/${groupId}/contacts`)
+        .subscribe(result => {
+          this.waitingGroups = false;
+          console.log(`Get contact of ${groupId} group: `, result.data);
+          let tab: any = result.data;
+          for (let i = 0; i < tab.length; i++) {
+            tab[i] = this.parseDataFromApi(tab[i]);
+          }
+          localStorage.setItem(`${groupId}`, JSON.stringify(tab));
+          resolve(tab);
+        }, error => {
+          this.waitingGroups = false;
+          reject(error);
+        });
+    });
   }
 
   getAllGroups(): Promise<any> {

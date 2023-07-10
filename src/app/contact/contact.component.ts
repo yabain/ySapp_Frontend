@@ -168,6 +168,7 @@ export class ContactComponent
       if (result === 1) {
         setTimeout(() => {
           this.refresh();
+          
           const foundIndex = this.exampleDatabase.dataChange.value.findIndex(
             (x) => x.id === this.id
           );

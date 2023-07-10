@@ -55,8 +55,8 @@
                       </li>
                       <li class="dropdown m-l-20">
                         <label for="search-input"><i class="material-icons search-icon">search</i></label>
-                        <input placeholder="{{'search' | translate}} ..." type="text" #filter class="browser-default search-field"
-                          aria-label="Search box">
+                        <input placeholder="{{'search' | translate}} ..." type="text" #filter
+                          class="browser-default search-field" aria-label="Search box">
                       </li>
                       <li>
                         <div class="export-button m-l-10" matTooltip="ADD">
@@ -74,13 +74,14 @@
                       </li>
                       <li>
                         <div class="export-button m-l-10 col-2" matTooltip="Importer liste de contact">
-                            <button mat-mini-fab color="primary" (click)="fileUploader.click()">
+                          <button mat-mini-fab color="primary" (click)="fileUploader.click()">
                             <mat-icon class="col-white">file_upload</mat-icon>
-                            </button>
+                          </button>
                         </div>
-                    </li>
+                      </li>
                       <li>
-                        <div class="export-button m-l-10" style="border-style: dotted;" [hidden]=!selection.hasValue() matTooltip="DELETE">
+                        <div class="export-button m-l-10" style="border-style: dotted;" [hidden]=!selection.hasValue()
+                          matTooltip="DELETE">
                           <button mat-mini-fab style="background-color: #0ba32a !important;">
                             <mat-icon class="col-white">chat_bubble_outline
                             </mat-icon>
@@ -88,7 +89,8 @@
                         </div>
                       </li>
                       <li>
-                        <div class="export-button m-l-10" style="border-style: dotted;" [hidden]=!selection.hasValue() matTooltip="DELETE">
+                        <div class="export-button m-l-10" style="border-style: dotted;" [hidden]=!selection.hasValue()
+                          matTooltip="DELETE">
                           <button mat-mini-fab color="warn" (click)="removeSelectedRows()">
                             <mat-icon class="col-white">delete
                             </mat-icon>
@@ -161,7 +163,8 @@
                   <mat-header-cell mat-header-cell *matHeaderCellDef [ngClass]="'tbl-col-width-per-6'"> Image
                   </mat-header-cell>
                   <mat-cell mat-cell *matCellDef="let row" class="table-img tbl-col-width-per-6"> <img
-                      [src]="row.gender === 'male'? 'assets/images/user/user.png': 'assets/images/user/userf.jpg'" style="border-radius: 20px;" />
+                      [src]="row.gender === 'male'? 'assets/images/user/user.png': 'assets/images/user/userf.jpg'"
+                      style="border-radius: 20px;" />
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="firstName">
@@ -182,7 +185,8 @@
                     {{row.email}}</mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="gender">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'tbl-col-width-per-7'">{{'gender' | translate}}
+                  <mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="'tbl-col-width-per-7'">{{'gender' |
+                    translate}}
                   </mat-header-cell>
                   <mat-cell *matCellDef="let row" (contextmenu)="onContextMenu($event, row)"
                     [ngClass]="'tbl-col-width-per-7'">
@@ -215,10 +219,10 @@
                 <ng-container matColumnDef="actions">
                   <mat-header-cell class="pr-0" *matHeaderCellDef>Actions</mat-header-cell>
                   <mat-cell *matCellDef="let row; let i=index;" class="pr-0">
-                      <button mat-icon-button (click)="$event.stopPropagation()" (click)="messageCall(row)"
+                    <button mat-icon-button (click)="$event.stopPropagation()" (click)="messageCall(row)"
                       class="tbl-action-btn">
-                        <i class="material-icons tbl-fav-chat">chat_bubble_outline</i>
-                      </button>
+                      <i class="material-icons tbl-fav-chat">chat_bubble_outline</i>
+                    </button>
                     <button mat-icon-button (click)="$event.stopPropagation()" (click)="editCall(row)"
                       class="tbl-action-btn">
                       <app-feather-icons [icon]="'edit'" [class]="'tbl-fav-edit'"></app-feather-icons>
@@ -237,10 +241,10 @@
               </mat-table>
               <!-- Loading spinner -->
               <div *ngIf="exampleDatabase.isTblLoading" class="tbl-spinner">
-                 <mat-progress-spinner color="success" [diameter]="40" mode="indeterminate">
+                <mat-progress-spinner color="success" [diameter]="40" mode="indeterminate">
                 </mat-progress-spinner>
-                </div>
-              
+              </div>
+
               <!-- context menu start -->
               <div style="visibility: hidden; position: fixed" [style.left]="contextMenuPosition.x"
                 [style.top]="contextMenuPosition.y" [matMenuTriggerFor]="contextMenu">
@@ -305,7 +309,7 @@
     </div>
   </div>
   <div style="display: none;">
-    <input type="file" name="file" id="imageUrl" ngModel accept=".csv" class="form-control ml-4"
-        #fileUploader formControlName="imgProfil" (change)="importContactList($event)">
-</div>
+    <input type="file" name="file" id="imageUrl" ngModel accept=".csv" class="form-control ml-4" #fileUploader
+      formControlName="imgProfil" (change)="importContactList($event)">
+  </div>
 </section>
